@@ -1,0 +1,23 @@
+# Binaries and build output
+bin/
+build/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+benzstore
+*.idsig
+
+# Android build artifacts
+android/build/
+android/app/build/
+.gradle/
+local.properties
+
+# OS files
+.DS_Store
+Thumbs.db
+*~
