@@ -1,0 +1,8 @@
+/home/benzj/Projekte/benzjeremy.github.io/benzstore/android/app/src/main/java/com/benzjeremy/benzstore/model/AppModel.java
+/home/benzj/Projekte/benzjeremy.github.io/benzstore/android/app/src/main/java/com/benzjeremy/benzstore/model/VersionModel.java
+/home/benzj/Projekte/benzjeremy.github.io/benzstore/android/app/src/main/java/com/benzjeremy/benzstore/util/BenzFileProvider.java
+/home/benzj/Projekte/benzjeremy.github.io/benzstore/android/app/src/main/java/com/benzjeremy/benzstore/util/FeedLoader.java
+/home/benzj/Projekte/benzjeremy.github.io/benzstore/android/app/src/main/java/com/benzjeremy/benzstore/util/HashUtil.java
+/home/benzj/Projekte/benzjeremy.github.io/benzstore/android/app/src/main/java/com/benzjeremy/benzstore/AppDetailActivity.java
+/home/benzj/Projekte/benzjeremy.github.io/benzstore/android/app/src/main/java/com/benzjeremy/benzstore/MainActivity.java
+/home/benzj/Projekte/benzjeremy.github.io/benzstore/android/build/gen/com/benzjeremy/benzstore/R.java
