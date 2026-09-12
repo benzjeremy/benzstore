@@ -46,6 +46,9 @@ echo "==> 7. Signing APK with apksigner..."
     --ks "$KEYSTORE" \
     --ks-pass "pass:$KEYPASS" \
     --key-pass "pass:$KEYPASS" \
+    --v1-signing-enabled true \
+    --v2-signing-enabled true \
+    --v3-signing-enabled true \
     --out "$DIR/benzstore-v1.0.apk" \
     "$WORK/aligned.apk"
 
