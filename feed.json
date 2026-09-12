@@ -358,7 +358,7 @@
       "license": "GPL-3.0",
       "website": "https://benzjeremy.github.io/docklite/",
       "source": "https://github.com/benzjeremy/docklite",
-      "icon": "https://benzjeremy.github.io/docklite/favicon.svg",
+      "icon": "https://benzjeremy.github.io/benzstore/icons/docklite.png",
       "categories": [
         "tools",
         "pc"
@@ -371,9 +371,9 @@
       "versions": [
         {
           "version": "1.2.1",
-          "release_date": "2026-09-05",
-          "changelog_de": "CI/CD Pipeline Optimierung, verbesserte Terminal-Resizing-Handhabung.",
-          "changelog_en": "CI/CD pipeline optimization, improved terminal resize handling.",
+          "release_date": "2026-09-12",
+          "changelog_de": "Optimiertes Live-Log-Streaming und CPU-Monitoring.",
+          "changelog_en": "Optimized live log streaming and CPU monitoring.",
           "downloads": {
             "linux": {
               "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/docklite/docklite_1.2.1",
@@ -413,7 +413,7 @@
       "license": "GPL-3.0",
       "website": "https://benzjeremy.github.io/spotify-screensaver/",
       "source": "https://github.com/benzjeremy/spotify-screensaver",
-      "icon": "https://benzjeremy.github.io/spotify-screensaver/icon.png",
+      "icon": "https://benzjeremy.github.io/benzstore/icons/spotify-screensaver.png",
       "categories": [
         "utility",
         "pc"
