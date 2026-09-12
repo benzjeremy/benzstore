@@ -46,6 +46,7 @@ const I18N = {
     size_label: "Größe",
     sha256_label: "Kryptografischer SHA-256 Prüfsummen-Hash:",
     no_apps_found: "Keine Anwendungen für diese Auswahl gefunden.",
+    prerelease_notice: "Pre-Release Status: BenzStore und alle enthaltenen Anwendungen befinden sich in aktiver Entwicklung (Work in Progress). Alle Builds sind Pre-Releases.",
     copied: "Kopiert!"
   },
   en: {
@@ -89,6 +90,7 @@ const I18N = {
     size_label: "Size",
     sha256_label: "Cryptographic SHA-256 Checksum:",
     no_apps_found: "No applications found matching your criteria.",
+    prerelease_notice: "Pre-Release Notice: BenzStore and all hosted applications are under active development (Work in Progress). All builds are Pre-Releases.",
     copied: "Copied!"
   }
 };
