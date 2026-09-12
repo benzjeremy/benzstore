@@ -76,6 +76,7 @@ func (s *Server) handleGetFeed(w http.ResponseWriter, r *http.Request) {
 type InstallRequest struct {
 	AppID   string `json:"app_id"`
 	Version string `json:"version"`
+	Force   bool   `json:"force,omitempty"`
 }
 
 func (s *Server) handleInstall(w http.ResponseWriter, r *http.Request) {
@@ -90,15 +91,20 @@ func (s *Server) handleInstall(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := s.installer.InstallApp(req.AppID, req.Version); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+	if err := s.installer.InstallApp(req.AppID, req.Version, req.Force); err != nil {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusBadRequest)
+		_ = json.NewEncoder(w).Encode(map[string]interface{}{
+			"success": false,
+			"message": err.Error(),
+		})
 		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
 	_ = json.NewEncoder(w).Encode(map[string]interface{}{
 		"success": true,
-		"message": fmt.Sprintf("App %s installiert", req.AppID),
+		"message": fmt.Sprintf("App %s erfolgreich eingerichtet", req.AppID),
 	})
 }
 

@@ -80,3 +80,83 @@ body { background-color: var(--bg-body); color: var(--text-main); font-family: v
 .sha256-box { font-family: monospace; font-size: 11px; color: var(--brand-blue); word-break: break-all; margin-top: 8px; background-color: var(--bg-surface); padding: 8px; border-radius: var(--radius-sm); border: 1px solid rgba(56, 189, 248, 0.2); }
 .toast-bar { position: fixed; bottom: 24px; right: 24px; background-color: var(--bg-surface); border: 1px solid var(--brand-blue); color: var(--text-main); padding: 12px 20px; border-radius: var(--radius-md); box-shadow: var(--shadow); display: none; font-size: 14px; z-index: 2000; }
 .toast-bar.show { display: block; }
+
+/* Installation Badges & Status */
+.install-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.badge-installed {
+  background-color: var(--brand-green-bg);
+  color: var(--brand-green-hover);
+  border: 1px solid rgba(46, 160, 67, 0.35);
+}
+.badge-update {
+  background-color: rgba(210, 153, 34, 0.15);
+  color: var(--brand-amber);
+  border: 1px solid rgba(210, 153, 34, 0.35);
+}
+.badge-downgrade {
+  background-color: rgba(248, 81, 73, 0.15);
+  color: var(--brand-red);
+  border: 1px solid rgba(248, 81, 73, 0.35);
+}
+
+.modal-status-banner {
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  line-height: 1.4;
+  margin-top: 10px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.banner-installed {
+  background-color: var(--brand-green-bg);
+  color: var(--brand-green-hover);
+  border: 1px solid rgba(46, 160, 67, 0.35);
+}
+.banner-update {
+  background-color: rgba(210, 153, 34, 0.15);
+  color: var(--brand-amber);
+  border: 1px solid rgba(210, 153, 34, 0.35);
+}
+.banner-downgrade {
+  background-color: rgba(248, 81, 73, 0.15);
+  color: var(--brand-red);
+  border: 1px solid rgba(248, 81, 73, 0.35);
+}
+
+.btn-update {
+  background-color: var(--brand-amber);
+  color: #0d1117;
+  font-weight: 700;
+}
+.btn-update:hover {
+  background-color: #e3b341;
+}
+
+.btn-danger {
+  background-color: var(--brand-red);
+  color: #ffffff;
+  font-weight: 700;
+}
+.btn-danger:hover {
+  background-color: #f85149dd;
+}
+
+.btn-disabled {
+  background-color: var(--bg-card);
+  color: var(--text-dim);
+  border: 1px solid var(--border-color);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+

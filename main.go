@@ -85,10 +85,13 @@ func runInstall(args []string) {
 
 	appID := args[0]
 	verFlag := ""
+	forceFlag := false
 	for i := 1; i < len(args); i++ {
 		if (args[i] == "-v" || args[i] == "--version") && i+1 < len(args) {
 			verFlag = args[i+1]
-			break
+			i++
+		} else if args[i] == "-f" || args[i] == "--force" {
+			forceFlag = true
 		}
 	}
 
@@ -100,7 +103,7 @@ func runInstall(args []string) {
 	installer := api.NewInstaller(client)
 
 	fmt.Printf("==> Starte Installation von %s (Version: %s)...\n", appID, verFlag)
-	if err := installer.InstallApp(appID, verFlag); err != nil {
+	if err := installer.InstallApp(appID, verFlag, forceFlag); err != nil {
 		log.Fatalf("❌ Installationsfehler: %v\n", err)
 	}
 	fmt.Println("✅ Erfolg: Anwendung wurde installiert und einsatzbereit eingerichtet!")

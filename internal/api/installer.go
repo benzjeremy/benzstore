@@ -26,7 +26,7 @@ func NewInstaller(client *store.Client) *Installer {
 	return &Installer{client: client}
 }
 
-func (inst *Installer) InstallApp(appID, versionStr string) error {
+func (inst *Installer) InstallApp(appID, versionStr string, force bool) error {
 	feed, err := inst.client.FetchFeed()
 	if err != nil {
 		return fmt.Errorf("failed to load catalog: %w", err)
@@ -66,6 +66,28 @@ func (inst *Installer) InstallApp(appID, versionStr string) error {
 
 	if targetVer == nil {
 		return fmt.Errorf("version %s not found for app %s", versionStr, appID)
+	}
+
+	// Safeguard: Check existing installation for duplicate version or downgrade
+	reg, _ := store.LoadRegistry()
+	if reg != nil {
+		if entry, ok := reg.Apps[appID]; ok {
+			binDir, _ := config.GetUserBinDir()
+			binPath := entry.BinaryPath
+			if binPath == "" {
+				parts := strings.Split(appID, ".")
+				binPath = filepath.Join(binDir, parts[len(parts)-1])
+			}
+			if fi, err := os.Stat(binPath); err == nil && !fi.IsDir() {
+				cmp := store.CompareVersions(targetVer.Version, entry.Version)
+				if cmp == 0 && !force {
+					return fmt.Errorf("App '%s' ist bereits in Version v%s installiert.", targetApp.Name, entry.Version)
+				}
+				if cmp < 0 && !force {
+					return fmt.Errorf("Downgrade-Warnung: App '%s' ist in Version v%s installiert. Version v%s ist älter!", targetApp.Name, entry.Version, targetVer.Version)
+				}
+			}
+		}
 	}
 
 	asset, ok := targetVer.Downloads["linux"]
@@ -138,6 +160,7 @@ func (inst *Installer) InstallApp(appID, versionStr string) error {
 	}
 
 	fmt.Printf("==> Installiert in: %s\n", targetPath)
+	_ = store.RegisterInstalledApp(appID, targetVer.Version, targetPath)
 
 	if asset.DesktopEntry != nil {
 		inst.installDesktopEntry(binName, targetApp, asset.DesktopEntry)
@@ -161,6 +184,8 @@ func (inst *Installer) UninstallApp(appID string) error {
 	desktopDir, _ := config.GetDesktopEntriesDir()
 	desktopPath := filepath.Join(desktopDir, binName+".desktop")
 	_ = os.Remove(desktopPath)
+
+	_ = store.UnregisterInstalledApp(appID)
 
 	fmt.Printf("==> %s deinstalliert.\n", appID)
 	return nil

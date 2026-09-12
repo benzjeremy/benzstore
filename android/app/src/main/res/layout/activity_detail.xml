@@ -119,6 +119,18 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
 
+            <TextView
+                android:id="@+id/txtInstalledStatusBanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_surface"
+                android:padding="10dp"
+                android:textColor="@color/accent_green"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:layout_marginBottom="10dp" />
+
             <Spinner
                 android:id="@+id/spinnerVersions"
                 android:layout_width="match_parent"

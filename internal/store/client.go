@@ -81,9 +81,23 @@ func (c *Client) FetchFeed() (*Feed, error) {
 
 func (c *Client) enrichInstalledStatus(feed *Feed) {
 	userBin, _ := config.GetUserBinDir()
+	reg, _ := LoadRegistry()
 
 	for i := range feed.Apps {
 		app := &feed.Apps[i]
+
+		// 1. Check registry first
+		if reg != nil {
+			if entry, ok := reg.Apps[app.ID]; ok {
+				if fi, err := os.Stat(entry.BinaryPath); err == nil && !fi.IsDir() {
+					app.IsInstalled = true
+					app.BinaryPath = entry.BinaryPath
+					app.InstalledVersion = entry.Version
+					continue
+				}
+			}
+		}
+
 		// Determine expected binary name
 		binName := ""
 		for _, v := range app.Versions {

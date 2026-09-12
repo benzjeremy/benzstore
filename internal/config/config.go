@@ -47,3 +47,17 @@ func GetStoreCacheDir() (string, error) {
 	}
 	return storeCache, nil
 }
+
+func GetStoreConfigDir() (string, error) {
+	cfg, err := os.UserConfigDir()
+	if err != nil {
+		home, _ := os.UserHomeDir()
+		cfg = filepath.Join(home, ".config")
+	}
+	storeCfg := filepath.Join(cfg, "benzstore")
+	if err := os.MkdirAll(storeCfg, 0755); err != nil {
+		return "", err
+	}
+	return storeCfg, nil
+}
+

@@ -27,7 +27,16 @@ const i18n = {
     sha256_label: "Kryptografische Signatur (SHA-256):",
     install_version: "Diese Version installieren",
     direct_download: "Direkt herunterladen",
-    no_results: "Keine Anwendungen für diesen Filter gefunden."
+    no_results: "Keine Anwendungen für diesen Filter gefunden.",
+    already_installed_banner: "✓ Version v{ver} ist bereits installiert.",
+    already_installed_btn: "✓ Bereits installiert",
+    reinstall_btn: "↺ Erneut installieren",
+    update_available: "⬆ Update verfügbar (v{ver})",
+    update_banner: "⬆ Update verfügbar: v{current} ➔ v{target}",
+    update_btn: "⬆ Auf v{ver} aktualisieren",
+    downgrade_banner: "⚠️ Downgrade-Warnung: Installiert ist Version v{current}. Die gewählte Version v{target} ist älter! Mögliche Dateninkompatibilität.",
+    downgrade_btn: "⚠️ Downgrade auf v{ver}",
+    downgrade_confirm: "Warnung: Möchtest du wirklich von der neueren Version v{current} auf die ältere Version v{target} downgraden?"
   },
   en: {
     tagline: "Unified Privacy-First AppStore for Android & PC",
@@ -50,9 +59,39 @@ const i18n = {
     sha256_label: "Cryptographic Fingerprint (SHA-256):",
     install_version: "Install this version",
     direct_download: "Direct Download",
-    no_results: "No applications found for this filter."
+    no_results: "No applications found for this filter.",
+    already_installed_banner: "✓ Version v{ver} is already installed.",
+    already_installed_btn: "✓ Already Installed",
+    reinstall_btn: "↺ Reinstall",
+    update_available: "⬆ Update available (v{ver})",
+    update_banner: "⬆ Update available: v{current} ➔ v{target}",
+    update_btn: "⬆ Update to v{ver}",
+    downgrade_banner: "⚠️ Downgrade Warning: Currently installed is version v{current}. Selected version v{target} is older! Potential incompatibility.",
+    downgrade_btn: "⚠️ Downgrade to v{ver}",
+    downgrade_confirm: "Warning: Are you sure you want to downgrade from newer version v{current} to older version v{target}?"
   }
 };
+
+function compareVersions(v1, v2) {
+  if (!v1 && !v2) return 0;
+  if (!v1) return -1;
+  if (!v2) return 1;
+
+  const clean1 = v1.toString().trim().replace(/^[vV]/, '');
+  const clean2 = v2.toString().trim().replace(/^[vV]/, '');
+
+  const parts1 = clean1.split(/[.-]/).map(p => parseInt(p, 10) || 0);
+  const parts2 = clean2.split(/[.-]/).map(p => parseInt(p, 10) || 0);
+
+  const len = Math.max(parts1.length, parts2.length);
+  for (let i = 0; i < len; i++) {
+    const p1 = parts1[i] || 0;
+    const p2 = parts2[i] || 0;
+    if (p1 < p2) return -1;
+    if (p1 > p2) return 1;
+  }
+  return 0;
+}
 
 function toggleLanguage() {
   currentLang = currentLang === 'de' ? 'en' : 'de';
@@ -141,9 +180,18 @@ function renderApps() {
     }).join(' ');
 
     let actionBtnHtml = '';
+    let badgeHtml = '';
     if (app.is_installed) {
-      actionBtnHtml = `<button class="btn-action btn-launch" onclick="launchApp('${app.id}')">▶ ${i18n[currentLang].launch}</button>`;
-    } else if (app.platforms.some(p => ['linux', 'windows'].includes(p.toLowerCase()))) {
+      const installedVer = app.installed_version || app.latest_version;
+      const cmp = compareVersions(app.latest_version, installedVer);
+      if (cmp > 0) {
+        badgeHtml = `<span class="install-badge badge-update">v${installedVer} • ⬆ Update</span>`;
+        actionBtnHtml = `<button class="btn-action btn-update" onclick="installApp('${app.id}', '${app.latest_version}')">⬆ ${i18n[currentLang].update} (v${app.latest_version})</button>`;
+      } else {
+        badgeHtml = `<span class="install-badge badge-installed">✓ ${i18n[currentLang].installed} (v${installedVer})</span>`;
+        actionBtnHtml = `<button class="btn-action btn-launch" onclick="launchApp('${app.id}')">▶ ${i18n[currentLang].launch}</button>`;
+      }
+    } else if (app.platforms.some(p => ['linux', 'windows', 'pc'].includes(p.toLowerCase()))) {
       actionBtnHtml = `<button class="btn-action btn-primary" onclick="installApp('${app.id}', '${app.latest_version}')">⬇ ${i18n[currentLang].install}</button>`;
     } else {
       actionBtnHtml = `<button class="btn-action btn-secondary" onclick="openAppModal('${app.id}')">📱 Android APK</button>`;
@@ -155,7 +203,10 @@ function renderApps() {
         <div class="app-info">
           <div class="app-header-row">
             <span class="app-name">${app.name}</span>
-            <span class="app-ver-tag">v${app.latest_version}</span>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              ${badgeHtml}
+              <span class="app-ver-tag">v${app.latest_version}</span>
+            </div>
           </div>
           <p class="app-summary">${summary}</p>
           <div class="app-meta-row">
@@ -200,6 +251,7 @@ function openAppModal(appId) {
       <select id="modalVersionSelect" class="version-select" onchange="onModalVersionChange()">
         ${versionOptions}
       </select>
+      <div id="modalVersionStatus"></div>
       <div id="modalVersionChangelog" class="version-changelog"></div>
       <div id="modalVersionSha" class="sha256-box"></div>
     </div>
@@ -227,21 +279,91 @@ function onModalVersionChange() {
     document.getElementById('modalVersionSha').textContent = 'Keine Download-Informationen für diese Version.';
   }
 
+  const statusContainer = document.getElementById('modalVersionStatus');
   const actionArea = document.getElementById('modalActionArea');
-  if (window.location.origin.includes('127.0.0.1') || window.location.origin.includes('localhost')) {
-    actionArea.innerHTML = `
-      <button class="btn-action btn-primary" style="padding: 12px;" onclick="installApp('${activeApp.id}', '${chosenVer}')">
-        ⬇ ${i18n[currentLang].install_version} (v${chosenVer})
-      </button>
-    `;
+  const isLocal = window.location.origin.includes('127.0.0.1') || window.location.origin.includes('localhost');
+  const installedVer = activeApp.installed_version;
+
+  if (activeApp.is_installed && installedVer) {
+    const cmp = compareVersions(chosenVer, installedVer);
+    if (cmp === 0) {
+      // Exactly same version already installed
+      const bannerText = i18n[currentLang].already_installed_banner.replace('{ver}', chosenVer);
+      statusContainer.innerHTML = `<div class="modal-status-banner banner-installed">${bannerText}</div>`;
+      if (isLocal) {
+        actionArea.innerHTML = `
+          <button class="btn-action btn-launch" style="padding: 12px;" onclick="launchApp('${activeApp.id}')">
+            ▶ ${i18n[currentLang].launch}
+          </button>
+          <button class="btn-action btn-secondary" style="padding: 12px;" onclick="installApp('${activeApp.id}', '${chosenVer}', true)" title="Erneut installieren">
+            ${i18n[currentLang].reinstall_btn}
+          </button>
+        `;
+      } else if (dlInfo && dlInfo.url) {
+        actionArea.innerHTML = `
+          <a href="${dlInfo.url}" class="btn-action btn-secondary" style="text-decoration: none; padding: 12px; text-align: center;" download>
+            ⬇ ${i18n[currentLang].direct_download} (v${chosenVer})
+          </a>
+        `;
+      }
+    } else if (cmp < 0) {
+      // Downgrade warning!
+      const bannerText = i18n[currentLang].downgrade_banner.replace('{current}', installedVer).replace('{target}', chosenVer);
+      statusContainer.innerHTML = `<div class="modal-status-banner banner-downgrade">${bannerText}</div>`;
+      if (isLocal) {
+        actionArea.innerHTML = `
+          <button class="btn-action btn-danger" style="padding: 12px;" onclick="promptDowngrade('${activeApp.id}', '${chosenVer}', '${installedVer}')">
+            ${i18n[currentLang].downgrade_btn.replace('{ver}', chosenVer)}
+          </button>
+        `;
+      } else if (dlInfo && dlInfo.url) {
+        actionArea.innerHTML = `
+          <a href="${dlInfo.url}" class="btn-action btn-danger" style="text-decoration: none; padding: 12px; text-align: center;" download onclick="return confirm(i18n[currentLang].downgrade_confirm.replace('{current}', '${installedVer}').replace('{target}', '${chosenVer}'))">
+            ⚠️ ${i18n[currentLang].direct_download} (v${chosenVer})
+          </a>
+        `;
+      }
+    } else {
+      // Update!
+      const bannerText = i18n[currentLang].update_banner.replace('{current}', installedVer).replace('{target}', chosenVer);
+      statusContainer.innerHTML = `<div class="modal-status-banner banner-update">${bannerText}</div>`;
+      if (isLocal) {
+        actionArea.innerHTML = `
+          <button class="btn-action btn-update" style="padding: 12px;" onclick="installApp('${activeApp.id}', '${chosenVer}')">
+            ${i18n[currentLang].update_btn.replace('{ver}', chosenVer)}
+          </button>
+        `;
+      } else if (dlInfo && dlInfo.url) {
+        actionArea.innerHTML = `
+          <a href="${dlInfo.url}" class="btn-action btn-update" style="text-decoration: none; padding: 12px; text-align: center;" download>
+            ⬆ ${i18n[currentLang].direct_download} (v${chosenVer})
+          </a>
+        `;
+      }
+    }
   } else {
-    if (dlInfo && dlInfo.url) {
+    // Not installed
+    statusContainer.innerHTML = '';
+    if (isLocal) {
+      actionArea.innerHTML = `
+        <button class="btn-action btn-primary" style="padding: 12px;" onclick="installApp('${activeApp.id}', '${chosenVer}')">
+          ⬇ ${i18n[currentLang].install_version} (v${chosenVer})
+        </button>
+      `;
+    } else if (dlInfo && dlInfo.url) {
       actionArea.innerHTML = `
         <a href="${dlInfo.url}" class="btn-action btn-primary" style="text-decoration: none; padding: 12px; text-align: center;" download>
           ⬇ ${i18n[currentLang].direct_download} (v${chosenVer})
         </a>
       `;
     }
+  }
+}
+
+function promptDowngrade(appId, targetVer, currentVer) {
+  const msg = i18n[currentLang].downgrade_confirm.replace('{current}', currentVer).replace('{target}', targetVer);
+  if (confirm(msg)) {
+    installApp(appId, targetVer, true);
   }
 }
 
@@ -254,20 +376,24 @@ function closeModalOnBackdrop(e) {
   if (e.target.id === 'appModal') closeModal();
 }
 
-async function installApp(appId, version) {
+async function installApp(appId, version, force = false) {
   showToast(`Installiere ${appId} (v${version})... SHA-256 wird geprüft.`);
   try {
     const res = await fetch('/api/install?token=' + encodeURIComponent(authToken), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-BenzStore-Token': authToken },
-      body: JSON.stringify({ app_id: appId, version: version })
+      body: JSON.stringify({ app_id: appId, version: version, force: force })
     });
     const data = await res.json();
     if (res.ok && data.success) {
       showToast(`✅ ${data.message}!`);
-      loadCatalog();
+      await loadCatalog();
+      if (activeApp && activeApp.id === appId) {
+        activeApp = catalog.apps.find(a => a.id === appId) || activeApp;
+        onModalVersionChange();
+      }
     } else {
-      showToast(`❌ Fehler: ${data.message || 'Installation fehlgeschlagen'}`);
+      showToast(`❌ ${data.message || 'Installation fehlgeschlagen'}`);
     }
   } catch (err) {
     showToast(`❌ Netzwerkfehler: ${err.message}`);
