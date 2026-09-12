@@ -1,9 +1,15 @@
 # 📦 BenzStore
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Status: Pre-Release](https://img.shields.io/badge/Status-Pre--Release%20%2F%20WIP-orange.svg)](https://benzjeremy.github.io/benzstore/)
 [![Go Version](https://img.shields.io/badge/Go-1.22+-00ADD8?logo=go)](https://golang.org)
 [![Android](https://img.shields.io/badge/Android-APK%20(Native)-3DDC84?logo=android)](https://benzjeremy.github.io/benzstore/)
 [![Website](https://img.shields.io/badge/Web-Showcase-brightgreen)](https://benzjeremy.github.io/benzstore/)
+
+> [!IMPORTANT]
+> ### 🚧 Pre-Release / Active Development Notice
+> **This software is not yet finished and is under active development.**  
+> All versions, Android APKs, and desktop binaries are **Pre-Releases** (Work in Progress), even if released without a pre-release suffix. Store feeds, desktop shells, and installer pipelines are being continuously refined.
 
 > **Unified, privacy-first AppStore for Android and PC (Linux & Windows)** by Jeremy Benz.
 > Zero telemetry, no JAR compilation overhead (`jarsigner` eliminated), verified cryptographic SHA-256 integrity, single-click install for Latest or any specific version.
