@@ -84,14 +84,33 @@
             android:layout_marginTop="4dp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnCardAction"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="38dp"
-        android:text="@string/install"
-        android:textColor="@color/text_primary"
-        android:background="@color/accent_blue_dark"
-        android:textSize="12sp"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btnCardAction"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="@string/install"
+            android:textColor="@color/text_primary"
+            android:background="@color/accent_blue_dark"
+            android:textSize="12sp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp" />
+
+        <Button
+            android:id="@+id/btnCardVersions"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:text="@string/versions_btn"
+            android:textColor="@color/accent_blue"
+            android:background="@color/bg_surface"
+            android:textSize="11sp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:layout_marginTop="4dp" />
+    </LinearLayout>
 </LinearLayout>

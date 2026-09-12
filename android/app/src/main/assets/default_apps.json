@@ -12,9 +12,9 @@
   },
   "categories": [
     {
-      "id": "all",
-      "name_de": "Alle",
-      "name_en": "All"
+      "id": "android",
+      "name_de": "Apps",
+      "name_en": "Apps"
     },
     {
       "id": "pc",
@@ -22,24 +22,9 @@
       "name_en": "PC & Desktop"
     },
     {
-      "id": "android",
-      "name_de": "Android APKs",
-      "name_en": "Android APKs"
-    },
-    {
-      "id": "tools",
-      "name_de": "Entwickler-Tools",
-      "name_en": "Dev Tools"
-    },
-    {
-      "id": "education",
-      "name_de": "Bildung & Lernen",
-      "name_en": "Education"
-    },
-    {
-      "id": "utility",
-      "name_de": "Nützliches & Wetter",
-      "name_en": "Utilities"
+      "id": "server",
+      "name_de": "Server & Cloud",
+      "name_en": "Server & Cloud"
     }
   ],
   "apps": [
@@ -56,8 +41,6 @@
       "source": "https://github.com/benzjeremy/benzstore",
       "icon": "https://benzjeremy.github.io/benzstore/icon.png",
       "categories": [
-        "tools",
-        "utility",
         "android",
         "pc"
       ],
@@ -121,8 +104,6 @@
       "source": "https://github.com/benzjeremy/learn",
       "icon": "https://benzjeremy.github.io/myfdroid/icons/com.benzjeremy.learn.png",
       "categories": [
-        "education",
-        "tools",
         "android"
       ],
       "platforms": [
@@ -205,7 +186,6 @@
       "source": "https://github.com/benzjeremy/wetter-site",
       "icon": "https://benzjeremy.github.io/myfdroid/icons/com.benzjeremy.wetter.png",
       "categories": [
-        "utility",
         "android"
       ],
       "platforms": [
@@ -273,8 +253,6 @@
       "source": "https://github.com/benzjeremy/untis-go",
       "icon": "https://benzjeremy.github.io/untis-go/icon.png",
       "categories": [
-        "education",
-        "utility",
         "pc"
       ],
       "platforms": [
@@ -344,6 +322,68 @@
               "size": 19713536
             }
           }
+        },
+        {
+          "version": "2.1",
+          "release_date": "2026-09-05",
+          "changelog_de": "Strikte Trennung von App-Code und Wiki, WebKitGTK-Härtung und Anti-CSRF.",
+          "changelog_en": "Strict codebase separation, WebKitGTK hardening and Anti-CSRF.",
+          "downloads": {
+            "linux": {
+              "url": "https://github.com/benzjeremy/untis-go/releases/download/v2.1/untis-go-v2.1-linux.tar.gz",
+              "filename": "untis-go-v2.1-linux.tar.gz",
+              "bin_name": "untis-go",
+              "type": "binary",
+              "sha256": "d90f757de0b00c88ca346cfd19aa333d9cefe9a283f57e2db0d73026828c254f",
+              "size": 4426070,
+              "desktop_entry": {
+                "name": "Untis-Go",
+                "comment": "WebUntis Timetable Client",
+                "exec": "untis-go",
+                "terminal": false,
+                "categories": "Education;Office;"
+              }
+            },
+            "windows": {
+              "url": "https://github.com/benzjeremy/untis-go/releases/download/v2.1/untis-go-v2.1-windows.zip",
+              "filename": "untis-go-v2.1-windows.zip",
+              "bin_name": "untis-go.exe",
+              "type": "exe",
+              "sha256": "4e2bacd6cd973afbf12e47539e691aa91f0c966cbe493ea72153b0b6773d4de3",
+              "size": 5545284
+            }
+          }
+        },
+        {
+          "version": "2.0",
+          "release_date": "2026-09-05",
+          "changelog_de": "Major Release: Überarbeitete Architektur, 10x schnellere Ladezeiten und SQLite Caching.",
+          "changelog_en": "Major release: Overhauled architecture, 10x faster load times and SQLite caching.",
+          "downloads": {
+            "linux": {
+              "url": "https://github.com/benzjeremy/untis-go/releases/download/v2.0/untis-go-v2.0-linux.tar.gz",
+              "filename": "untis-go-v2.0-linux.tar.gz",
+              "bin_name": "untis-go",
+              "type": "binary",
+              "sha256": "f95e85d758d1ad66b1f506ba0032d355faef2056240ede6ef4d12c06b300d207",
+              "size": 4424621,
+              "desktop_entry": {
+                "name": "Untis-Go",
+                "comment": "WebUntis Timetable Client",
+                "exec": "untis-go",
+                "terminal": false,
+                "categories": "Education;Office;"
+              }
+            },
+            "windows": {
+              "url": "https://github.com/benzjeremy/untis-go/releases/download/v2.0/untis-go-v2.0-windows.zip",
+              "filename": "untis-go-v2.0-windows.zip",
+              "bin_name": "untis-go.exe",
+              "type": "exe",
+              "sha256": "e5bd32146e0efc1445ef8eaf0fe10c2d00dc57e64c01c0cbb6622fd76be73a69",
+              "size": 5543336
+            }
+          }
         }
       ]
     },
@@ -360,7 +400,6 @@
       "source": "https://github.com/benzjeremy/docklite",
       "icon": "https://benzjeremy.github.io/benzstore/icons/docklite.png",
       "categories": [
-        "tools",
         "pc"
       ],
       "platforms": [
@@ -415,7 +454,6 @@
       "source": "https://github.com/benzjeremy/spotify-screensaver",
       "icon": "https://benzjeremy.github.io/benzstore/icons/spotify-screensaver.png",
       "categories": [
-        "utility",
         "pc"
       ],
       "platforms": [
@@ -470,10 +508,7 @@
       "source": "https://github.com/benzjeremy/benzcloud-server",
       "icon": "https://benzjeremy.github.io/benzstore/icons/benzcloud-server.png",
       "categories": [
-        "tools",
-        "utility",
-        "android",
-        "pc"
+        "server"
       ],
       "platforms": [
         "android",
@@ -535,8 +570,6 @@
       "source": "https://github.com/benzjeremy/benzcloud-client",
       "icon": "https://benzjeremy.github.io/benzstore/icons/benzcloud-client.png",
       "categories": [
-        "tools",
-        "utility",
         "android",
         "pc"
       ],
@@ -600,8 +633,7 @@
       "source": "https://github.com/benzjeremy/benzcloud-plugin-web",
       "icon": "https://benzjeremy.github.io/benzstore/icons/benzcloud-plugin-web.png",
       "categories": [
-        "tools",
-        "pc"
+        "server"
       ],
       "platforms": [
         "linux",
@@ -655,8 +687,7 @@
       "source": "https://github.com/benzjeremy/benzcloud-plugin-mail",
       "icon": "https://benzjeremy.github.io/benzstore/icons/benzcloud-plugin-mail.png",
       "categories": [
-        "tools",
-        "pc"
+        "server"
       ],
       "platforms": [
         "linux",
@@ -710,8 +741,7 @@
       "source": "https://github.com/benzjeremy/benzcloud-plugin-chat",
       "icon": "https://benzjeremy.github.io/benzstore/icons/benzcloud-plugin-chat.png",
       "categories": [
-        "tools",
-        "pc"
+        "server"
       ],
       "platforms": [
         "linux",

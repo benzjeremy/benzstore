@@ -70,63 +70,96 @@
         android:layout_marginBottom="12dp" />
 
     <!-- Category Filter Row -->
-    <HorizontalScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none"
+        android:orientation="horizontal"
         android:layout_marginBottom="14dp">
 
-        <LinearLayout
-            android:id="@+id/categoryContainer"
+        <Button
+            android:id="@+id/catAndroid"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="1"
+            android:text="@string/category_apps"
+            android:textColor="@color/text_primary"
+            android:background="@color/accent_blue_dark"
+            android:layout_marginEnd="6dp" />
+
+        <Button
+            android:id="@+id/catPC"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="1"
+            android:text="@string/category_pc"
+            android:textColor="@color/text_muted"
+            android:background="@color/bg_card"
+            android:layout_marginEnd="6dp" />
+
+        <Button
+            android:id="@+id/catServer"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="1"
+            android:text="@string/category_server"
+            android:textColor="@color/text_muted"
+            android:background="@color/bg_card" />
+    </LinearLayout>
+
+    <!-- Update Alert Banner (Hidden by default, shown when updates exist) -->
+    <LinearLayout
+        android:id="@+id/layoutUpdateBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/bg_card"
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        android:layout_marginBottom="12dp">
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="⚡"
+            android:textSize="20sp"
+            android:layout_marginEnd="10dp" />
 
-            <Button
-                android:id="@+id/catAll"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtUpdateBannerTitle"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="@string/category_all"
+                android:layout_height="wrap_content"
+                android:text="@string/updates_available_title"
+                android:textColor="@color/accent_amber"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtUpdateBannerSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Updates verfügbar"
                 android:textColor="@color/text_primary"
-                android:background="@color/accent_blue_dark"
-                android:layout_marginEnd="8dp" />
-
-            <Button
-                android:id="@+id/catAndroid"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="@string/category_android"
-                android:textColor="@color/text_muted"
-                android:background="@color/bg_card"
-                android:layout_marginEnd="8dp" />
-
-            <Button
-                android:id="@+id/catPC"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="@string/category_pc"
-                android:textColor="@color/text_muted"
-                android:background="@color/bg_card"
-                android:layout_marginEnd="8dp" />
-
-            <Button
-                android:id="@+id/catTools"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="@string/category_tools"
-                android:textColor="@color/text_muted"
-                android:background="@color/bg_card"
-                android:layout_marginEnd="8dp" />
-
-            <Button
-                android:id="@+id/catEdu"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="@string/category_education"
-                android:textColor="@color/text_muted"
-                android:background="@color/bg_card" />
+                android:textSize="12sp" />
         </LinearLayout>
-    </HorizontalScrollView>
+
+        <Button
+            android:id="@+id/btnBannerShowUpdates"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Anzeigen"
+            android:textColor="@color/text_primary"
+            android:background="@color/accent_amber"
+            android:textSize="12sp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp" />
+    </LinearLayout>
 
     <!-- Status / Count Indicator -->
     <TextView

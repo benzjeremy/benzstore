@@ -1,21 +1,22 @@
 let catalog = { apps: [], store: {} };
 let currentLang = localStorage.getItem('benzstore_lang') || 'de';
-let currentFilter = 'all';
+let currentFilter = 'android'; // Default: Apps
 let currentSearch = '';
 let activeApp = null;
+let showOnlyUpdates = false;
 let authToken = new URLSearchParams(window.location.search).get('token') || '';
 
 const i18n = {
   de: {
     tagline: "Einheitlicher Privacy-First AppStore für Android & PC",
     sync: "Sync",
-    search_ph: "Anwendungen durchsuchen (z. B. Untis, Docker, Lernen)...",
-    filter_all: "Alle",
+    search_ph: "Anwendungen durchsuchen (z. B. Untis, Docker, Lernen, Server)...",
+    filter_android: "Apps",
     filter_pc: "PC & Desktop",
-    filter_android: "Android APKs",
-    filter_tools: "Entwickler-Tools",
-    filter_edu: "Bildung",
-    filter_util: "Nützliches",
+    filter_server: "Server & Cloud",
+    updates_available_title: "Updates verfügbar",
+    show_btn: "Anzeigen",
+    show_all_btn: "Alle anzeigen",
     loading: "Lade Katalog...",
     install: "Installieren",
     installed: "Installiert",
@@ -41,13 +42,13 @@ const i18n = {
   en: {
     tagline: "Unified Privacy-First AppStore for Android & PC",
     sync: "Sync",
-    search_ph: "Search applications (e.g. Untis, Docker, Learn)...",
-    filter_all: "All",
+    search_ph: "Search applications (e.g. Untis, Docker, Learn, Server)...",
+    filter_android: "Apps",
     filter_pc: "PC & Desktop",
-    filter_android: "Android APKs",
-    filter_tools: "Dev Tools",
-    filter_edu: "Education",
-    filter_util: "Utilities",
+    filter_server: "Server & Cloud",
+    updates_available_title: "Updates Available",
+    show_btn: "View",
+    show_all_btn: "Show All",
     loading: "Loading catalog...",
     install: "Install",
     installed: "Installed",
@@ -93,6 +94,12 @@ function compareVersions(v1, v2) {
   return 0;
 }
 
+function isServerApp(app) {
+  if (!app) return false;
+  if (app.categories && app.categories.includes('server')) return true;
+  return app.id && (app.id.includes('server') || app.id.includes('plugin'));
+}
+
 function toggleLanguage() {
   currentLang = currentLang === 'de' ? 'en' : 'de';
   localStorage.setItem('benzstore_lang', currentLang);
@@ -128,16 +135,49 @@ async function loadCatalog() {
     if (!res.ok) throw new Error('HTTP ' + res.status);
     catalog = await res.json();
     statusEl.textContent = `${catalog.apps.length} Anwendungen bereitgestellt • BenzStore v1.0`;
+    checkAvailableUpdates();
     renderApps();
   } catch (err) {
     statusEl.textContent = 'Fehler beim Laden: ' + err.message;
   }
 }
 
+function checkAvailableUpdates() {
+  const alertBar = document.getElementById('updateAlertBar');
+  if (!alertBar) return;
+
+  const updatable = catalog.apps.filter(app => {
+    if (!app.is_installed) return false;
+    const installedVer = app.installed_version || app.latest_version;
+    return compareVersions(app.latest_version, installedVer) > 0;
+  });
+
+  if (updatable.length > 0) {
+    alertBar.style.display = 'flex';
+    const names = updatable.map(a => `${a.name} (v${a.latest_version})`).join(', ');
+    document.getElementById('updateAlertDetails').textContent = `${updatable.length} Update(s) verfügbar: ${names}`;
+  } else {
+    alertBar.style.display = 'none';
+  }
+}
+
+function toggleShowOnlyUpdates() {
+  showOnlyUpdates = !showOnlyUpdates;
+  const btn = document.getElementById('btnToggleUpdates');
+  if (btn) {
+    btn.textContent = showOnlyUpdates ? i18n[currentLang].show_all_btn : i18n[currentLang].show_btn;
+  }
+  renderApps();
+}
+
 function setFilter(filter) {
   currentFilter = filter;
-  document.querySelectorAll('.filter-pills .pill').forEach(btn => {
-    btn.classList.toggle('active', btn.getAttribute('data-filter') === filter);
+  showOnlyUpdates = false;
+  const btn = document.getElementById('btnToggleUpdates');
+  if (btn) btn.textContent = i18n[currentLang].show_btn;
+
+  document.querySelectorAll('.filter-pills .pill').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('data-filter') === filter);
   });
   renderApps();
 }
@@ -152,9 +192,19 @@ function renderApps() {
   grid.innerHTML = '';
 
   const filtered = catalog.apps.filter(app => {
-    if (currentFilter === 'pc' && !app.platforms.some(p => ['linux', 'windows', 'pc'].includes(p.toLowerCase()))) return false;
-    if (currentFilter === 'android' && !app.platforms.includes('android')) return false;
-    if (['tools', 'education', 'utility'].includes(currentFilter) && !app.categories.includes(currentFilter)) return false;
+    if (showOnlyUpdates) {
+      if (!app.is_installed) return false;
+      const installedVer = app.installed_version || app.latest_version;
+      return compareVersions(app.latest_version, installedVer) > 0;
+    }
+
+    if (currentFilter === 'android') {
+      if (!app.platforms.includes('android')) return false;
+    } else if (currentFilter === 'pc') {
+      if (!app.platforms.some(p => ['linux', 'windows', 'pc'].includes(p.toLowerCase())) || isServerApp(app)) return false;
+    } else if (currentFilter === 'server') {
+      if (!isServerApp(app)) return false;
+    }
 
     if (currentSearch) {
       const summary = currentLang === 'de' ? (app.summary_de || app.summary_en) : (app.summary_en || app.summary_de);
@@ -174,10 +224,15 @@ function renderApps() {
     card.className = 'app-card';
 
     const summary = currentLang === 'de' ? (app.summary_de || app.summary_en) : (app.summary_en || app.summary_de);
-    const platformsHtml = app.platforms.map(p => {
-      const pClass = p.toLowerCase() === 'android' ? 'android' : 'pc';
-      return `<span class="platform-pill ${pClass}">${p.toUpperCase()}</span>`;
-    }).join(' ');
+    let platformsHtml = '';
+    if (isServerApp(app)) {
+      platformsHtml = `<span class="platform-pill" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border-color: rgba(168, 85, 247, 0.35);">SERVER & CLOUD</span>`;
+    } else {
+      platformsHtml = app.platforms.map(p => {
+        const pClass = p.toLowerCase() === 'android' ? 'android' : 'pc';
+        return `<span class="platform-pill ${pClass}">${p.toUpperCase()}</span>`;
+      }).join(' ');
+    }
 
     let actionBtnHtml = '';
     let badgeHtml = '';
@@ -197,6 +252,9 @@ function renderApps() {
       actionBtnHtml = `<button class="btn-action btn-secondary" onclick="openAppModal('${app.id}')">📱 Android APK</button>`;
     }
 
+    const verCount = app.versions ? app.versions.length : 1;
+    const verText = verCount > 1 ? `${verCount} Versionen` : `v${app.latest_version}`;
+
     card.innerHTML = `
       <div class="app-card-top">
         <img src="${app.icon}" alt="${app.name}" class="app-icon" onerror="this.src='icon.png'">
@@ -205,7 +263,7 @@ function renderApps() {
             <span class="app-name">${app.name}</span>
             <div style="display: flex; align-items: center; gap: 6px;">
               ${badgeHtml}
-              <span class="app-ver-tag">v${app.latest_version}</span>
+              <span class="app-ver-tag">${verText}</span>
             </div>
           </div>
           <p class="app-summary">${summary}</p>

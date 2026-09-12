@@ -1,11 +1,17 @@
 package com.benzjeremy.benzstore;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -36,11 +42,16 @@ public class MainActivity extends Activity implements View.OnClickListener, Text
     private TextView statusText;
     private LinearLayout appListContainer;
     private Button btnRefresh;
-    private Button catAll, catAndroid, catPC, catTools, catEdu;
+    private Button catAndroid, catPC, catServer;
+
+    private LinearLayout layoutUpdateBanner;
+    private TextView txtUpdateBannerTitle, txtUpdateBannerSub;
+    private Button btnBannerShowUpdates;
 
     private List<AppModel> allApps = new ArrayList<AppModel>();
-    private String currentCategory = "all";
+    private String currentCategory = "android"; // Default category: Apps
     private String currentSearch = "";
+    private boolean showOnlyUpdates = false;
     private final Map<String, Bitmap> iconCache = new HashMap<String, Bitmap>();
 
     @Override
@@ -52,21 +63,24 @@ public class MainActivity extends Activity implements View.OnClickListener, Text
         statusText = findViewById(R.id.statusText);
         appListContainer = findViewById(R.id.appListContainer);
         btnRefresh = findViewById(R.id.btnRefresh);
-        catAll = findViewById(R.id.catAll);
         catAndroid = findViewById(R.id.catAndroid);
         catPC = findViewById(R.id.catPC);
-        catTools = findViewById(R.id.catTools);
-        catEdu = findViewById(R.id.catEdu);
+        catServer = findViewById(R.id.catServer);
+
+        layoutUpdateBanner = findViewById(R.id.layoutUpdateBanner);
+        txtUpdateBannerTitle = findViewById(R.id.txtUpdateBannerTitle);
+        txtUpdateBannerSub = findViewById(R.id.txtUpdateBannerSub);
+        btnBannerShowUpdates = findViewById(R.id.btnBannerShowUpdates);
 
         btnRefresh.setOnClickListener(this);
         searchBar.addTextChangedListener(this);
 
-        catAll.setOnClickListener(this);
         catAndroid.setOnClickListener(this);
         catPC.setOnClickListener(this);
-        catTools.setOnClickListener(this);
-        catEdu.setOnClickListener(this);
+        catServer.setOnClickListener(this);
+        btnBannerShowUpdates.setOnClickListener(this);
 
+        updateCategoryButtonStyles();
         loadCatalog();
     }
 
@@ -74,6 +88,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Text
     protected void onResume() {
         super.onResume();
         if (!allApps.isEmpty()) {
+            checkForUpdates();
             filterAndRender();
         }
     }
@@ -83,25 +98,24 @@ public class MainActivity extends Activity implements View.OnClickListener, Text
         int id = v.getId();
         if (id == R.id.btnRefresh) {
             loadCatalog();
-        } else if (id == R.id.catAll) {
-            currentCategory = "all";
-            updateCategoryButtonStyles();
-            filterAndRender();
         } else if (id == R.id.catAndroid) {
             currentCategory = "android";
+            showOnlyUpdates = false;
             updateCategoryButtonStyles();
             filterAndRender();
         } else if (id == R.id.catPC) {
             currentCategory = "pc";
+            showOnlyUpdates = false;
             updateCategoryButtonStyles();
             filterAndRender();
-        } else if (id == R.id.catTools) {
-            currentCategory = "tools";
+        } else if (id == R.id.catServer) {
+            currentCategory = "server";
+            showOnlyUpdates = false;
             updateCategoryButtonStyles();
             filterAndRender();
-        } else if (id == R.id.catEdu) {
-            currentCategory = "education";
-            updateCategoryButtonStyles();
+        } else if (id == R.id.btnBannerShowUpdates) {
+            showOnlyUpdates = !showOnlyUpdates;
+            btnBannerShowUpdates.setText(showOnlyUpdates ? "Alle anzeigen" : "Anzeigen");
             filterAndRender();
         }
     }
@@ -124,20 +138,14 @@ public class MainActivity extends Activity implements View.OnClickListener, Text
         int activeText = getResources().getColor(R.color.text_primary);
         int inactiveText = getResources().getColor(R.color.text_muted);
 
-        catAll.setBackgroundColor("all".equals(currentCategory) ? activeBg : inactiveBg);
-        catAll.setTextColor("all".equals(currentCategory) ? activeText : inactiveText);
-
         catAndroid.setBackgroundColor("android".equals(currentCategory) ? activeBg : inactiveBg);
         catAndroid.setTextColor("android".equals(currentCategory) ? activeText : inactiveText);
 
         catPC.setBackgroundColor("pc".equals(currentCategory) ? activeBg : inactiveBg);
         catPC.setTextColor("pc".equals(currentCategory) ? activeText : inactiveText);
 
-        catTools.setBackgroundColor("tools".equals(currentCategory) ? activeBg : inactiveBg);
-        catTools.setTextColor("tools".equals(currentCategory) ? activeText : inactiveText);
-
-        catEdu.setBackgroundColor("education".equals(currentCategory) ? activeBg : inactiveBg);
-        catEdu.setTextColor("education".equals(currentCategory) ? activeText : inactiveText);
+        catServer.setBackgroundColor("server".equals(currentCategory) ? activeBg : inactiveBg);
+        catServer.setTextColor("server".equals(currentCategory) ? activeText : inactiveText);
     }
 
     private void loadCatalog() {
@@ -163,6 +171,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Text
         public void run() {
             activity.allApps = apps;
             activity.statusText.setText(apps.size() + " Anwendungen bereitgestellt " + (fromCache ? "(Lokal / Cache)" : "(Live Feed)"));
+            activity.checkForUpdates();
             activity.filterAndRender();
         }
     }
@@ -190,6 +199,21 @@ public class MainActivity extends Activity implements View.OnClickListener, Text
         private final MainActivity activity;
         private final AppModel app;
         public CardClickListener(MainActivity a, AppModel app) {
+            this.activity = a;
+            this.app = app;
+        }
+        @Override
+        public void onClick(View v) {
+            AppDetailActivity.currentApp = app;
+            Intent intent = new Intent(activity, AppDetailActivity.class);
+            activity.startActivity(intent);
+        }
+    }
+
+    public static class VersionButtonClickListener implements View.OnClickListener {
+        private final MainActivity activity;
+        private final AppModel app;
+        public VersionButtonClickListener(MainActivity a, AppModel app) {
             this.activity = a;
             this.app = app;
         }
@@ -261,6 +285,88 @@ public class MainActivity extends Activity implements View.OnClickListener, Text
         }
     }
 
+    public static boolean isServerApp(AppModel app) {
+        if (app == null) return false;
+        for (String cat : app.getCategories()) {
+            if ("server".equalsIgnoreCase(cat)) return true;
+        }
+        String id = app.getId();
+        return id != null && (id.contains("server") || id.contains("plugin"));
+    }
+
+    private void checkForUpdates() {
+        PackageManager pm = getPackageManager();
+        List<String> updatableNames = new ArrayList<String>();
+
+        for (AppModel app : allApps) {
+            if (!app.supportsAndroid()) continue;
+            try {
+                PackageInfo pInfo = pm.getPackageInfo(app.getId(), 0);
+                if (pInfo != null) {
+                    String installedVer = pInfo.versionName != null ? pInfo.versionName : "";
+                    if (compareVersions(app.getLatestVersion(), installedVer) > 0) {
+                        updatableNames.add(app.getName() + " (v" + app.getLatestVersion() + ")");
+                    }
+                }
+            } catch (PackageManager.NameNotFoundException ignored) {}
+        }
+
+        if (!updatableNames.isEmpty()) {
+            layoutUpdateBanner.setVisibility(View.VISIBLE);
+            txtUpdateBannerTitle.setText(updatableNames.size() + " Update(s) verfügbar");
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < updatableNames.size(); i++) {
+                sb.append(updatableNames.get(i));
+                if (i < updatableNames.size() - 1) sb.append(", ");
+            }
+            txtUpdateBannerSub.setText("Bereit: " + sb.toString());
+            postUpdateNotification(updatableNames.size(), sb.toString());
+        } else {
+            layoutUpdateBanner.setVisibility(View.GONE);
+        }
+    }
+
+    private void postUpdateNotification(int updateCount, String appListStr) {
+        if (Build.VERSION.SDK_INT >= 33) {
+            if (checkSelfPermission("android.permission.POST_NOTIFICATIONS") != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+        }
+
+        NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (nm == null) return;
+
+        String channelId = "benzstore_updates";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    channelId, "BenzStore Updates", NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription("Benachrichtigungen über neue App-Versionen im BenzStore");
+            nm.createNotificationChannel(channel);
+        }
+
+        Intent intent = new Intent(this, MainActivity.class);
+        int flags = PendingIntent.FLAG_UPDATE_CURRENT;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            flags |= PendingIntent.FLAG_IMMUTABLE;
+        }
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, flags);
+
+        Notification.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            builder = new Notification.Builder(this, channelId);
+        } else {
+            builder = new Notification.Builder(this);
+        }
+
+        builder.setSmallIcon(R.drawable.icon)
+                .setContentTitle("BenzStore: " + updateCount + " Update(s) verfügbar")
+                .setContentText("Aktualisierungen bereit für: " + appListStr)
+                .setContentIntent(pi)
+                .setAutoCancel(true);
+
+        nm.notify(1001, builder.build());
+    }
+
     public void filterAndRender() {
         appListContainer.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -268,17 +374,31 @@ public class MainActivity extends Activity implements View.OnClickListener, Text
 
         int count = 0;
         for (final AppModel app : allApps) {
-            if (!"all".equals(currentCategory)) {
-                boolean match = false;
-                if ("android".equals(currentCategory) && app.supportsAndroid()) match = true;
-                else if ("pc".equals(currentCategory) && app.supportsPC()) match = true;
-                else {
-                    for (String cat : app.getCategories()) {
-                        if (cat.equalsIgnoreCase(currentCategory)) {
-                            match = true;
-                            break;
-                        }
+            boolean isInstalled = false;
+            String installedVersion = "";
+            boolean hasUpdate = false;
+
+            try {
+                PackageInfo pInfo = pm.getPackageInfo(app.getId(), 0);
+                if (pInfo != null) {
+                    isInstalled = true;
+                    installedVersion = pInfo.versionName != null ? pInfo.versionName : "";
+                    if (compareVersions(app.getLatestVersion(), installedVersion) > 0) {
+                        hasUpdate = true;
                     }
+                }
+            } catch (PackageManager.NameNotFoundException ignored) {}
+
+            if (showOnlyUpdates) {
+                if (!hasUpdate) continue;
+            } else {
+                boolean match = false;
+                if ("android".equals(currentCategory)) {
+                    if (app.supportsAndroid()) match = true;
+                } else if ("pc".equals(currentCategory)) {
+                    if (app.supportsPC() && !isServerApp(app)) match = true;
+                } else if ("server".equals(currentCategory)) {
+                    if (isServerApp(app)) match = true;
                 }
                 if (!match) continue;
             }
@@ -300,25 +420,20 @@ public class MainActivity extends Activity implements View.OnClickListener, Text
             TextView summaryView = card.findViewById(R.id.appSummary);
             TextView platformPill = card.findViewById(R.id.appPlatformPill);
             Button btnAction = card.findViewById(R.id.btnCardAction);
+            Button btnVersions = card.findViewById(R.id.btnCardVersions);
 
             nameView.setText(app.getName());
             versionBadge.setText("v" + app.getLatestVersion());
             summaryView.setText(app.getSummary());
 
             StringBuilder platText = new StringBuilder();
-            if (app.supportsAndroid()) platText.append("Android ");
-            if (app.supportsPC()) platText.append("PC/Desktop");
+            if (isServerApp(app)) {
+                platText.append("Server & Cloud");
+            } else {
+                if (app.supportsAndroid()) platText.append("Android ");
+                if (app.supportsPC()) platText.append("PC/Desktop");
+            }
             platformPill.setText(platText.toString().trim());
-
-            boolean isInstalled = false;
-            String installedVersion = "";
-            try {
-                PackageInfo pInfo = pm.getPackageInfo(app.getId(), 0);
-                if (pInfo != null) {
-                    isInstalled = true;
-                    installedVersion = pInfo.versionName != null ? pInfo.versionName : "";
-                }
-            } catch (PackageManager.NameNotFoundException ignored) {}
 
             if (app.supportsAndroid()) {
                 if (isInstalled) {
@@ -342,23 +457,31 @@ public class MainActivity extends Activity implements View.OnClickListener, Text
                     btnAction.setText("Installieren");
                     btnAction.setBackgroundColor(getResources().getColor(R.color.accent_blue_dark));
                 }
+            } else if (isServerApp(app)) {
+                installStatusBadge.setVisibility(View.GONE);
+                btnAction.setText("Server-Paket");
+                btnAction.setBackgroundColor(getResources().getColor(R.color.bg_surface));
             } else {
                 installStatusBadge.setVisibility(View.GONE);
                 btnAction.setText("PC-App");
                 btnAction.setBackgroundColor(getResources().getColor(R.color.bg_surface));
             }
 
+            int verCount = app.getVersions() != null ? app.getVersions().size() : 1;
+            btnVersions.setText(verCount > 1 ? verCount + " Versionen ▾" : "Versionen ▾");
+
             loadAppIcon(app.getIconUrl(), iconView);
 
             card.setOnClickListener(new CardClickListener(this, app));
             btnAction.setOnClickListener(new ActionButtonClickListener(this, app, isInstalled));
+            btnVersions.setOnClickListener(new VersionButtonClickListener(this, app));
 
             appListContainer.addView(card);
         }
 
         if (count == 0) {
             TextView emptyText = new TextView(this);
-            emptyText.setText("Keine Anwendungen in dieser Kategorie gefunden.");
+            emptyText.setText(showOnlyUpdates ? "Alle installierten Apps sind auf dem neuesten Stand!" : "Keine Anwendungen in dieser Kategorie gefunden.");
             emptyText.setTextColor(getResources().getColor(R.color.text_muted));
             emptyText.setPadding(0, 32, 0, 0);
             appListContainer.addView(emptyText);

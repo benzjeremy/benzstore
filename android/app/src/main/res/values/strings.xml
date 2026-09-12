@@ -3,11 +3,12 @@
     <string name="app_name">BenzStore</string>
     <string name="store_subtitle">Unified AppStore for Android &amp; PC</string>
     <string name="search_hint">Apps durchsuchen...</string>
-    <string name="category_all">Alle</string>
-    <string name="category_android">Android</string>
-    <string name="category_pc">PC / Desktop</string>
-    <string name="category_tools">Tools</string>
-    <string name="category_education">Bildung</string>
+    <string name="category_apps">Apps</string>
+    <string name="category_pc">PC &amp; Desktop</string>
+    <string name="category_server">Server &amp; Cloud</string>
+    <string name="versions_btn">Versionen ▾</string>
+    <string name="updates_available_title">Updates verfügbar</string>
+    <string name="updates_banner_text">⚡ %d Update(s) verfügbar für installierte Apps</string>
     <string name="install">Installieren</string>
     <string name="installed">Installiert</string>
     <string name="update">Aktualisieren</string>
