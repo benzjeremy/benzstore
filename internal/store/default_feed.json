@@ -8,7 +8,7 @@
     "feed_url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/feed.json",
     "author": "Jeremy Benz (@benzjeremy)",
     "license": "GNU General Public License v3.0",
-    "last_updated": "2026-09-12T19:00:00Z"
+    "last_updated": "2026-09-12T21:15:00Z"
   },
   "categories": [
     {
@@ -371,9 +371,9 @@
       "versions": [
         {
           "version": "1.2.1",
-          "release_date": "2026-09-05",
-          "changelog_de": "CI/CD Pipeline Optimierung, verbesserte Terminal-Resizing-Handhabung.",
-          "changelog_en": "CI/CD pipeline optimization, improved terminal resize handling.",
+          "release_date": "2026-09-12",
+          "changelog_de": "Optimiertes Live-Log-Streaming und CPU-Monitoring.",
+          "changelog_en": "Optimized live log streaming and CPU monitoring.",
           "downloads": {
             "linux": {
               "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/docklite/docklite_1.2.1",
@@ -452,6 +452,301 @@
               "type": "exe",
               "sha256": "8c22348a21216684bdcc153415933ff3c8b4cf50b4f4ce3d7aefeeddb1b2fb5d",
               "size": 7939584
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "com.benzjeremy.benzcloud-server",
+      "name": "BenzCloud Server",
+      "summary_de": "Vollautonome, datenschutzfreundliche Cloud-Suite mit Mesh-VPN, integriertem DNS und verschlüsseltem Drive.",
+      "summary_en": "Autonomous, privacy-first private cloud suite with Mesh VPN, embedded DNS, and encrypted drive.",
+      "description_de": "Dezentraler Enterprise-Server in Go: Keine Portweiterleitungen dank Slack Nebula Mesh-VPN, integrierter RFC 1035 DNS-Server mit Fallback, verschlüsselter Tresor (AES-256-GCM) und One-Click Client-Pairing.",
+      "description_en": "Decentralized enterprise server in Go: Zero router port forwarding needed via Slack Nebula Mesh-VPN, embedded RFC 1035 DNS server with fallback, encrypted file vault (AES-256-GCM), and one-click client pairing.",
+      "author": "Jeremy Benz",
+      "license": "GPL-3.0",
+      "website": "https://benzjeremy.github.io/benzcloud-server/",
+      "source": "https://github.com/benzjeremy/benzcloud-server",
+      "icon": "https://benzjeremy.github.io/benzstore/icons/benzcloud-server.png",
+      "categories": [
+        "tools",
+        "utility",
+        "android",
+        "pc"
+      ],
+      "platforms": [
+        "android",
+        "linux",
+        "windows"
+      ],
+      "latest_version": "1.0",
+      "versions": [
+        {
+          "version": "1.0",
+          "version_code": 100,
+          "release_date": "2026-09-12",
+          "changelog_de": "Initialer Release: Dezentraler Server mit Mesh-VPN, DNS, Drive und Plugin-Supervisor.",
+          "changelog_en": "Initial release: Decentralized server with Mesh VPN, DNS, Drive, and plugin supervisor.",
+          "downloads": {
+            "android": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/benzcloud-server/benzcloud-server_1.0.apk",
+              "filename": "benzcloud-server_1.0.apk",
+              "sha256": "833384982bd1c184bcff0defe5a3f99ee31492867371ecaec6ed789ca0a95ff4",
+              "size": 16942
+            },
+            "linux": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/benzcloud-server/benzcloud-server_1.0",
+              "filename": "benzcloud-server_1.0",
+              "bin_name": "benzcloud-server",
+              "type": "binary",
+              "sha256": "4e1fb1fb34fac69579b953eb26be808ce598d240ebc02afb50e0c991cde13bc6",
+              "size": 12766744,
+              "desktop_entry": {
+                "name": "BenzCloud Server",
+                "comment": "Decentralized Private Cloud Server",
+                "exec": "benzcloud-server",
+                "terminal": true,
+                "categories": "Network;Server;"
+              }
+            },
+            "windows": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/benzcloud-server/benzcloud-server_1.0.exe",
+              "filename": "benzcloud-server_1.0.exe",
+              "bin_name": "benzcloud-server.exe",
+              "type": "exe",
+              "sha256": "f893622bff2e5ce34388b11495af25373a5dcbb3f6a5ca1f87ec0b8004dc8c71",
+              "size": 13225984
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "com.benzjeremy.benzcloud-client",
+      "name": "BenzCloud Client",
+      "summary_de": "Sicherer Mesh-Client & Desktop-Cockpit mit QR-/Token-Pairing für BenzCloud-Instanzen.",
+      "summary_en": "Secure mesh client & desktop cockpit with QR/token pairing for BenzCloud instances.",
+      "description_de": "Nativer Client für PC und Android: Verbindet sich vollautomatisch mit privaten BenzCloud-Servern, konfiguriert das Mesh-VPN und bietet schnellen Direktzugriff auf Drive, Mail, Chat und Webdienste.",
+      "description_en": "Native client for PC and Android: Automatically connects to private BenzCloud servers, configures mesh VPN networking, and provides one-click launching of Drive, Mail, Chat, and Web services.",
+      "author": "Jeremy Benz",
+      "license": "GPL-3.0",
+      "website": "https://benzjeremy.github.io/benzcloud-client/",
+      "source": "https://github.com/benzjeremy/benzcloud-client",
+      "icon": "https://benzjeremy.github.io/benzstore/icons/benzcloud-client.png",
+      "categories": [
+        "tools",
+        "utility",
+        "android",
+        "pc"
+      ],
+      "platforms": [
+        "android",
+        "linux",
+        "windows"
+      ],
+      "latest_version": "1.0",
+      "versions": [
+        {
+          "version": "1.0",
+          "version_code": 100,
+          "release_date": "2026-09-12",
+          "changelog_de": "Initialer Release: Client-Cockpit mit One-Click Pairing und Service-Launcher.",
+          "changelog_en": "Initial release: Client cockpit with one-click pairing and service launcher.",
+          "downloads": {
+            "android": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/benzcloud-client/benzcloud-client_1.0.apk",
+              "filename": "benzcloud-client_1.0.apk",
+              "sha256": "7974a6a6625a510925510a325a9d09363a658904da75ee9c656a4fc3fd38bd3f",
+              "size": 16942
+            },
+            "linux": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/benzcloud-client/benzcloud-client_1.0",
+              "filename": "benzcloud-client_1.0",
+              "bin_name": "benzcloud-client",
+              "type": "binary",
+              "sha256": "62ce8d93c125718fcd47d573d560f462465d891bb8a9d9c6d16be88018b47d74",
+              "size": 10676064,
+              "desktop_entry": {
+                "name": "BenzCloud Client",
+                "comment": "BenzCloud Desktop & Mesh Cockpit",
+                "exec": "benzcloud-client",
+                "terminal": false,
+                "categories": "Network;Utility;"
+              }
+            },
+            "windows": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/benzcloud-client/benzcloud-client_1.0.exe",
+              "filename": "benzcloud-client_1.0.exe",
+              "bin_name": "benzcloud-client.exe",
+              "type": "exe",
+              "sha256": "9053f749582fcebea9076264ed81ebb69bd214e0278af74397c2fdce706aaa92",
+              "size": 11329024
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "com.benzjeremy.benzcloud-plugin-web",
+      "name": "BenzCloud Web Plugin",
+      "summary_de": "Multi-Subdomain Virtual Host Webserver für statische Websites, Astro & PHP.",
+      "summary_en": "Multi-subdomain virtual host webserver for static websites, Astro & PHP.",
+      "description_de": "Autonomes Web-Plugin für BenzCloud: Verwaltet isolierte virtuelle Web-Hosts für statische Websites, Astro-Bundles und PHP-Skripte mit automatischer DNS-Registrierung im Mesh-VPN.",
+      "description_en": "Autonomous web hosting plugin for BenzCloud: Manages isolated virtual web hosts for static sites, Astro bundles, and PHP scripts with automatic DNS registration across the mesh VPN.",
+      "author": "Jeremy Benz",
+      "license": "GPL-3.0",
+      "website": "https://benzjeremy.github.io/benzcloud-plugin-web/",
+      "source": "https://github.com/benzjeremy/benzcloud-plugin-web",
+      "icon": "https://benzjeremy.github.io/benzstore/icons/benzcloud-plugin-web.png",
+      "categories": [
+        "tools",
+        "pc"
+      ],
+      "platforms": [
+        "linux",
+        "windows"
+      ],
+      "latest_version": "1.0",
+      "versions": [
+        {
+          "version": "1.0",
+          "release_date": "2026-09-12",
+          "changelog_de": "Initialer Release: Vhost-Webserver für statische Sites und PHP mit Health-Reporting.",
+          "changelog_en": "Initial release: Vhost webserver for static sites and PHP with health reporting.",
+          "downloads": {
+            "linux": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/benzcloud-plugin-web/benzcloud-plugin-web_1.0",
+              "filename": "benzcloud-plugin-web_1.0",
+              "bin_name": "benzcloud-plugin-web",
+              "type": "binary",
+              "sha256": "8fe8566e524ee122f89ef99663438e86dad6bda3d69f5fff3072d589ce0df0ff",
+              "size": 10473069,
+              "desktop_entry": {
+                "name": "BenzCloud Web Plugin",
+                "comment": "Virtual Host Web Server for BenzCloud",
+                "exec": "benzcloud-plugin-web",
+                "terminal": true,
+                "categories": "Network;Development;"
+              }
+            },
+            "windows": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/benzcloud-plugin-web/benzcloud-plugin-web_1.0.exe",
+              "filename": "benzcloud-plugin-web_1.0.exe",
+              "bin_name": "benzcloud-plugin-web.exe",
+              "type": "exe",
+              "sha256": "fb0a11aaadc5e285dba808780342e93caaf9544ed9780c0be42e4b881ca5f11e",
+              "size": 10584576
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "com.benzjeremy.benzcloud-plugin-mail",
+      "name": "BenzCloud Mail Plugin",
+      "summary_de": "Vollständiger interner E-Mail-Server mit SMTP, IMAP und modernem Webmail.",
+      "summary_en": "Complete internal email server featuring SMTP, IMAP, and modern webmail.",
+      "description_de": "Dezentraler Mail-Server für das Mesh-Netzwerk: RFC-konformes SMTP (Port 1025), IMAP (Port 1143 für Thunderbird & K-9) sowie integriertes responsives Webmail-Interface mit Cybernetic Dark Design.",
+      "description_en": "Decentralized mail server for private mesh networks: RFC-compliant SMTP (Port 1025), IMAP (Port 1143 for Thunderbird & K-9), and an embedded responsive webmail interface in Cybernetic Dark styling.",
+      "author": "Jeremy Benz",
+      "license": "GPL-3.0",
+      "website": "https://benzjeremy.github.io/benzcloud-plugin-mail/",
+      "source": "https://github.com/benzjeremy/benzcloud-plugin-mail",
+      "icon": "https://benzjeremy.github.io/benzstore/icons/benzcloud-plugin-mail.png",
+      "categories": [
+        "tools",
+        "pc"
+      ],
+      "platforms": [
+        "linux",
+        "windows"
+      ],
+      "latest_version": "1.0",
+      "versions": [
+        {
+          "version": "1.0",
+          "release_date": "2026-09-12",
+          "changelog_de": "Initialer Release: SMTP-, IMAP-Server und eingebettetes Webmail-Cockpit.",
+          "changelog_en": "Initial release: SMTP, IMAP servers and embedded webmail cockpit.",
+          "downloads": {
+            "linux": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/benzcloud-plugin-mail/benzcloud-plugin-mail_1.0",
+              "filename": "benzcloud-plugin-mail_1.0",
+              "bin_name": "benzcloud-plugin-mail",
+              "type": "binary",
+              "sha256": "a384c0c4b9fbc1be404a0d97fef906a41db58f07e81e31787fb0534bb90a8607",
+              "size": 10404913,
+              "desktop_entry": {
+                "name": "BenzCloud Mail Plugin",
+                "comment": "Autonomous Mail Server for BenzCloud",
+                "exec": "benzcloud-plugin-mail",
+                "terminal": true,
+                "categories": "Network;Email;"
+              }
+            },
+            "windows": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/benzcloud-plugin-mail/benzcloud-plugin-mail_1.0.exe",
+              "filename": "benzcloud-plugin-mail_1.0.exe",
+              "bin_name": "benzcloud-plugin-mail.exe",
+              "type": "exe",
+              "sha256": "d5b75f6cd47e49da0e55e9db53129fdfcb7e3a5c52cabba06158e5346add7968",
+              "size": 10457088
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "com.benzjeremy.benzcloud-plugin-chat",
+      "name": "BenzCloud Chat Plugin",
+      "summary_de": "Echtzeit-Teamkommunikation mit Kanälen, Präsenzanzeige und WebSocket-Engine.",
+      "summary_en": "Real-time team communication with channels, presence tracking, and WebSocket engine.",
+      "description_de": "Selbstgehostete Chat-Alternative zu Slack & Discord: Geringe Latenz via WebSockets, dynamische Kanäle (#general, #dev), Benutzer-Präsenzanzeige und modernes zweisprachiges Web-Interface.",
+      "description_en": "Self-hosted chat alternative to Slack & Discord: Low-latency via WebSockets, dynamic rooms (#general, #dev), live user presence indicators, and modern bilingual web UI.",
+      "author": "Jeremy Benz",
+      "license": "GPL-3.0",
+      "website": "https://benzjeremy.github.io/benzcloud-plugin-chat/",
+      "source": "https://github.com/benzjeremy/benzcloud-plugin-chat",
+      "icon": "https://benzjeremy.github.io/benzstore/icons/benzcloud-plugin-chat.png",
+      "categories": [
+        "tools",
+        "pc"
+      ],
+      "platforms": [
+        "linux",
+        "windows"
+      ],
+      "latest_version": "1.0",
+      "versions": [
+        {
+          "version": "1.0",
+          "release_date": "2026-09-12",
+          "changelog_de": "Initialer Release: WebSocket Mesh-Chat mit Präsenz und dynamischen Räumen.",
+          "changelog_en": "Initial release: WebSocket mesh chat with presence and dynamic channels.",
+          "downloads": {
+            "linux": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/benzcloud-plugin-chat/benzcloud-plugin-chat_1.0",
+              "filename": "benzcloud-plugin-chat_1.0",
+              "bin_name": "benzcloud-plugin-chat",
+              "type": "binary",
+              "sha256": "c35e969ee4fdfab74bc5d2a67270135af437b99c0477fe8461f746e8111d7bd8",
+              "size": 10798320,
+              "desktop_entry": {
+                "name": "BenzCloud Chat Plugin",
+                "comment": "Realtime Team Chat for BenzCloud",
+                "exec": "benzcloud-plugin-chat",
+                "terminal": true,
+                "categories": "Network;Chat;"
+              }
+            },
+            "windows": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/benzcloud-plugin-chat/benzcloud-plugin-chat_1.0.exe",
+              "filename": "benzcloud-plugin-chat_1.0.exe",
+              "bin_name": "benzcloud-plugin-chat.exe",
+              "type": "exe",
+              "sha256": "4f678a1653290e7e48f1ccb877ffe9d001252735acf7cad39b1bba8284802f1a",
+              "size": 10866176
             }
           }
         }

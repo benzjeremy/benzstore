@@ -413,6 +413,13 @@ public class MainActivity extends Activity implements View.OnClickListener, Text
 
     private void loadAppIcon(String iconUrl, ImageView view) {
         if (iconUrl == null || iconUrl.isEmpty()) return;
+        String filename = iconUrl.substring(iconUrl.lastIndexOf('/') + 1);
+        if (filename.endsWith(".png")) filename = filename.substring(0, filename.length() - 4);
+        String resName = filename.replace('-', '_').toLowerCase();
+        int resId = getResources().getIdentifier(resName, "drawable", getPackageName());
+        if (resId != 0) {
+            view.setImageResource(resId);
+        }
         if (iconCache.containsKey(iconUrl)) {
             view.setImageBitmap(iconCache.get(iconUrl));
             return;

@@ -457,6 +457,13 @@ public class AppDetailActivity extends Activity implements View.OnClickListener,
 
     private void loadIconAsync(String iconUrl, ImageView imageView) {
         if (iconUrl == null || iconUrl.isEmpty()) return;
+        String filename = iconUrl.substring(iconUrl.lastIndexOf('/') + 1);
+        if (filename.endsWith(".png")) filename = filename.substring(0, filename.length() - 4);
+        String resName = filename.replace('-', '_').toLowerCase();
+        int resId = getResources().getIdentifier(resName, "drawable", getPackageName());
+        if (resId != 0) {
+            imageView.setImageResource(resId);
+        }
         new Thread(new IconLoader(this, iconUrl, imageView)).start();
     }
 }
