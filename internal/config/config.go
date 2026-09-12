@@ -8,7 +8,7 @@ import (
 const (
 	AppName        = "BenzStore"
 	AppVersion    = "1.0"
-	DefaultFeedURL = "https://benzjeremy.github.io/benzstore/api/v1/apps.json"
+	DefaultFeedURL = "https://raw.githubusercontent.com/benzjeremy/benzstore/content/feed.json"
 )
 
 func GetUserBinDir() (string, error) {

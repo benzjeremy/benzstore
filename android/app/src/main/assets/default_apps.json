@@ -2,29 +2,29 @@
   "store": {
     "name": "BenzStore",
     "tagline": "Unified Privacy-First AppStore for Android & PC",
-    "description": "The independent, zero-telemetry application store for Jeremy Benz open-source software. Verified SHA-256 cryptographic hashes, native packaging, direct installation without JAR compilation overhead.",
+    "description": "The independent, zero-telemetry application store for Jeremy Benz open-source software. Verified SHA-256 cryptographic hashes, single-binary Linux packages, native Windows executables and signed Android APKs without JAR bloat.",
     "version": "1.0",
     "homepage": "https://benzjeremy.github.io/benzstore/",
-    "feed_url": "https://benzjeremy.github.io/benzstore/api/v1/apps.json",
+    "feed_url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/feed.json",
     "author": "Jeremy Benz (@benzjeremy)",
     "license": "GNU General Public License v3.0",
-    "last_updated": "2026-09-12T18:45:00Z"
+    "last_updated": "2026-09-12T19:00:00Z"
   },
   "categories": [
     {
       "id": "all",
-      "name_de": "Alle Apps",
-      "name_en": "All Apps"
-    },
-    {
-      "id": "android",
-      "name_de": "Android APKs",
-      "name_en": "Android APKs"
+      "name_de": "Alle",
+      "name_en": "All"
     },
     {
       "id": "pc",
       "name_de": "PC & Desktop",
       "name_en": "PC & Desktop"
+    },
+    {
+      "id": "android",
+      "name_de": "Android APKs",
+      "name_en": "Android APKs"
     },
     {
       "id": "tools",
@@ -39,7 +39,7 @@
     {
       "id": "utility",
       "name_de": "Nützliches & Wetter",
-      "name_en": "Utilities & Weather"
+      "name_en": "Utilities"
     }
   ],
   "apps": [
@@ -76,18 +76,18 @@
           "changelog_en": "Initial release: Unified Android & PC AppStore with SHA-256 verification and version picker.",
           "downloads": {
             "android": {
-              "url": "https://benzjeremy.github.io/benzstore/repo/benzstore-v1.0.apk",
-              "filename": "benzstore-v1.0.apk",
-              "sha256": "PENDING_ANDROID_BUILD",
-              "size": 0
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/benzstore/benzstore_1.0.apk",
+              "filename": "benzstore_1.0.apk",
+              "sha256": "fb99a0af9368c28dff29acdd672324135d886e14e26cc72896ac84140997e3c9",
+              "size": 103232
             },
             "linux": {
-              "url": "https://github.com/benzjeremy/benzstore/releases/download/v1.0/benzstore-v1.0-linux.tar.gz",
-              "filename": "benzstore-v1.0-linux.tar.gz",
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/benzstore/benzstore_1.0",
+              "filename": "benzstore_1.0",
               "bin_name": "benzstore",
-              "type": "tar.gz",
-              "sha256": "PENDING_PC_BUILD",
-              "size": 0,
+              "type": "binary",
+              "sha256": "053bdf7f8e8e0bc92088ab7450f26d3c8ba5efe1dae43cf29cc7b0b686d8e72a",
+              "size": 11274936,
               "desktop_entry": {
                 "name": "BenzStore",
                 "comment": "Unified AppStore for Android & PC",
@@ -97,12 +97,12 @@
               }
             },
             "windows": {
-              "url": "https://github.com/benzjeremy/benzstore/releases/download/v1.0/benzstore-v1.0-windows.zip",
-              "filename": "benzstore-v1.0-windows.zip",
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/benzstore/benzstore_1.0.exe",
+              "filename": "benzstore_1.0.exe",
               "bin_name": "benzstore.exe",
-              "type": "zip",
-              "sha256": "PENDING_PC_BUILD",
-              "size": 0
+              "type": "exe",
+              "sha256": "7c663783a01622cf7829138bfbf206583972700e38c8208675fe4febbe476e7b",
+              "size": 11810304
             }
           }
         }
@@ -134,12 +134,12 @@
           "version": "2.2",
           "version_code": 220,
           "release_date": "2026-09-12",
-          "changelog_de": "Native Offline-Rechtshinweise (§ 5 DDG, DSGVO) direkt in der App, Zero-Telemetry Härtung.",
-          "changelog_en": "Native offline legal notice (§ 5 DDG, GDPR) in-app, zero-telemetry hardening.",
+          "changelog_de": "Native Offline-Rechtshinweise (§ 5 DDG, DSGVO), Zero-Telemetry Härtung.",
+          "changelog_en": "Native offline legal notice (§ 5 DDG, GDPR), zero-telemetry hardening.",
           "downloads": {
             "android": {
-              "url": "https://benzjeremy.github.io/myfdroid/repo/learn-v2.2.apk",
-              "filename": "learn-v2.2.apk",
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/learn/learn_2.2.apk",
+              "filename": "learn_2.2.apk",
               "sha256": "54ce030dd268d5326047f990e5296f508be6e0388782d6d095e7164b02366c2b",
               "size": 984242
             }
@@ -149,12 +149,12 @@
           "version": "2.1",
           "version_code": 210,
           "release_date": "2026-09-12",
-          "changelog_de": "45 Lektionen in 9 Kursen, lokales Erinnerungssystem und didaktisches Feedback.",
-          "changelog_en": "45 lessons across 9 courses, local reminder system and didactic feedback.",
+          "changelog_de": "45 Lektionen in 9 Kursen, didaktisches Feedback und Erinnerungssystem.",
+          "changelog_en": "45 lessons across 9 courses, didactic feedback and local reminders.",
           "downloads": {
             "android": {
-              "url": "https://benzjeremy.github.io/myfdroid/repo/learn-v2.1.apk",
-              "filename": "learn-v2.1.apk",
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/learn/learn_2.1.apk",
+              "filename": "learn_2.1.apk",
               "sha256": "48c0cc7b029265d23a591ece5dbe983c8278eb3315fc39321c4b961116350fb8",
               "size": 980146
             }
@@ -168,8 +168,8 @@
           "changelog_en": "Pure native Android UI (under 1 MB), zero WebView overhead.",
           "downloads": {
             "android": {
-              "url": "https://benzjeremy.github.io/myfdroid/repo/learn-v2.0.apk",
-              "filename": "learn-v2.0.apk",
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/learn/learn_2.0.apk",
+              "filename": "learn_2.0.apk",
               "sha256": "036a6d4ac05eb5059f466774d4478451334f777c15305928aab5f69827ea5a8b",
               "size": 894130
             }
@@ -180,11 +180,11 @@
           "version_code": 100,
           "release_date": "2026-09-12",
           "changelog_de": "Erstveröffentlichung der Lern-App für Android.",
-          "changelog_en": "Initial release of the learning application for Android.",
+          "changelog_en": "Initial release of the learning app for Android.",
           "downloads": {
             "android": {
-              "url": "https://benzjeremy.github.io/myfdroid/repo/learn-v1.0.apk",
-              "filename": "learn-v1.0.apk",
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/learn/learn_1.0.apk",
+              "filename": "learn_1.0.apk",
               "sha256": "a6b245ee8e9c0409489a707ac33833dcf4c7f5ecb64e565d6ca9996396a9c76e",
               "size": 1671824
             }
@@ -221,8 +221,8 @@
           "changelog_en": "Native offline legal notice (§ 5 DDG, GDPR), optimized widget refresh logic.",
           "downloads": {
             "android": {
-              "url": "https://benzjeremy.github.io/myfdroid/repo/wetter-v1.2.apk",
-              "filename": "wetter-v1.2.apk",
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/wetter/wetter_1.2.apk",
+              "filename": "wetter_1.2.apk",
               "sha256": "2cf6911319008a8ef02d99de7d57f72836494197c2ebb626b8aec100ae7a8c11",
               "size": 87176
             }
@@ -236,8 +236,8 @@
           "changelog_en": "Homescreen widget with live clock and configurable auto-refresh interval.",
           "downloads": {
             "android": {
-              "url": "https://benzjeremy.github.io/myfdroid/repo/wetter-v1.1.apk",
-              "filename": "wetter-v1.1.apk",
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/wetter/wetter_1.1.apk",
+              "filename": "wetter_1.1.apk",
               "sha256": "45e1b68ceb447f56f7f6199f9814dab5043b41a3ae4d76f72684f75f4dbb1d2b",
               "size": 83080
             }
@@ -251,8 +251,8 @@
           "changelog_en": "Initial release of the lightweight weather app.",
           "downloads": {
             "android": {
-              "url": "https://benzjeremy.github.io/myfdroid/repo/wetter-v1.0.apk",
-              "filename": "wetter-v1.0.apk",
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/wetter/wetter_1.0.apk",
+              "filename": "wetter_1.0.apk",
               "sha256": "9acbf08288a268e5232322ae4d5cc679d4056e6563a54335b468b14dca8e5fd2",
               "size": 74811
             }
@@ -290,12 +290,12 @@
           "changelog_en": "iCalendar export (.ics), period engine & local cache optimizations.",
           "downloads": {
             "linux": {
-              "url": "https://github.com/benzjeremy/untis-go/releases/download/v2.3/untis-go-v2.3-linux.tar.gz",
-              "filename": "untis-go-v2.3-linux.tar.gz",
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/untis-go/untis-go_2.3",
+              "filename": "untis-go_2.3",
               "bin_name": "untis-go",
-              "type": "tar.gz",
-              "sha256": "2111a42dd47f5b74e2401077c76ba08882f1f7ef7ce321f87bf42874998dd52e",
-              "size": 9839865,
+              "type": "binary",
+              "sha256": "20dab4f7d3f336da17de89ba6cc4842781014d2c7ed94df6941bcedfb586fa53",
+              "size": 16666616,
               "desktop_entry": {
                 "name": "Untis-Go",
                 "comment": "WebUntis Timetable Client",
@@ -305,12 +305,12 @@
               }
             },
             "windows": {
-              "url": "https://github.com/benzjeremy/untis-go/releases/download/v2.3/untis-go-v2.3-windows.zip",
-              "filename": "untis-go-v2.3-windows.zip",
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/untis-go/untis-go_2.3.exe",
+              "filename": "untis-go_2.3.exe",
               "bin_name": "untis-go.exe",
-              "type": "zip",
-              "sha256": "d9ed0ee702ce48d32bb43ab84dc798b3fde4fe43e6219b56c8dd969691487188",
-              "size": 11365677
+              "type": "exe",
+              "sha256": "08ccc66820b5b99f56d43dc6613f19a4b17289d73924749d65ad5812ebac6717",
+              "size": 19770368
             }
           }
         },
@@ -321,12 +321,12 @@
           "changelog_en": "Privacy hardening, removal of Microsoft login dependency, zero-telemetry standard.",
           "downloads": {
             "linux": {
-              "url": "https://github.com/benzjeremy/untis-go/releases/download/v2.2/untis-go-v2.2-linux.tar.gz",
-              "filename": "untis-go-v2.2-linux.tar.gz",
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/untis-go/untis-go_2.2",
+              "filename": "untis-go_2.2",
               "bin_name": "untis-go",
-              "type": "tar.gz",
-              "sha256": "289401d99b5247e6d39fb0408fd1b6832f5f5651ba46e879ecc6db2ba933a026",
-              "size": 9811170,
+              "type": "binary",
+              "sha256": "ec2be407d2eb942a1a6a341cc97833cda81b2b24b7b9e45e8715af1d142c15d6",
+              "size": 16607480,
               "desktop_entry": {
                 "name": "Untis-Go",
                 "comment": "WebUntis Timetable Client",
@@ -336,12 +336,12 @@
               }
             },
             "windows": {
-              "url": "https://github.com/benzjeremy/untis-go/releases/download/v2.2/untis-go-v2.2-windows.zip",
-              "filename": "untis-go-v2.2-windows.zip",
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/untis-go/untis-go_2.2.exe",
+              "filename": "untis-go_2.2.exe",
               "bin_name": "untis-go.exe",
-              "type": "zip",
-              "sha256": "1e695d1a98b16972353a7282aaaae0515641315f7726546428cbce67badbc971",
-              "size": 11342563
+              "type": "exe",
+              "sha256": "3c17b60a161dcb0c001f791eff581519b2c03ef0f04b65aded4c7c3913af687d",
+              "size": 19713536
             }
           }
         }
@@ -376,12 +376,12 @@
           "changelog_en": "CI/CD pipeline optimization, improved terminal resize handling.",
           "downloads": {
             "linux": {
-              "url": "https://github.com/benzjeremy/docklite/releases/download/v1.2.1/docklite-v1.2.1-linux-amd64.tar.gz",
-              "filename": "docklite-v1.2.1-linux-amd64.tar.gz",
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/docklite/docklite_1.2.1",
+              "filename": "docklite_1.2.1",
               "bin_name": "docklite",
-              "type": "tar.gz",
-              "sha256": "21166dc3d4145f2b7fe5dbd6058398d2b5727c7e72cd7b531dd8ca781174ce67",
-              "size": 3277107,
+              "type": "binary",
+              "sha256": "2b8575d48778827e25136b3177c912ccb36311b68527377dcc2d197207b3d6f1",
+              "size": 7815328,
               "desktop_entry": {
                 "name": "Docklite",
                 "comment": "Lightweight Docker TUI Manager",
@@ -391,12 +391,12 @@
               }
             },
             "windows": {
-              "url": "https://github.com/benzjeremy/docklite/releases/download/v1.2.1/docklite-v1.2.1-windows-amd64.zip",
-              "filename": "docklite-v1.2.1-windows-amd64.zip",
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/docklite/docklite_1.2.1.exe",
+              "filename": "docklite_1.2.1.exe",
               "bin_name": "docklite.exe",
-              "type": "zip",
-              "sha256": "44864aa9d21ce5da7021b8ced591e5dd342875c71c93d4376691b328ba9666d1",
-              "size": 3453858
+              "type": "exe",
+              "sha256": "41a36e4914753579780e23c1026c6293b1c16580d9c76b380f51134258c2c3a9",
+              "size": 8141824
             }
           }
         }
@@ -431,12 +431,12 @@
           "changelog_en": "Smart ad detection, auto focus mode, and optimized WebKitGTK rendering pipeline.",
           "downloads": {
             "linux": {
-              "url": "https://github.com/benzjeremy/spotify-screensaver/releases/download/v1.4/spotify-screensaver-v1.4-linux.tar.gz",
-              "filename": "spotify-screensaver-v1.4-linux.tar.gz",
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/spotify-screensaver/spotify-screensaver_1.4",
+              "filename": "spotify-screensaver_1.4",
               "bin_name": "spotify-screensaver",
-              "type": "tar.gz",
-              "sha256": "0505f220588808c944d323c072403c11f06edc93d1bee50824197663ac553f94",
-              "size": 3285021,
+              "type": "binary",
+              "sha256": "4e9d2a12062e79f1d48abf261c8ceed5490dadfcbd29124994d2929a038fe333",
+              "size": 7785432,
               "desktop_entry": {
                 "name": "Spotify Screensaver",
                 "comment": "Ambient Spotify Album Artwork Screensaver",
@@ -446,12 +446,12 @@
               }
             },
             "windows": {
-              "url": "https://github.com/benzjeremy/spotify-screensaver/releases/download/v1.4/spotify-screensaver-v1.4-windows.zip",
-              "filename": "spotify-screensaver-v1.4-windows.zip",
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/spotify-screensaver/spotify-screensaver_1.4.exe",
+              "filename": "spotify-screensaver_1.4.exe",
               "bin_name": "spotify-screensaver.exe",
-              "type": "zip",
-              "sha256": "132d001185c0f9e9e4a2a9f95eb797ecde649d4eaf9e4ba2d5fcf746d5c83817",
-              "size": 3395695
+              "type": "exe",
+              "sha256": "8c22348a21216684bdcc153415933ff3c8b4cf50b4f4ce3d7aefeeddb1b2fb5d",
+              "size": 7939584
             }
           }
         }
