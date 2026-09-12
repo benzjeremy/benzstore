@@ -1,0 +1,461 @@
+{
+  "store": {
+    "name": "BenzStore",
+    "tagline": "Unified Privacy-First AppStore for Android & PC",
+    "description": "The independent, zero-telemetry application store for Jeremy Benz open-source software. Verified SHA-256 cryptographic hashes, single-binary Linux packages, native Windows executables and signed Android APKs without JAR bloat.",
+    "version": "1.0",
+    "homepage": "https://benzjeremy.github.io/benzstore/",
+    "feed_url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/feed.json",
+    "author": "Jeremy Benz (@benzjeremy)",
+    "license": "GNU General Public License v3.0",
+    "last_updated": "2026-09-12T19:00:00Z"
+  },
+  "categories": [
+    {
+      "id": "all",
+      "name_de": "Alle",
+      "name_en": "All"
+    },
+    {
+      "id": "pc",
+      "name_de": "PC & Desktop",
+      "name_en": "PC & Desktop"
+    },
+    {
+      "id": "android",
+      "name_de": "Android APKs",
+      "name_en": "Android APKs"
+    },
+    {
+      "id": "tools",
+      "name_de": "Entwickler-Tools",
+      "name_en": "Dev Tools"
+    },
+    {
+      "id": "education",
+      "name_de": "Bildung & Lernen",
+      "name_en": "Education"
+    },
+    {
+      "id": "utility",
+      "name_de": "Nützliches & Wetter",
+      "name_en": "Utilities"
+    }
+  ],
+  "apps": [
+    {
+      "id": "com.benzjeremy.benzstore",
+      "name": "BenzStore",
+      "summary_de": "Offizieller, einheitlicher AppStore für Android & PC mit One-Click Install & Version-Picker.",
+      "summary_en": "Official unified AppStore for Android & PC with one-click install & version picker.",
+      "description_de": "Der schlanke, datenschutzfreundliche AppStore von Jeremy Benz. Vollkommen frei von lästiger JAR-Signierung und Telemetrie. Unterstützt native Android-Installationen und automatisierte Linux/Windows-Paketverwaltung mit kryptografischer SHA-256-Integritätsprüfung.",
+      "description_en": "The sleek, privacy-first AppStore by Jeremy Benz. Completely free from JAR-signing bloat and telemetry. Supports native Android installations and automated Linux/Windows package management with cryptographic SHA-256 integrity verification.",
+      "author": "Jeremy Benz",
+      "license": "GPL-3.0",
+      "website": "https://benzjeremy.github.io/benzstore/",
+      "source": "https://github.com/benzjeremy/benzstore",
+      "icon": "https://benzjeremy.github.io/benzstore/icon.png",
+      "categories": [
+        "tools",
+        "utility",
+        "android",
+        "pc"
+      ],
+      "platforms": [
+        "android",
+        "linux",
+        "windows"
+      ],
+      "latest_version": "1.0",
+      "versions": [
+        {
+          "version": "1.0",
+          "version_code": 100,
+          "release_date": "2026-09-12",
+          "changelog_de": "Initialer Release: Einheitlicher Android- & PC-AppStore mit SHA-256 Verifikation und Version-Picker.",
+          "changelog_en": "Initial release: Unified Android & PC AppStore with SHA-256 verification and version picker.",
+          "downloads": {
+            "android": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/benzstore/benzstore_1.0.apk",
+              "filename": "benzstore_1.0.apk",
+              "sha256": "fb99a0af9368c28dff29acdd672324135d886e14e26cc72896ac84140997e3c9",
+              "size": 103232
+            },
+            "linux": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/benzstore/benzstore_1.0",
+              "filename": "benzstore_1.0",
+              "bin_name": "benzstore",
+              "type": "binary",
+              "sha256": "053bdf7f8e8e0bc92088ab7450f26d3c8ba5efe1dae43cf29cc7b0b686d8e72a",
+              "size": 11274936,
+              "desktop_entry": {
+                "name": "BenzStore",
+                "comment": "Unified AppStore for Android & PC",
+                "exec": "benzstore",
+                "terminal": false,
+                "categories": "System;PackageManager;Settings;"
+              }
+            },
+            "windows": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/benzstore/benzstore_1.0.exe",
+              "filename": "benzstore_1.0.exe",
+              "bin_name": "benzstore.exe",
+              "type": "exe",
+              "sha256": "7c663783a01622cf7829138bfbf206583972700e38c8208675fe4febbe476e7b",
+              "size": 11810304
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "com.benzjeremy.learn",
+      "name": "Learn",
+      "summary_de": "Privacy-First Open-Source Programmier-Lern-App mit interaktivem Compiler-Labor.",
+      "summary_en": "Privacy-first open-source code learning app with interactive compiler lab.",
+      "description_de": "Didaktische Lernplattform für Go, Python, Webentwicklung, SQL, C# und PHP mit realistischem Compiler-Labor, fehlerspezifischem Feedback, 90-Minuten-Abschlussprüfungen und nativer Offline-Konformität (§ 5 DDG, DSGVO).",
+      "description_en": "Didactic learning platform for Go, Python, Web development, SQL, C# and PHP with realistic compiler lab, option-specific feedback, 90-minute final exam simulations, and native offline compliance.",
+      "author": "Jeremy Benz",
+      "license": "GPL-3.0",
+      "website": "https://benzjeremy.github.io/learn/",
+      "source": "https://github.com/benzjeremy/learn",
+      "icon": "https://benzjeremy.github.io/myfdroid/icons/com.benzjeremy.learn.png",
+      "categories": [
+        "education",
+        "tools",
+        "android"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "latest_version": "2.2",
+      "versions": [
+        {
+          "version": "2.2",
+          "version_code": 220,
+          "release_date": "2026-09-12",
+          "changelog_de": "Native Offline-Rechtshinweise (§ 5 DDG, DSGVO), Zero-Telemetry Härtung.",
+          "changelog_en": "Native offline legal notice (§ 5 DDG, GDPR), zero-telemetry hardening.",
+          "downloads": {
+            "android": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/learn/learn_2.2.apk",
+              "filename": "learn_2.2.apk",
+              "sha256": "54ce030dd268d5326047f990e5296f508be6e0388782d6d095e7164b02366c2b",
+              "size": 984242
+            }
+          }
+        },
+        {
+          "version": "2.1",
+          "version_code": 210,
+          "release_date": "2026-09-12",
+          "changelog_de": "45 Lektionen in 9 Kursen, didaktisches Feedback und Erinnerungssystem.",
+          "changelog_en": "45 lessons across 9 courses, didactic feedback and local reminders.",
+          "downloads": {
+            "android": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/learn/learn_2.1.apk",
+              "filename": "learn_2.1.apk",
+              "sha256": "48c0cc7b029265d23a591ece5dbe983c8278eb3315fc39321c4b961116350fb8",
+              "size": 980146
+            }
+          }
+        },
+        {
+          "version": "2.0",
+          "version_code": 200,
+          "release_date": "2026-09-12",
+          "changelog_de": "Pure native Android UI (unter 1 MB), vollständiger Verzicht auf WebView-Overhead.",
+          "changelog_en": "Pure native Android UI (under 1 MB), zero WebView overhead.",
+          "downloads": {
+            "android": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/learn/learn_2.0.apk",
+              "filename": "learn_2.0.apk",
+              "sha256": "036a6d4ac05eb5059f466774d4478451334f777c15305928aab5f69827ea5a8b",
+              "size": 894130
+            }
+          }
+        },
+        {
+          "version": "1.0",
+          "version_code": 100,
+          "release_date": "2026-09-12",
+          "changelog_de": "Erstveröffentlichung der Lern-App für Android.",
+          "changelog_en": "Initial release of the learning app for Android.",
+          "downloads": {
+            "android": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/learn/learn_1.0.apk",
+              "filename": "learn_1.0.apk",
+              "sha256": "a6b245ee8e9c0409489a707ac33833dcf4c7f5ecb64e565d6ca9996396a9c76e",
+              "size": 1671824
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "com.benzjeremy.wetter",
+      "name": "Wetter",
+      "summary_de": "Minimalistische Wetter- und Solar-PV-App mit Live-Homescreen-Widget.",
+      "summary_en": "Minimalist weather and solar PV forecast app with live homescreen widget.",
+      "description_de": "Werbefreie Wetter-App mit nativer Open-Meteo Direktanbindung (ohne API-Key, ohne Relay), 24-Stunden- und 7-Tage-Prognose, 5 kWp Solar-Ertragsprognose, interaktivem Startbildschirm-Widget und nativer Offline-Datenschutz-Transparenz.",
+      "description_en": "Ad-free weather app directly querying Open-Meteo (no API key or relay required), 24h & 7-day forecast, 5 kWp solar yield estimator, interactive widget and native privacy transparency.",
+      "author": "Jeremy Benz",
+      "license": "GPL-3.0",
+      "website": "https://benzjeremy.github.io/wetter-site/",
+      "source": "https://github.com/benzjeremy/wetter-site",
+      "icon": "https://benzjeremy.github.io/myfdroid/icons/com.benzjeremy.wetter.png",
+      "categories": [
+        "utility",
+        "android"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "latest_version": "1.2",
+      "versions": [
+        {
+          "version": "1.2",
+          "version_code": 120,
+          "release_date": "2026-09-12",
+          "changelog_de": "Native Offline-Rechtshinweise (§ 5 DDG, DSGVO), optimierte Widget-Aktualisierungslogik.",
+          "changelog_en": "Native offline legal notice (§ 5 DDG, GDPR), optimized widget refresh logic.",
+          "downloads": {
+            "android": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/wetter/wetter_1.2.apk",
+              "filename": "wetter_1.2.apk",
+              "sha256": "2cf6911319008a8ef02d99de7d57f72836494197c2ebb626b8aec100ae7a8c11",
+              "size": 87176
+            }
+          }
+        },
+        {
+          "version": "1.1",
+          "version_code": 110,
+          "release_date": "2026-09-12",
+          "changelog_de": "Homescreen-Widget mit Live-Uhrzeit und konfigurierbarem Auto-Aktualisierungsintervall.",
+          "changelog_en": "Homescreen widget with live clock and configurable auto-refresh interval.",
+          "downloads": {
+            "android": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/wetter/wetter_1.1.apk",
+              "filename": "wetter_1.1.apk",
+              "sha256": "45e1b68ceb447f56f7f6199f9814dab5043b41a3ae4d76f72684f75f4dbb1d2b",
+              "size": 83080
+            }
+          }
+        },
+        {
+          "version": "1.0",
+          "version_code": 100,
+          "release_date": "2026-09-12",
+          "changelog_de": "Erstveröffentlichung der schlanken Wetter-App.",
+          "changelog_en": "Initial release of the lightweight weather app.",
+          "downloads": {
+            "android": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/wetter/wetter_1.0.apk",
+              "filename": "wetter_1.0.apk",
+              "sha256": "9acbf08288a268e5232322ae4d5cc679d4056e6563a54335b468b14dca8e5fd2",
+              "size": 74811
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "com.benzjeremy.untis-go",
+      "name": "Untis-Go",
+      "summary_de": "Moderne, native Stundenplan-App für WebUntis – werbefrei, schnell & mit iCalendar Sync.",
+      "summary_en": "Modern native timetable app for WebUntis – ad-free, fast & with iCalendar sync.",
+      "description_de": "Schlanke, native Desktop- und CLI-Anwendung für WebUntis. Bietet bis zu 10x schnellere Ladezeiten als die offizielle App, iCalendar-Export (.ics), automatische Perioden-Erkennung, Offline-Caching und native WebKitGTK-Oberfläche.",
+      "description_en": "Lightweight native desktop and CLI application for WebUntis. Offers up to 10x faster loading than the official app, iCalendar export (.ics), automatic period detection, offline caching, and native WebKitGTK GUI.",
+      "author": "Jeremy Benz",
+      "license": "GPL-3.0",
+      "website": "https://benzjeremy.github.io/untis-go/",
+      "source": "https://github.com/benzjeremy/untis-go",
+      "icon": "https://benzjeremy.github.io/untis-go/icon.png",
+      "categories": [
+        "education",
+        "utility",
+        "pc"
+      ],
+      "platforms": [
+        "linux",
+        "windows"
+      ],
+      "latest_version": "2.3",
+      "versions": [
+        {
+          "version": "2.3",
+          "release_date": "2026-09-11",
+          "changelog_de": "iCalendar Export (.ics), Perioden-Engine & Optimierung des lokalen Caches.",
+          "changelog_en": "iCalendar export (.ics), period engine & local cache optimizations.",
+          "downloads": {
+            "linux": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/untis-go/untis-go_2.3",
+              "filename": "untis-go_2.3",
+              "bin_name": "untis-go",
+              "type": "binary",
+              "sha256": "20dab4f7d3f336da17de89ba6cc4842781014d2c7ed94df6941bcedfb586fa53",
+              "size": 16666616,
+              "desktop_entry": {
+                "name": "Untis-Go",
+                "comment": "WebUntis Timetable Client",
+                "exec": "untis-go",
+                "terminal": false,
+                "categories": "Education;Office;"
+              }
+            },
+            "windows": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/untis-go/untis-go_2.3.exe",
+              "filename": "untis-go_2.3.exe",
+              "bin_name": "untis-go.exe",
+              "type": "exe",
+              "sha256": "08ccc66820b5b99f56d43dc6613f19a4b17289d73924749d65ad5812ebac6717",
+              "size": 19770368
+            }
+          }
+        },
+        {
+          "version": "2.2",
+          "release_date": "2026-09-10",
+          "changelog_de": "Datenschutz-Härtung, Entfernung von Microsoft-Logins, Zero-Telemetry Standard.",
+          "changelog_en": "Privacy hardening, removal of Microsoft login dependency, zero-telemetry standard.",
+          "downloads": {
+            "linux": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/untis-go/untis-go_2.2",
+              "filename": "untis-go_2.2",
+              "bin_name": "untis-go",
+              "type": "binary",
+              "sha256": "ec2be407d2eb942a1a6a341cc97833cda81b2b24b7b9e45e8715af1d142c15d6",
+              "size": 16607480,
+              "desktop_entry": {
+                "name": "Untis-Go",
+                "comment": "WebUntis Timetable Client",
+                "exec": "untis-go",
+                "terminal": false,
+                "categories": "Education;Office;"
+              }
+            },
+            "windows": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/untis-go/untis-go_2.2.exe",
+              "filename": "untis-go_2.2.exe",
+              "bin_name": "untis-go.exe",
+              "type": "exe",
+              "sha256": "3c17b60a161dcb0c001f791eff581519b2c03ef0f04b65aded4c7c3913af687d",
+              "size": 19713536
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "com.benzjeremy.docklite",
+      "name": "Docklite",
+      "summary_de": "Ultraschneller, ressourcenschonender Docker TUI & Desktop Container-Manager in Go.",
+      "summary_en": "Blazingly fast, lightweight Docker TUI & desktop container manager in Go.",
+      "description_de": "Kompakter Container-Manager mit interaktivem BubbleTea-Terminal, Live-Log-Streaming, Container-Metriken (CPU, RAM, Net IO), Volume-Inspektion und One-Click Lifecycle-Steuerung (Start, Stopp, Restart, Prune).",
+      "description_en": "Compact container manager with interactive BubbleTea terminal, real-time log streaming, live container metrics (CPU, RAM, Net IO), volume inspection and one-click lifecycle management.",
+      "author": "Jeremy Benz",
+      "license": "GPL-3.0",
+      "website": "https://benzjeremy.github.io/docklite/",
+      "source": "https://github.com/benzjeremy/docklite",
+      "icon": "https://benzjeremy.github.io/docklite/favicon.svg",
+      "categories": [
+        "tools",
+        "pc"
+      ],
+      "platforms": [
+        "linux",
+        "windows"
+      ],
+      "latest_version": "1.2.1",
+      "versions": [
+        {
+          "version": "1.2.1",
+          "release_date": "2026-09-05",
+          "changelog_de": "CI/CD Pipeline Optimierung, verbesserte Terminal-Resizing-Handhabung.",
+          "changelog_en": "CI/CD pipeline optimization, improved terminal resize handling.",
+          "downloads": {
+            "linux": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/docklite/docklite_1.2.1",
+              "filename": "docklite_1.2.1",
+              "bin_name": "docklite",
+              "type": "binary",
+              "sha256": "2b8575d48778827e25136b3177c912ccb36311b68527377dcc2d197207b3d6f1",
+              "size": 7815328,
+              "desktop_entry": {
+                "name": "Docklite",
+                "comment": "Lightweight Docker TUI Manager",
+                "exec": "docklite",
+                "terminal": true,
+                "categories": "System;Development;"
+              }
+            },
+            "windows": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/docklite/docklite_1.2.1.exe",
+              "filename": "docklite_1.2.1.exe",
+              "bin_name": "docklite.exe",
+              "type": "exe",
+              "sha256": "41a36e4914753579780e23c1026c6293b1c16580d9c76b380f51134258c2c3a9",
+              "size": 8141824
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "com.benzjeremy.spotify-screensaver",
+      "name": "Spotify Screensaver",
+      "summary_de": "Eleganter Vollbild-Bildschirmschoner mit Spotify MPRIS D-Bus Integration.",
+      "summary_en": "Elegant fullscreen screensaver with Spotify MPRIS D-Bus integration.",
+      "description_de": "Nativer Bildschirmschoner mit dynamischen Album-Artwork-Hintergründen, Liedtext-Visualisierung, MPRIS D-Bus Steuerung, intelligenter Werbeerkennung und ultra-niedriger CPU-Last unter Linux (WebKitGTK) und Windows.",
+      "description_en": "Native screensaver featuring dynamic blurred album art backgrounds, lyrics visualization, MPRIS D-Bus control, ad detection, and ultra-low CPU load on Linux (WebKitGTK) and Windows.",
+      "author": "Jeremy Benz",
+      "license": "GPL-3.0",
+      "website": "https://benzjeremy.github.io/spotify-screensaver/",
+      "source": "https://github.com/benzjeremy/spotify-screensaver",
+      "icon": "https://benzjeremy.github.io/spotify-screensaver/icon.png",
+      "categories": [
+        "utility",
+        "pc"
+      ],
+      "platforms": [
+        "linux",
+        "windows"
+      ],
+      "latest_version": "1.4",
+      "versions": [
+        {
+          "version": "1.4",
+          "release_date": "2026-09-11",
+          "changelog_de": "Intelligente Werbeerkennung, automatischer Fokusmodus und optimierte WebKitGTK-Pipeline.",
+          "changelog_en": "Smart ad detection, auto focus mode, and optimized WebKitGTK rendering pipeline.",
+          "downloads": {
+            "linux": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/spotify-screensaver/spotify-screensaver_1.4",
+              "filename": "spotify-screensaver_1.4",
+              "bin_name": "spotify-screensaver",
+              "type": "binary",
+              "sha256": "4e9d2a12062e79f1d48abf261c8ceed5490dadfcbd29124994d2929a038fe333",
+              "size": 7785432,
+              "desktop_entry": {
+                "name": "Spotify Screensaver",
+                "comment": "Ambient Spotify Album Artwork Screensaver",
+                "exec": "spotify-screensaver",
+                "terminal": false,
+                "categories": "AudioVideo;Screensaver;"
+              }
+            },
+            "windows": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/spotify-screensaver/spotify-screensaver_1.4.exe",
+              "filename": "spotify-screensaver_1.4.exe",
+              "bin_name": "spotify-screensaver.exe",
+              "type": "exe",
+              "sha256": "8c22348a21216684bdcc153415933ff3c8b4cf50b4f4ce3d7aefeeddb1b2fb5d",
+              "size": 7939584
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

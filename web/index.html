@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BenzStore – Unified AppStore for Android & PC</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="store-header">
+    <div class="header-left">
+      <img src="icon.png" alt="BenzStore Logo" class="brand-logo">
+      <div class="brand-info">
+        <div class="brand-title-row">
+          <span class="brand-title">BenzStore</span>
+          <span class="brand-ver">v1.0</span>
+          <span class="brand-badge">Official Store</span>
+        </div>
+        <span class="brand-sub" data-i18n="tagline">Unified Privacy-First AppStore for Android & PC</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="btn-lang" id="langToggle" onclick="toggleLanguage()">EN</button>
+      <button class="btn-refresh" id="btnSync" onclick="loadCatalog()" title="Katalog aktualisieren">⟳ <span data-i18n="sync">Sync</span></button>
+    </div>
+  </header>
+
+  <!-- Controls / Filter Section -->
+  <section class="store-controls">
+    <div class="search-wrapper">
+      <input type="search" id="searchInput" placeholder="Anwendungen durchsuchen (z. B. Untis, Docker, Lernen)..." data-i18n-placeholder="search_ph" oninput="filterApps()">
+    </div>
+
+    <div class="filter-pills">
+      <button class="pill active" data-filter="all" onclick="setFilter('all')" data-i18n="filter_all">Alle</button>
+      <button class="pill" data-filter="pc" onclick="setFilter('pc')" data-i18n="filter_pc">PC & Desktop</button>
+      <button class="pill" data-filter="android" onclick="setFilter('android')" data-i18n="filter_android">Android APKs</button>
+      <button class="pill" data-filter="tools" onclick="setFilter('tools')" data-i18n="filter_tools">Entwickler-Tools</button>
+      <button class="pill" data-filter="education" onclick="setFilter('education')" data-i18n="filter_edu">Bildung</button>
+      <button class="pill" data-filter="utility" onclick="setFilter('utility')" data-i18n="filter_util">Nützliches</button>
+    </div>
+
+    <div class="status-bar">
+      <span id="catalogStatus" class="status-msg" data-i18n="loading">Lade Katalog...</span>
+      <span class="security-indicator">🛡️ Zero-Dummy SHA-256 Integrität</span>
+    </div>
+  </section>
+
+  <!-- Main Apps Grid -->
+  <main class="store-main">
+    <div id="appsGrid" class="apps-grid">
+      <!-- Injected via JavaScript -->
+    </div>
+  </main>
+
+  <!-- App Detail Modal -->
+  <div id="appModal" class="modal-overlay" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div id="modalBody">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast / Notification Bar -->
+  <div id="toastBar" class="toast-bar"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
