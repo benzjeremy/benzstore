@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0969da"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4ade80"/>
+      <stop offset="100%" stop-color="#1f883d"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background rounded squircle -->
+  <rect x="24" y="24" width="464" height="464" rx="108" fill="url(#bgGrad)" stroke="#30363d" stroke-width="8"/>
+
+  <!-- Store Bag / Terminal Outline -->
+  <path d="M156 180 C156 120, 200 76, 256 76 C312 76, 356 120, 356 180" fill="none" stroke="url(#blueGrad)" stroke-width="24" stroke-linecap="round"/>
+  
+  <!-- Main Bag Body -->
+  <rect x="100" y="168" width="312" height="268" rx="44" fill="#161b22" stroke="url(#blueGrad)" stroke-width="12" filter="url(#glow)"/>
+
+  <!-- Stylized Monogram "B" and Down Arrow -->
+  <path d="M216 230 L216 374 M216 230 L274 230 C296 230 310 242 310 262 C310 278 298 290 280 294 C304 298 318 312 318 334 C318 358 300 374 272 374 L216 374 M216 302 L270 302" 
+        fill="none" stroke="#f0f6fc" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Verified Security Badge Pill at Bottom Right -->
+  <circle cx="376" cy="396" r="44" fill="#0d1117" stroke="#4ade80" stroke-width="6"/>
+  <path d="M362 396 L372 406 L394 384" fill="none" stroke="#4ade80" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
