@@ -468,7 +468,7 @@
       "license": "GPL-3.0",
       "website": "https://benzjeremy.github.io/benzcloud-server/",
       "source": "https://github.com/benzjeremy/benzcloud-server",
-      "icon": "https://benzjeremy.github.io/benzcloud-server/icon.png",
+      "icon": "https://benzjeremy.github.io/benzstore/icons/benzcloud-server.png",
       "categories": [
         "tools",
         "utility",
@@ -533,7 +533,7 @@
       "license": "GPL-3.0",
       "website": "https://benzjeremy.github.io/benzcloud-client/",
       "source": "https://github.com/benzjeremy/benzcloud-client",
-      "icon": "https://benzjeremy.github.io/benzcloud-client/icon.png",
+      "icon": "https://benzjeremy.github.io/benzstore/icons/benzcloud-client.png",
       "categories": [
         "tools",
         "utility",
@@ -598,7 +598,7 @@
       "license": "GPL-3.0",
       "website": "https://benzjeremy.github.io/benzcloud-plugin-web/",
       "source": "https://github.com/benzjeremy/benzcloud-plugin-web",
-      "icon": "https://benzjeremy.github.io/benzcloud-plugin-web/icon.png",
+      "icon": "https://benzjeremy.github.io/benzstore/icons/benzcloud-plugin-web.png",
       "categories": [
         "tools",
         "pc"
@@ -653,7 +653,7 @@
       "license": "GPL-3.0",
       "website": "https://benzjeremy.github.io/benzcloud-plugin-mail/",
       "source": "https://github.com/benzjeremy/benzcloud-plugin-mail",
-      "icon": "https://benzjeremy.github.io/benzcloud-plugin-mail/icon.png",
+      "icon": "https://benzjeremy.github.io/benzstore/icons/benzcloud-plugin-mail.png",
       "categories": [
         "tools",
         "pc"
@@ -708,7 +708,7 @@
       "license": "GPL-3.0",
       "website": "https://benzjeremy.github.io/benzcloud-plugin-chat/",
       "source": "https://github.com/benzjeremy/benzcloud-plugin-chat",
-      "icon": "https://benzjeremy.github.io/benzcloud-plugin-chat/icon.png",
+      "icon": "https://benzjeremy.github.io/benzstore/icons/benzcloud-plugin-chat.png",
       "categories": [
         "tools",
         "pc"
