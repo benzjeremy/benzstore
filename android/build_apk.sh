@@ -55,4 +55,5 @@ echo "==> 7. Signing APK with apksigner..."
 echo "==> 8. Verifying APK signature..."
 "$BUILD_TOOLS/apksigner" verify --verbose "$DIR/benzstore-v1.0.apk"
 
-echo "✅ SUCCESS! Native BenzStore APK built at: $DIR/benzstore-v1.0.apk"
+mv "$DIR/benzstore-v1.0.apk" "$DIR/benzstore-v1.1.apk"
+echo "✅ SUCCESS! Native BenzStore APK built at: $DIR/benzstore-v1.1.apk"

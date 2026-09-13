@@ -3,12 +3,12 @@
     "name": "BenzStore",
     "tagline": "Unified Privacy-First AppStore for Android & PC",
     "description": "The independent, zero-telemetry application store for Jeremy Benz open-source software. Verified SHA-256 cryptographic hashes, single-binary Linux packages, native Windows executables and signed Android APKs without JAR bloat.",
-    "version": "1.0",
+    "version": "1.1",
     "homepage": "https://benzjeremy.github.io/benzstore/",
     "feed_url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/feed.json",
     "author": "Jeremy Benz (@benzjeremy)",
     "license": "GNU General Public License v3.0",
-    "last_updated": "2026-09-12T21:15:00Z"
+    "last_updated": "2026-09-13T01:13:00Z"
   },
   "categories": [
     {
@@ -51,6 +51,37 @@
       ],
       "latest_version": "1.0",
       "versions": [
+        {
+          "version": "1.1",
+          "version_code": 110,
+          "release_date": "2026-09-13",
+          "changelog_de": "Fix: Cryptographic hash mismatch corrected; proper versioning workflow established",
+          "changelog_en": "Fix: Cryptographic hash mismatch corrected; proper versioning workflow established",
+          "downloads": {
+            "android": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/benzstore/benzstore_1.1.apk",
+              "filename": "benzstore_1.1.apk",
+              "sha256": "121c48a9d0b62372375871ea24a4fe886e0283408be0eebe336227f23bc33af5",
+              "size": 620732
+            },
+            "linux": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/benzstore/benzstore_1.1",
+              "filename": "benzstore_1.1",
+              "bin_name": "benzstore",
+              "type": "binary",
+              "sha256": "7f7385eb26557c427f93c02e2e4688d410ae84fed5fa0062737317acc1b03f42",
+              "size": 11795184
+            },
+            "windows": {
+              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/benzstore/benzstore_1.1.exe",
+              "filename": "benzstore_1.1.exe",
+              "bin_name": "benzstore.exe",
+              "type": "exe",
+              "sha256": "7afe6089601eedcb30dbbd55e026c623dab793ecdef694d10da7675437cb8fa0",
+              "size": 12293632
+            }
+          }
+        },
         {
           "version": "1.0",
           "version_code": 100,

@@ -12,7 +12,7 @@ import (
 	"github.com/benzjeremy/benzstore/internal/store"
 )
 
-//go:embed web/*
+//go:embed web/**
 var webFS embed.FS
 
 func main() {
@@ -31,7 +31,7 @@ func main() {
 			runServe(os.Args[2:])
 			return
 		case "version", "--version", "-v":
-			fmt.Println("BenzStore v1.0 (Lead Engineer: Jeremy Benz)")
+			fmt.Println("BenzStore v1.1 (Lead Engineer: Jeremy Benz)")
 			return
 		case "help", "--help", "-h":
 			printHelp()
