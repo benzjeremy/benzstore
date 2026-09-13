@@ -45,7 +45,7 @@ func (s *Server) Port() int {
 }
 
 func (s *Server) URL() string {
-	return fmt.Sprintf("http://127.0.0.1:%d/?token=%s", s.port, s.security.SessionToken)
+	return fmt.Sprintf("http://127.0.0.1:%d/app/?token=%s", s.port, s.security.SessionToken)
 }
 
 func (s *Server) Start() error {
@@ -57,7 +57,14 @@ func (s *Server) Start() error {
 	mux.HandleFunc("/api/launch", s.handleLaunch)
 
 	fileServer := http.FileServer(http.FS(s.staticFS))
-	mux.Handle("/", fileServer)
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		token := r.URL.Query().Get("token")
+		if r.URL.Path == "/" && token != "" {
+			http.Redirect(w, r, "/app/?token="+token, http.StatusTemporaryRedirect)
+			return
+		}
+		fileServer.ServeHTTP(w, r)
+	})
 
 	handler := s.security.Middleware(mux)
 	return http.Serve(s.listener, handler)

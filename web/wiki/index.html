@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BenzStore Wiki &bull; Dokumentation &amp; Handbuch</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="alternate icon" type="image/png" href="../icon.png">
+  <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="wiki-header">
+    <div class="wiki-header-container">
+      <div class="wiki-brand-group">
+        <a href="https://benzjeremy.github.io/" class="wiki-root-link">← benzjeremy.github.io</a>
+        <a href="../index.html" class="wiki-brand-link">
+          <img src="../icon.png" alt="BenzStore" class="wiki-logo">
+          <span class="wiki-brand-title">BenzStore</span>
+          <span class="wiki-brand-badge">Wiki v1.1</span>
+        </a>
+      </div>
+
+      <div class="wiki-nav-tools">
+        <div class="wiki-search-box">
+          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          <input type="text" id="wikiSearch" class="wiki-search-input" placeholder="Dokumentation durchsuchen..." oninput="filterWikiSections()">
+        </div>
+
+        <button class="wiki-btn" id="langToggleBtn" onclick="toggleWikiLang()">🌐 EN</button>
+        <a href="../app/" class="wiki-btn wiki-btn-primary">🚀 <span data-i18n="nav_launch">Web-App</span></a>
+        <a href="../index.html" class="wiki-btn">← <span data-i18n="nav_home">Startseite</span></a>
+        <a href="https://github.com/benzjeremy/benzstore" target="_blank" rel="noopener noreferrer" class="wiki-btn">GitHub ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <div class="wiki-banner">
+    <h1 data-i18n="banner_title">BenzStore Dokumentation</h1>
+    <p data-i18n="banner_sub">Vollständiges Handbuch, Architekturübersicht, CLI-Referenz und Feed-Spezifikation für den einheitlichen AppStore.</p>
+  </div>
+
+  <!-- Main Container -->
+  <div class="wiki-container">
+    <!-- Sidebar TOC -->
+    <aside class="wiki-sidebar">
+      <div class="sidebar-heading" data-i18n="toc_heading">Inhaltsverzeichnis</div>
+      <ul class="sidebar-nav">
+        <li><a href="#intro" class="active" data-i18n="toc_intro">1. Einführung &amp; Philosophie</a></li>
+        <li><a href="#architecture" data-i18n="toc_arch">2. Architektur &amp; Sicherheit</a></li>
+        <li><a href="#linux" data-i18n="toc_linux">3. Linux Desktop &amp; CLI</a></li>
+        <li><a href="#windows" data-i18n="toc_win">4. Windows Desktop</a></li>
+        <li><a href="#android" data-i18n="toc_droid">5. Android APK &amp; F-Droid</a></li>
+        <li><a href="#feed-spec" data-i18n="toc_feed">6. Feed-Spezifikation (JSON)</a></li>
+        <li><a href="#cli" data-i18n="toc_cli">7. CLI-Referenz</a></li>
+        <li><a href="#faq" data-i18n="toc_faq">8. FAQ &amp; Troubleshooting</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="wiki-content">
+
+      <!-- SECTION 1: INTRO -->
+      <section class="wiki-section" id="intro">
+        <span class="section-tag" data-i18n="tag_intro">Grundlagen</span>
+        <h2 data-i18n="sec_intro_title">1. Einführung &amp; Philosophie</h2>
+        <p data-i18n="sec_intro_p1">
+          BenzStore ist ein unabhängiger, datenschutzfreundlicher AppStore für Linux, Windows und Android.
+          Entwickelt für das Jeremy Benz Open-Source-Ökosystem, löst er traditionelle Paketmanager-Abhängigkeiten
+          und langsame, JAR-signierte F-Droid-Builds durch ein transparentes, kryptografisch verifiziertes JSON-Feed-System ab.
+        </p>
+        <div class="wiki-grid">
+          <div class="wiki-card">
+            <h4 data-i18n="intro_c1_t">Zero Telemetry</h4>
+            <p data-i18n="intro_c1_d">Kein Tracking, keine Analyse-Frameworks, keine Registrierung. Weder im Desktop-Client noch in der Android-App.</p>
+          </div>
+          <div class="wiki-card">
+            <h4 data-i18n="intro_c2_t">Single-Binary Deployments</h4>
+            <p data-i18n="intro_c2_d">Kompakte Go-Executables ohne dynamische Runtime-Abhängigkeiten auf Windows (CGO=0) und schlanke WebKitGTK-Integration unter Linux.</p>
+          </div>
+          <div class="wiki-card">
+            <h4 data-i18n="intro_c3_t">SHA-256 Integrität</h4>
+            <p data-i18n="intro_c3_d">Jeder Download wird vor der Ausführung oder Installation strikt gegen kryptografische SHA-256-Prüfsummen abgeglichen.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: ARCHITECTURE -->
+      <section class="wiki-section" id="architecture">
+        <span class="section-tag" data-i18n="tag_arch">Systemarchitektur</span>
+        <h2 data-i18n="sec_arch_title">2. Architektur &amp; Sicherheit</h2>
+        <p data-i18n="sec_arch_p1">
+          BenzStore ist strikt nach dem Zero-Trust- und Zero-Dummy-Security-Prinzip aufgebaut.
+          Die Anwendung gliedert sich in drei Kernkomponenten:
+        </p>
+        <ul>
+          <li><strong data-i18n="arch_l1_b">Lokaler Embedded Web-Server (Go):</strong> Startet auf <code>127.0.0.1</code> auf einem dynamischen Port mit kryptografischem Einweg-Sicherheitstoken. Verhindert CSRF-Angriffe aus fremden Browser-Tabs.</li>
+          <li><strong data-i18n="arch_l2_b">GUI Rendering:</strong> Verwendet native Plattformkomponenten – WebKitGTK unter Linux und MS Edge WebView2 unter Windows. Dadurch bleibt das Binary unter 12 MB (im Vergleich zu 150 MB+ Electron-Apps).</li>
+          <li><strong data-i18n="arch_l3_b">Verteilter Content-Feed:</strong> GitHub Raw Content und GitHub Pages dienen als hochverfügbares CDN für Anwendungs-Metadaten und Binärdateien.</li>
+        </ul>
+
+        <div class="callout callout-success">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <span data-i18n="callout_sec_t">Sicherheitsgarantie</span>
+          </div>
+          <p data-i18n="callout_sec_p">
+            Downloads werden in temporäre Puffer geschrieben und erst nach erfolgreicher SHA-256-Verifikation in das Zielverzeichnis verschoben bzw. an den Android PackageInstaller übergeben.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION 3: LINUX -->
+      <section class="wiki-section" id="linux">
+        <span class="section-tag">Linux</span>
+        <h2 data-i18n="sec_linux_title">3. Linux Desktop &amp; CLI</h2>
+        <p data-i18n="sec_linux_p1">
+          Auf modernen Linux-Distributionen (Ubuntu, Debian, Fedora, Arch) läuft BenzStore entweder als vollwertige native Desktop-Applikation oder als CLI-Tool.
+        </p>
+
+        <h3 data-i18n="linux_h3_req">Systemvoraussetzungen</h3>
+        <p data-i18n="linux_req_p">Für den grafischen Desktop-Modus wird WebKit2GTK 4.1 benötigt:</p>
+        <div class="code-box">
+          <div class="code-header">
+            <span>bash (Ubuntu / Debian)</span>
+            <button class="code-copy-btn" onclick="copyCode(this)">Kopieren</button>
+          </div>
+          <pre><code>sudo apt update && sudo apt install -y libwebkit2gtk-4.1-0</code></pre>
+        </div>
+
+        <h3 data-i18n="linux_h3_inst">Direkte Installation</h3>
+        <p data-i18n="linux_inst_p">Lade das vorkompilierte Standalone-Binary herunter und mache es ausführbar:</p>
+        <div class="code-box">
+          <div class="code-header">
+            <span>bash</span>
+            <button class="code-copy-btn" onclick="copyCode(this)">Kopieren</button>
+          </div>
+          <pre><code>curl -sSL -o benzstore "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/benzstore/benzstore-linux-amd64"
+chmod +x benzstore
+sudo mv benzstore /usr/local/bin/
+benzstore --version</code></pre>
+        </div>
+      </section>
+
+      <!-- SECTION 4: WINDOWS -->
+      <section class="wiki-section" id="windows">
+        <span class="section-tag">Windows</span>
+        <h2 data-i18n="sec_win_title">4. Windows Desktop</h2>
+        <p data-i18n="sec_win_p1">
+          Unter Windows 10 und Windows 11 nutzt BenzStore den vorinstallierten Microsoft Edge WebView2 Controller im schlanken App-Modus.
+          Es sind keine Administrator-Rechte oder Installer-Routinen erforderlich.
+        </p>
+        <div class="code-box">
+          <div class="code-header">
+            <span>PowerShell</span>
+            <button class="code-copy-btn" onclick="copyCode(this)">Kopieren</button>
+          </div>
+          <pre><code>Invoke-WebRequest -Uri "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/benzstore/benzstore-windows-amd64.exe" -OutFile "benzstore.exe"
+Start-Process .\benzstore.exe</code></pre>
+        </div>
+      </section>
+
+      <!-- SECTION 5: ANDROID -->
+      <section class="wiki-section" id="android">
+        <span class="section-tag">Android</span>
+        <h2 data-i18n="sec_droid_title">5. Android APK &amp; F-Droid</h2>
+        <p data-i18n="sec_droid_p1">
+          Für Android-Geräte stehen zwei Installationspfade zur Verfügung:
+        </p>
+        <ul>
+          <li><strong data-i18n="droid_l1_b">Direkt-Installation:</strong> Die APK herunterladen und über den Android PackageInstaller installieren (Unbekannte Quellen aktivieren).</li>
+          <li><strong data-i18n="droid_l2_b">MyFDroid Repository:</strong> Trage das offizielle Jeremy Benz F-Droid Repository in F-Droid oder Droid-ify ein:</li>
+        </ul>
+        <div class="code-box">
+          <div class="code-header">
+            <span>F-Droid Repository URL</span>
+            <button class="code-copy-btn" onclick="copyCode(this)">Kopieren</button>
+          </div>
+          <pre><code>https://benzjeremy.github.io/myfdroid/fdroid/repo</code></pre>
+        </div>
+      </section>
+
+      <!-- SECTION 6: FEED SPEC -->
+      <section class="wiki-section" id="feed-spec">
+        <span class="section-tag" data-i18n="tag_feed">Spezifikation</span>
+        <h2 data-i18n="sec_feed_title">6. Feed-Spezifikation (JSON)</h2>
+        <p data-i18n="sec_feed_p1">
+          BenzStore liest den zentralen Feed von <code>content/feed.json</code> ein.
+          Jede App wird über eindeutige Identifier definiert:
+        </p>
+        <div class="code-box">
+          <div class="code-header">
+            <span>JSON (feed.json Schema-Ausschnitt)</span>
+            <button class="code-copy-btn" onclick="copyCode(this)">Kopieren</button>
+          </div>
+          <pre><code>{
+  "id": "com.benzjeremy.untis-go",
+  "name": "Untis-Go",
+  "summary_de": "Moderne, native Stundenplan-App für WebUntis...",
+  "summary_en": "Modern native timetable app for WebUntis...",
+  "platforms": ["linux", "windows"],
+  "latest_version": "2.3",
+  "versions": [
+    {
+      "version": "2.3",
+      "release_date": "2026-09-11",
+      "downloads": {
+        "linux": {
+          "url": "https://raw.githubusercontent.com/...",
+          "filename": "untis-go_2.3",
+          "sha256": "20dab4f7d3f336da17de89ba6cc4842781014d2c7ed94df6941bcedfb586fa53",
+          "size": 16666616
+        }
+      }
+    }
+  ]
+}</code></pre>
+        </div>
+      </section>
+
+      <!-- SECTION 7: CLI -->
+      <section class="wiki-section" id="cli">
+        <span class="section-tag">CLI</span>
+        <h2 data-i18n="sec_cli_title">7. CLI-Referenz &amp; Automatisierung</h2>
+        <p data-i18n="sec_cli_p1">
+          Im Terminal kann BenzStore komplett skriptgesteuert ohne Fenster aufgerufen werden:
+        </p>
+        <div class="code-box">
+          <div class="code-header">
+            <span>Terminal</span>
+            <button class="code-copy-btn" onclick="copyCode(this)">Kopieren</button>
+          </div>
+          <pre><code># Übersicht aller Befehle
+benzstore --help
+
+# App-Katalog im Terminal auflisten
+benzstore list
+
+# Bestimmte App installieren (z. B. Untis-Go)
+benzstore install untis-go
+
+# Alle installierten Jeremy-Benz-Apps aktualisieren
+benzstore update --all
+
+# Status und Integrität prüfen
+benzstore verify untis-go</code></pre>
+        </div>
+      </section>
+
+      <!-- SECTION 8: FAQ -->
+      <section class="wiki-section" id="faq">
+        <span class="section-tag">Hilfe</span>
+        <h2 data-i18n="sec_faq_title">8. FAQ &amp; Bekannte Probleme</h2>
+
+        <h3 data-i18n="faq_q1">Warum wird kein Electron verwendet?</h3>
+        <p data-i18n="faq_a1">
+          Electron bündelt eine vollständige Chromium- und Node.js-Laufzeitumgebung und verbraucht oft über 200 MB RAM pro Prozess.
+          BenzStore verwendet pure Go-Routinen in Kombination mit nativen System-Webviews (WebKitGTK auf Linux, WebView2 auf Windows),
+          was zu extrem niedriger Speicherlast (&lt; 25 MB) und blitzschnellen Startzeiten führt.
+        </p>
+
+        <h3 data-i18n="faq_q2">Wie verifiziere ich eine Binärdatei manuell?</h3>
+        <p data-i18n="faq_a2">Du kannst die SHA-256 Prüfsumme jederzeit mit Bordmitteln abgleichen:</p>
+        <div class="code-box">
+          <div class="code-header">
+            <span>bash</span>
+            <button class="code-copy-btn" onclick="copyCode(this)">Kopieren</button>
+          </div>
+          <pre><code>sha256sum benzstore-linux-amd64
+# Vergleiche die Ausgabe mit der Tabelle auf der Startseite oder im feed.json</code></pre>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="wiki-footer">
+    <p>&copy; 2026 Jeremy Benz &bull; BenzStore &bull; Lizenziert unter GNU General Public License v3.0</p>
+    <p style="margin-top: 0.5rem;">
+      <a href="../index.html">Startseite</a> &bull;
+      <a href="../app/">Web-App</a> &bull;
+      <a href="https://benzjeremy.github.io/">Projekte-Portal</a> &bull;
+      <a href="https://benzjeremy.github.io/impressum/">Impressum</a> &bull;
+      <a href="https://benzjeremy.github.io/datenschutz/">Datenschutz</a>
+    </p>
+  </footer>
+
+  <!-- Translation & Navigation Script -->
+  <script>
+    const wikiI18n = {
+      de: {
+        nav_launch: "Web-App",
+        nav_home: "Startseite",
+        banner_title: "BenzStore Dokumentation",
+        banner_sub: "Vollständiges Handbuch, Architekturübersicht, CLI-Referenz und Feed-Spezifikation für den einheitlichen AppStore.",
+        toc_heading: "Inhaltsverzeichnis",
+        toc_intro: "1. Einführung & Philosophie",
+        toc_arch: "2. Architektur & Sicherheit",
+        toc_linux: "3. Linux Desktop & CLI",
+        toc_win: "4. Windows Desktop",
+        toc_droid: "5. Android APK & F-Droid",
+        toc_feed: "6. Feed-Spezifikation (JSON)",
+        toc_cli: "7. CLI-Referenz",
+        toc_faq: "8. FAQ & Troubleshooting",
+        tag_intro: "Grundlagen",
+        sec_intro_title: "1. Einführung & Philosophie",
+        sec_intro_p1: "BenzStore ist ein unabhängiger, datenschutzfreundlicher AppStore für Linux, Windows und Android. Entwickelt für das Jeremy Benz Open-Source-Ökosystem, löst er traditionelle Paketmanager-Abhängigkeiten und langsame, JAR-signierte F-Droid-Builds durch ein transparentes, kryptografisch verifiziertes JSON-Feed-System ab.",
+        intro_c1_t: "Zero Telemetry",
+        intro_c1_d: "Kein Tracking, keine Analyse-Frameworks, keine Registrierung. Weder im Desktop-Client noch in der Android-App.",
+        intro_c2_t: "Single-Binary Deployments",
+        intro_c2_d: "Kompakte Go-Executables ohne dynamische Runtime-Abhängigkeiten auf Windows (CGO=0) und schlanke WebKitGTK-Integration unter Linux.",
+        intro_c3_t: "SHA-256 Integrität",
+        intro_c3_d: "Jeder Download wird vor der Ausführung oder Installation strikt gegen kryptografische SHA-256-Prüfsummen abgeglichen.",
+        tag_arch: "Systemarchitektur",
+        sec_arch_title: "2. Architektur & Sicherheit",
+        sec_arch_p1: "BenzStore ist strikt nach dem Zero-Trust- und Zero-Dummy-Security-Prinzip aufgebaut. Die Anwendung gliedert sich in drei Kernkomponenten:",
+        arch_l1_b: "Lokaler Embedded Web-Server (Go):",
+        arch_l2_b: "GUI Rendering:",
+        arch_l3_b: "Verteilter Content-Feed:",
+        callout_sec_t: "Sicherheitsgarantie",
+        callout_sec_p: "Downloads werden in temporäre Puffer geschrieben und erst nach erfolgreicher SHA-256-Verifikation in das Zielverzeichnis verschoben bzw. an den Android PackageInstaller übergeben.",
+        sec_linux_title: "3. Linux Desktop & CLI",
+        sec_linux_p1: "Auf modernen Linux-Distributionen (Ubuntu, Debian, Fedora, Arch) läuft BenzStore entweder als vollwertige native Desktop-Applikation oder als CLI-Tool.",
+        linux_h3_req: "Systemvoraussetzungen",
+        linux_req_p: "Für den grafischen Desktop-Modus wird WebKit2GTK 4.1 benötigt:",
+        linux_h3_inst: "Direkte Installation",
+        linux_inst_p: "Lade das vorkompilierte Standalone-Binary herunter und mache es ausführbar:",
+        sec_win_title: "4. Windows Desktop",
+        sec_win_p1: "Unter Windows 10 und Windows 11 nutzt BenzStore den vorinstallierten Microsoft Edge WebView2 Controller im schlanken App-Modus. Es sind keine Administrator-Rechte oder Installer-Routinen erforderlich.",
+        sec_droid_title: "5. Android APK & F-Droid",
+        sec_droid_p1: "Für Android-Geräte stehen zwei Installationspfade zur Verfügung:",
+        droid_l1_b: "Direkt-Installation:",
+        droid_l2_b: "MyFDroid Repository:",
+        tag_feed: "Spezifikation",
+        sec_feed_title: "6. Feed-Spezifikation (JSON)",
+        sec_feed_p1: "BenzStore liest den zentralen Feed von content/feed.json ein. Jede App wird über eindeutige Identifier definiert:",
+        sec_cli_title: "7. CLI-Referenz & Automatisierung",
+        sec_cli_p1: "Im Terminal kann BenzStore komplett skriptgesteuert ohne Fenster aufgerufen werden:",
+        sec_faq_title: "8. FAQ & Bekannte Probleme",
+        faq_q1: "Warum wird kein Electron verwendet?",
+        faq_a1: "Electron bündelt eine vollständige Chromium- und Node.js-Laufzeitumgebung und verbraucht oft über 200 MB RAM pro Prozess. BenzStore verwendet pure Go-Routinen in Kombination mit nativen System-Webviews (WebKitGTK auf Linux, WebView2 auf Windows), was zu extrem niedriger Speicherlast (< 25 MB) und blitzschnellen Startzeiten führt.",
+        faq_q2: "Wie verifiziere ich eine Binärdatei manuell?",
+        faq_a2: "Du kannst die SHA-256 Prüfsumme jederzeit mit Bordmitteln abgleichen:"
+      },
+      en: {
+        nav_launch: "Web App",
+        nav_home: "Overview",
+        banner_title: "BenzStore Documentation",
+        banner_sub: "Comprehensive guide, system architecture, CLI reference, and feed specifications for the unified AppStore.",
+        toc_heading: "Table of Contents",
+        toc_intro: "1. Introduction & Philosophy",
+        toc_arch: "2. Architecture & Security",
+        toc_linux: "3. Linux Desktop & CLI",
+        toc_win: "4. Windows Desktop",
+        toc_droid: "5. Android APK & F-Droid",
+        toc_feed: "6. Feed Specification (JSON)",
+        toc_cli: "7. CLI Reference",
+        toc_faq: "8. FAQ & Troubleshooting",
+        tag_intro: "Basics",
+        sec_intro_title: "1. Introduction & Philosophy",
+        sec_intro_p1: "BenzStore is an independent, privacy-first application store for Linux, Windows, and Android. Tailored for the Jeremy Benz open-source ecosystem, it replaces conventional package manager bloat and slow JAR-signed F-Droid pipelines with a transparent, cryptographically verified JSON feed system.",
+        intro_c1_t: "Zero Telemetry",
+        intro_c1_d: "No trackers, no telemetry frameworks, no registration required. Present neither in desktop clients nor Android apps.",
+        intro_c2_t: "Single-Binary Deployments",
+        intro_c2_d: "Compact Go binaries with zero external runtime dependencies on Windows (CGO=0) and lean WebKitGTK integration on Linux.",
+        intro_c3_t: "SHA-256 Integrity",
+        intro_c3_d: "Every single download is strictly matched against pre-published cryptographic SHA-256 checksums before execution or installation.",
+        tag_arch: "System Architecture",
+        sec_arch_title: "2. Architecture & Security",
+        sec_arch_p1: "BenzStore follows a strict Zero-Trust and Zero-Dummy-Security model. The architecture is organized into three primary layers:",
+        arch_l1_b: "Local Embedded Web Server (Go):",
+        arch_l2_b: "GUI Rendering Engine:",
+        arch_l3_b: "Distributed Content CDN:",
+        callout_sec_t: "Security Guarantee",
+        callout_sec_p: "All binaries are buffered into sandboxed temporary files and are only moved to target directories or handed to the Android PackageInstaller once the SHA-256 hash passes full validation.",
+        sec_linux_title: "3. Linux Desktop & CLI",
+        sec_linux_p1: "On Linux distributions (Ubuntu, Debian, Fedora, Arch), BenzStore operates either as an interactive graphical client or as a CLI tool.",
+        linux_h3_req: "Prerequisites",
+        linux_req_p: "The native graphical interface requires WebKit2GTK 4.1:",
+        linux_h3_inst: "Direct Download",
+        linux_inst_p: "Fetch the pre-built standalone executable and make it executable:",
+        sec_win_title: "4. Windows Desktop",
+        sec_win_p1: "On Windows 10 and Windows 11, BenzStore utilizes the built-in Microsoft Edge WebView2 controller in lightweight App Mode. No administrative installer or registry bloat required.",
+        sec_droid_title: "5. Android APK & F-Droid",
+        sec_droid_p1: "Two installation pathways exist for Android smartphones and tablets:",
+        droid_l1_b: "Direct Sideloading:",
+        droid_l2_b: "MyFDroid Repository Integration:",
+        tag_feed: "Specification",
+        sec_feed_title: "6. Feed Specification (JSON)",
+        sec_feed_p1: "BenzStore parses its application catalog directly from content/feed.json. Every application is keyed by an immutable package identifier:",
+        sec_cli_title: "7. CLI Reference & Automation",
+        sec_cli_p1: "BenzStore can be driven entirely headless via terminal commands for CI/CD and automation scripts:",
+        sec_faq_title: "8. FAQ & Troubleshooting",
+        faq_q1: "Why avoid Electron entirely?",
+        faq_a1: "Electron bundles complete Chromium and Node.js runtimes, consuming 200+ MB of RAM per process. BenzStore combines lightweight Go routines with native system webviews (WebKitGTK on Linux, Edge WebView2 on Windows), maintaining memory usage below 25 MB with instantaneous cold starts.",
+        faq_q2: "How do I verify a binary manually?",
+        faq_a2: "You can check any downloaded binary hash using built-in system tools:"
+      }
+    };
+
+    let currentLang = localStorage.getItem("benzstore_wiki_lang") || "de";
+
+    function setWikiLang(lang) {
+      currentLang = lang;
+      localStorage.setItem("benzstore_wiki_lang", lang);
+      document.documentElement.lang = lang;
+      const dict = wikiI18n[lang] || wikiI18n.de;
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key]) {
+          el.textContent = dict[key];
+        }
+      });
+      const btn = document.getElementById("langToggleBtn");
+      if (btn) {
+        btn.textContent = lang === "de" ? "🌐 EN" : "🌐 DE";
+      }
+    }
+
+    function toggleWikiLang() {
+      setWikiLang(currentLang === "de" ? "en" : "de");
+    }
+
+    function filterWikiSections() {
+      const q = document.getElementById("wikiSearch").value.toLowerCase().trim();
+      const sections = document.querySelectorAll(".wiki-section");
+      sections.forEach(sec => {
+        if (!q) {
+          sec.style.display = "";
+          return;
+        }
+        const text = sec.innerText.toLowerCase();
+        sec.style.display = text.includes(q) ? "" : "none";
+      });
+    }
+
+    function copyCode(btn) {
+      const pre = btn.closest(".code-box").querySelector("pre code");
+      if (pre) {
+        navigator.clipboard.writeText(pre.innerText).then(() => {
+          const oldText = btn.textContent;
+          btn.textContent = currentLang === "de" ? "Kopiert!" : "Copied!";
+          setTimeout(() => btn.textContent = oldText, 2000);
+        });
+      }
+    }
+
+    // Initialize language
+    document.addEventListener("DOMContentLoaded", () => {
+      setWikiLang(currentLang);
+
+      // TOC active indicator on scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            document.querySelectorAll(".sidebar-nav a").forEach(a => {
+              a.classList.toggle("active", a.getAttribute("href") === "#" + id);
+            });
+          }
+        });
+      }, { rootMargin: "-20% 0px -70% 0px" });
+
+      document.querySelectorAll(".wiki-section").forEach(sec => observer.observe(sec));
+    });
+  </script>
+</body>
+</html>

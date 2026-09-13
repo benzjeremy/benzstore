@@ -3,70 +3,369 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BenzStore – Unified AppStore for Android & PC</title>
+  <title>BenzStore – Unified Privacy-First AppStore for Android &amp; PC</title>
+  <meta name="description" content="Offizieller AppStore von Jeremy Benz für Android & PC. Single-Binaries, native APKs, Version-Picker und kryptografische SHA-256 Integritätsprüfung.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css">
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('site_theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
 </head>
 <body>
-  <header class="store-header">
-    <div class="header-left">
-      <img src="icon.png" alt="BenzStore Logo" class="brand-logo">
-      <div class="brand-info">
-        <div class="brand-title-row">
-          <span class="brand-title">BenzStore</span>
-          <span class="brand-ver">v1.0</span>
-          <span class="brand-badge">Official Store</span>
-        </div>
-        <span class="brand-sub" data-i18n="tagline">Unified Privacy-First AppStore for Android & PC</span>
-      </div>
-    </div>
 
-    <div class="header-right">
-      <button class="btn-lang" id="langToggle" onclick="toggleLanguage()">EN</button>
-      <button class="btn-refresh" id="btnSync" onclick="loadCatalog()" title="Katalog aktualisieren">⟳ <span data-i18n="sync">Sync</span></button>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="header-brand-wrap">
+        <a href="https://benzjeremy.github.io/" class="breadcrumb-back">← benzjeremy.github.io</a>
+        <div class="brand-divider"></div>
+        <a href="#" class="brand-link">
+          <img src="icon.png" alt="BenzStore Icon" class="brand-logo">
+          <div class="brand-info">
+            <span class="brand-name">BenzStore</span>
+            <span class="brand-ver">v1.1 [Release]</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#features" class="nav-link" data-i18n="nav_features">Features</a>
+        <a href="#install" class="nav-link" data-i18n="nav_install">Installation</a>
+        <a href="#download" class="nav-link" data-i18n="nav_download">Downloads</a>
+        <a href="app/" class="nav-link nav-highlight" data-i18n="nav_webapp">🚀 Web-App</a>
+        <a href="wiki/" class="nav-link" data-i18n="nav_wiki">Wiki &amp; Docs</a>
+        <a href="#about" class="nav-link" data-i18n="nav_about">Über</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-btn" id="themeToggle" onclick="toggleTheme()" title="Theme wechseln">🌙</button>
+        <button class="lang-btn" id="langToggle" onclick="toggleLanguage()">EN</button>
+        <a href="https://github.com/benzjeremy/benzstore" class="btn-gh" target="_blank" rel="noopener">
+          <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+      </div>
     </div>
   </header>
 
-  <section class="store-controls">
-    <div class="search-wrapper">
-      <input type="search" id="searchInput" placeholder="Anwendungen durchsuchen (z. B. Untis, Docker, Lernen)..." data-i18n-placeholder="search_ph" oninput="filterApps()">
-    </div>
-
-    <div class="filter-pills">
-      <button class="pill active" data-filter="android" onclick="setFilter('android')" data-i18n="filter_android">Apps</button>
-      <button class="pill" data-filter="pc" onclick="setFilter('pc')" data-i18n="filter_pc">PC &amp; Desktop</button>
-      <button class="pill" data-filter="server" onclick="setFilter('server')" data-i18n="filter_server">Server &amp; Cloud</button>
-    </div>
-
-    <!-- Update Alert Banner -->
-    <div id="updateAlertBar" class="update-alert-bar" style="display: none;">
-      <span class="update-icon">⚡</span>
-      <div class="update-info">
-        <strong id="updateAlertTitle" data-i18n="updates_available_title">Updates verfügbar</strong>
-        <span id="updateAlertDetails">Neue Versionen stehen bereit.</span>
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-glow"></div>
+    <div class="hero-container">
+      <div class="hero-badges">
+        <span class="badge badge-release">🚀 Release v1.1</span>
+        <span class="badge badge-platform">📱 Android &amp; 💻 PC</span>
+        <span class="badge badge-security">🛡️ Zero-Dummy Security</span>
+        <span class="badge badge-license">GPL-3.0</span>
       </div>
-      <button class="btn-update-view" onclick="toggleShowOnlyUpdates()" id="btnToggleUpdates" data-i18n="show_btn">Anzeigen</button>
-    </div>
 
-    <div class="status-bar">
-      <span id="catalogStatus" class="status-msg" data-i18n="loading">Lade Katalog...</span>
-      <span class="security-indicator">🛡️ Zero-Dummy SHA-256 Integrität</span>
+      <h1 class="hero-title">
+        <span class="gradient-text" data-i18n="hero_title">Der moderne AppStore</span><br>
+        <span data-i18n="hero_sub">für freie Android- &amp; PC-Software.</span>
+      </h1>
+
+      <p class="hero-desc" data-i18n="hero_desc">
+        Keine quälende JAR-Signierung und keine überladenen Store-Clients. BenzStore liefert freie Open-Source Software direkt als verifizierte Single-Binaries und native APKs. Mit echtem Version-Picker, automatisierter Linux/Windows-Paketverwaltung und kryptografischer SHA-256 Integritätsprüfung ab Werk.
+      </p>
+
+      <div class="hero-actions">
+        <a href="app/" class="btn btn-primary btn-cta">
+          🚀 <span data-i18n="btn_launch_webapp">Web-App starten (Live AppStore)</span>
+        </a>
+        <a href="https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/benzstore/benzstore_1.1.apk" class="btn btn-secondary" download>
+          📱 <span data-i18n="btn_dl_apk">BenzStore APK herunterladen</span>
+          <span class="btn-sub">v1.1 • 620 KB • Android 8.0+</span>
+        </a>
+        <a href="#install" class="btn btn-secondary">
+          💻 <span data-i18n="btn_install_pc">Desktop &amp; CLI Installation</span>
+        </a>
+      </div>
+
+      <div class="hero-quick-cmd">
+        <span class="cmd-label" data-i18n="quick_install">Schnellinstallation via Go:</span>
+        <div class="cmd-box">
+          <code>go install github.com/benzjeremy/benzstore@latest</code>
+          <button class="btn-copy" onclick="copyCmd(this, 'go install github.com/benzjeremy/benzstore@latest')">Kopieren</button>
+        </div>
+      </div>
     </div>
   </section>
 
-  <main class="store-main">
-    <div id="appsGrid" class="apps-grid"></div>
-  </main>
+  <!-- FEATURES SECTION -->
+  <section class="features-section" id="features">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-badge" data-i18n="sec_feat_badge">Architektur &amp; Philosophie</span>
+        <h2 class="section-title" data-i18n="sec_feat_title">Warum ein eigener AppStore?</h2>
+        <p class="section-subtitle" data-i18n="sec_feat_sub">Maximale Privatsphäre, strikte kryptografische Absicherung und echte Entwickler-Freiheit.</p>
+      </div>
 
-  <div id="appModal" class="modal-overlay" onclick="closeModalOnBackdrop(event)">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()">×</button>
-      <div id="modalBody"></div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="f-card-icon orange">🔒</div>
+          <h3 data-i18n="f1_title">Zero-Dummy Security</h3>
+          <p data-i18n="f1_desc">Militärisch gehärtete Produktionssicherheit: AES-256-GCM Verschlüsselung, PBKDF2 mit 100.000 Iterationen, CSRF- und DNS-Rebinding-Schutz auf allen lokalen APIs.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="f-card-icon blue">⚡</div>
+          <h3 data-i18n="f2_title">Echte SHA-256 Integrität</h3>
+          <p data-i18n="f2_desc">Jedes APK- und Desktop-Paket wird vor der Installation auf Byte-Ebene mit dem Manifest abgeglichen. Manipulationen werden sofort erkannt und abgewiesen.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="f-card-icon green">📱</div>
+          <h3 data-i18n="f3_title">Multi-Plattform Native</h3>
+          <p data-i18n="f3_desc">Ein einheitliches Ökosystem für Android (APK), Linux (WebKitGTK CGO / Standalone) und Windows (App-Mode) ohne Electron-Overhead.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="f-card-icon purple">🎯</div>
+          <h3 data-i18n="f4_title">Freier Version-Picker</h3>
+          <p data-i18n="f4_desc">Installiere entweder die neueste Version oder wähle gezielt einen beliebigen früheren Release-Stand mit vollständigem Changelog und Downgrade-Schutz.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="f-card-icon amber">📦</div>
+          <h3 data-i18n="f5_title">F-Droid Repo Integration</h3>
+          <p data-i18n="f5_desc">Nahtlose Synchronisation mit dem Jeremy Benz F-Droid Repository (myfdroid). Signierte JAR-Indexe und direkter APK-Download ohne Drittanbieter-Tracking.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="f-card-icon teal">🛡️</div>
+          <h3 data-i18n="f6_title">100% Local-First &amp; Zero Telemetrie</h3>
+          <p data-i18n="f6_desc">Keine Benutzerkonten, keine Cloud-Zwänge, keine Werbetracker. Volle Funktionalität offline und absolute Datenhoheit auf deinen Geräten.</p>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div id="toastBar" class="toast-bar"></div>
+  <!-- INSTALLATION SECTION -->
+  <section class="install-section" id="install">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-badge" data-i18n="sec_install_badge">Setup Guides</span>
+        <h2 class="section-title" data-i18n="sec_install_title">Installation auf deinen Geräten</h2>
+        <p class="section-subtitle" data-i18n="sec_install_sub">Wähle deine Zielplattform für die direkte Installation.</p>
+      </div>
 
-  <script src="app.js"></script>
+      <div class="install-grid">
+        <!-- Android Card -->
+        <div class="install-card">
+          <div class="install-card-header">
+            <span class="plat-badge">Android</span>
+            <h3>Android APK &amp; F-Droid</h3>
+          </div>
+          <p data-i18n="inst_android_desc">Installiere den nativen Store-Client direkt auf dein Smartphone oder Tablet (Android 8.0+).</p>
+          <div class="install-steps">
+            <div class="step-item">
+              <span class="step-num">1</span>
+              <span>APK direkt herunterladen und öffnen:</span>
+            </div>
+            <a href="https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/benzstore/benzstore_1.1.apk" class="btn btn-sm btn-primary" download>
+              📱 BenzStore v1.1 APK (620 KB)
+            </a>
+            <div class="step-item" style="margin-top: 12px;">
+              <span class="step-num">2</span>
+              <span>Oder F-Droid Repository hinzufügen:</span>
+            </div>
+            <div class="code-box-sm">
+              <code>https://benzjeremy.github.io/myfdroid/repo</code>
+              <button class="btn-copy-sm" onclick="copyCmd(this, 'https://benzjeremy.github.io/myfdroid/repo')">Kopieren</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Linux Card -->
+        <div class="install-card">
+          <div class="install-card-header">
+            <span class="plat-badge">Linux</span>
+            <h3>Linux Desktop &amp; CLI</h3>
+          </div>
+          <p data-i18n="inst_linux_desc">Nativer Desktop-Client via WebKitGTK oder reines CLI-Tool für dein Terminal.</p>
+          <div class="install-steps">
+            <div class="step-item">
+              <span class="step-num">1</span>
+              <span>Installation via Go (empfohlen):</span>
+            </div>
+            <div class="code-box-sm">
+              <code>go install github.com/benzjeremy/benzstore@latest</code>
+              <button class="btn-copy-sm" onclick="copyCmd(this, 'go install github.com/benzjeremy/benzstore@latest')">Kopieren</button>
+            </div>
+            <div class="step-item" style="margin-top: 12px;">
+              <span class="step-num">2</span>
+              <span>Oder Standalone Single-Binary:</span>
+            </div>
+            <a href="https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/benzstore/benzstore-linux-amd64" class="btn btn-sm btn-secondary" download>
+              💻 benzstore-linux-amd64 (11.8 MB)
+            </a>
+          </div>
+        </div>
+
+        <!-- Windows Card -->
+        <div class="install-card">
+          <div class="install-card-header">
+            <span class="plat-badge">Windows</span>
+            <h3>Windows Desktop (CGO=0)</h3>
+          </div>
+          <p data-i18n="inst_windows_desc">Schlanker App-Mode via Edge/Chrome. Keine DLL-Hölle, pure Go-Executable.</p>
+          <div class="install-steps">
+            <div class="step-item">
+              <span class="step-num">1</span>
+              <span>Installation via Go:</span>
+            </div>
+            <div class="code-box-sm">
+              <code>go install github.com/benzjeremy/benzstore@latest</code>
+              <button class="btn-copy-sm" onclick="copyCmd(this, 'go install github.com/benzjeremy/benzstore@latest')">Kopieren</button>
+            </div>
+            <div class="step-item" style="margin-top: 12px;">
+              <span class="step-num">2</span>
+              <span>Oder Standalone Executable:</span>
+            </div>
+            <a href="https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/benzstore/benzstore-windows-amd64.exe" class="btn btn-sm btn-secondary" download>
+              🪟 benzstore-windows-amd64.exe (12.3 MB)
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOADS & RELEASES SECTION -->
+  <section class="downloads-section" id="download">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-badge" data-i18n="sec_dl_badge">Binaries &amp; Hashes</span>
+        <h2 class="section-title" data-i18n="sec_dl_title">Offizielle Veröffentlichungen</h2>
+        <p class="section-subtitle" data-i18n="sec_dl_sub">Kryptografisch verifizierte Prüfsummen für alle Binärdateien.</p>
+      </div>
+
+      <div class="release-box">
+        <div class="release-header">
+          <div>
+            <h3>BenzStore v1.1 <span class="tag-latest">Aktuell</span></h3>
+            <span class="release-date">Veröffentlicht am 13. September 2026</span>
+          </div>
+          <a href="https://github.com/benzjeremy/benzstore/releases/latest" class="btn-release-gh" target="_blank">Changelog auf GitHub</a>
+        </div>
+
+        <div class="table-responsive">
+          <table class="release-table">
+            <thead>
+              <tr>
+                <th>Plattform</th>
+                <th>Datei</th>
+                <th>Größe</th>
+                <th>SHA-256 Prüfsumme</th>
+                <th>Aktion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>📱 Android</td>
+                <td><code>benzstore_1.1.apk</code></td>
+                <td>620 KB</td>
+                <td><code class="hash-code">121c48a9d0b62372375871ea24a4fe886e0283408be0eebe336227f23bc33af5</code></td>
+                <td><a href="https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/benzstore/benzstore_1.1.apk" class="btn-table-dl" download>Download</a></td>
+              </tr>
+              <tr>
+                <td>💻 Linux</td>
+                <td><code>benzstore-linux-amd64</code></td>
+                <td>11.8 MB</td>
+                <td><code class="hash-code">7f7385eb26557c427f93c02e2e4688d410ae84fed5fa0062737317acc1b03f42</code></td>
+                <td><a href="https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/benzstore/benzstore-linux-amd64" class="btn-table-dl" download>Download</a></td>
+              </tr>
+              <tr>
+                <td>🪟 Windows</td>
+                <td><code>benzstore-windows-amd64.exe</code></td>
+                <td>12.3 MB</td>
+                <td><code class="hash-code">7afe6089601eedcb30dbbd55e026c623dab793ecdef694d10da7675437cb8fa0</code></td>
+                <td><a href="https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/benzstore/benzstore-windows-amd64.exe" class="btn-table-dl" download>Download</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT & AUTHORS SECTION -->
+  <section class="about-section" id="about">
+    <div class="section-container">
+      <div class="about-layout-grid">
+        <!-- Box 1: Mitwirkende & Autoren -->
+        <div class="about-card">
+          <h3 data-i18n="about_title">Mitwirkende &amp; Autoren</h3>
+          <div class="author-profile">
+            <div class="author-avatar">JB</div>
+            <div class="author-meta">
+              <h4>Jeremy Benz</h4>
+              <span class="author-role" data-i18n="author_role">Projektgründer &amp; Lead Developer</span>
+              <div class="author-links">
+                <a href="https://github.com/benzjeremy" target="_blank" rel="noopener">GitHub: @benzjeremy</a>
+                <span>•</span>
+                <a href="https://benzjeremy.github.io/" target="_blank" rel="noopener">Website</a>
+              </div>
+            </div>
+          </div>
+          <p class="about-desc" data-i18n="about_text">
+            Software-Entwickler aus Nordrhein-Westfalen (Deutschland). Fokus auf Go, native Desktop-Shells, Systemprogrammierung und kompromisslose Privatsphäre ohne Telemetrie.
+          </p>
+          <div class="ai-chips">
+            <span class="ai-chip">🤖 Google Antigravity</span>
+            <span class="ai-chip">🧠 Claude Code</span>
+          </div>
+          <div class="copyright-line">&copy; 2026 Jeremy Benz • Alle Rechte vorbehalten.</div>
+        </div>
+
+        <!-- Box 2: Lizenz & Open Source -->
+        <div class="about-card">
+          <h3 data-i18n="license_title">Freie &amp; Open Source Software</h3>
+          <p class="license-desc" data-i18n="license_text">
+            BenzStore und alle bereitgestellten Anwendungen stehen unter der <strong>GNU General Public License, Version 3 (GPL-3.0)</strong>. Quellcode, Transparenz und uneingeschränkte Nutzerkontrolle sind unverhandelbare Grundsätze.
+          </p>
+          <div class="license-actions">
+            <a href="https://github.com/benzjeremy/benzstore/blob/main/LICENSE" class="btn btn-sm btn-secondary" target="_blank" rel="noopener">
+              📄 Lizenzvertrag (GPL-3.0)
+            </a>
+            <a href="https://github.com/benzjeremy/benzstore" class="btn btn-sm btn-secondary" target="_blank" rel="noopener">
+              Quellcode auf GitHub
+            </a>
+            <a href="https://github.com/benzjeremy/benzstore/releases" class="btn btn-sm btn-secondary" target="_blank" rel="noopener">
+              Alle Releases
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="app/" data-i18n="foot_webapp">🚀 Web-App</a>
+        <a href="wiki/" data-i18n="foot_wiki">Web-Wiki</a>
+        <a href="https://github.com/benzjeremy/benzstore" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/benzjeremy/benzstore/releases" target="_blank" rel="noopener">Releases</a>
+        <a href="https://github.com/benzjeremy/benzstore/issues" target="_blank" rel="noopener" data-i18n="foot_issues">Fehler melden</a>
+        <a href="https://github.com/benzjeremy/benzstore/blob/main/LICENSE" target="_blank" rel="noopener" data-i18n="foot_license">Lizenz</a>
+        <a href="https://benzjeremy.github.io/impressum.html" target="_blank" rel="noopener">Impressum</a>
+        <a href="https://benzjeremy.github.io/datenschutz.html" target="_blank" rel="noopener">Datenschutz</a>
+      </div>
+      <div class="footer-meta">
+        <span>BenzStore v1.1 • Entwickelt von Jeremy Benz (@benzjeremy)</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="web_app.js"></script>
 </body>
 </html>

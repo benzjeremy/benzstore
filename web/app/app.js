@@ -8,9 +8,11 @@ let authToken = new URLSearchParams(window.location.search).get('token') || '';
 
 const i18n = {
   de: {
+    back_overview: "← Zurück zur Projektübersicht",
     tagline: "Einheitlicher Privacy-First AppStore für Android & PC",
     sync: "Sync",
     search_ph: "Anwendungen durchsuchen (z. B. Untis, Docker, Lernen, Server)...",
+    filter_all: "Alle",
     filter_android: "Apps",
     filter_pc: "PC & Desktop",
     filter_server: "Server & Cloud",
@@ -40,9 +42,11 @@ const i18n = {
     downgrade_confirm: "Warnung: Möchtest du wirklich von der neueren Version v{current} auf die ältere Version v{target} downgraden?"
   },
   en: {
+    back_overview: "← Back to Project Overview",
     tagline: "Unified Privacy-First AppStore for Android & PC",
     sync: "Sync",
     search_ph: "Search applications (e.g. Untis, Docker, Learn, Server)...",
+    filter_all: "All",
     filter_android: "Apps",
     filter_pc: "PC & Desktop",
     filter_server: "Server & Cloud",
@@ -100,6 +104,15 @@ function isServerApp(app) {
   return app.id && (app.id.includes('server') || app.id.includes('plugin'));
 }
 
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('site_theme', next);
+  const btn = document.getElementById('themeToggle');
+  if (btn) btn.textContent = next === 'dark' ? '🌙' : '☀️';
+}
+
 function toggleLanguage() {
   currentLang = currentLang === 'de' ? 'en' : 'de';
   localStorage.setItem('benzstore_lang', currentLang);
@@ -129,12 +142,23 @@ async function loadCatalog() {
     if (window.location.origin.includes('127.0.0.1') || window.location.origin.includes('localhost')) {
       res = await fetch('/api/feed?token=' + encodeURIComponent(authToken));
     } else {
-      res = await fetch('https://raw.githubusercontent.com/benzjeremy/benzstore/content/feed.json');
+      try {
+        res = await fetch('../api/v1/apps.json');
+        if (!res.ok) throw new Error();
+      } catch {
+        try {
+          res = await fetch('../feed.json');
+          if (!res.ok) throw new Error();
+        } catch {
+          res = await fetch('https://raw.githubusercontent.com/benzjeremy/benzstore/content/feed.json');
+        }
+      }
     }
 
     if (!res.ok) throw new Error('HTTP ' + res.status);
     catalog = await res.json();
-    statusEl.textContent = `${catalog.apps.length} Anwendungen bereitgestellt • BenzStore v1.0`;
+    const storeVer = (catalog.store && catalog.store.version) ? catalog.store.version : '1.1';
+    statusEl.textContent = `${catalog.apps.length} Anwendungen bereitgestellt • BenzStore v${storeVer}`;
     checkAvailableUpdates();
     renderApps();
   } catch (err) {
