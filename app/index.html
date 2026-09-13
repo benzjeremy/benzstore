@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BenzStore – Unified AppStore for Android & PC</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('site_theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="store-header">
+    <div class="header-left">
+      <a href="../" class="breadcrumb-back" data-i18n="back_overview">← Zurück zur Projektübersicht</a>
+      <div class="brand-divider"></div>
+      <div class="brand-brand">
+        <img src="../icon.png" alt="BenzStore Logo" class="brand-logo">
+        <div class="brand-info">
+          <div class="brand-title-row">
+            <span class="brand-title">BenzStore</span>
+            <span class="brand-ver">v1.1</span>
+            <span class="brand-badge">Official Store</span>
+          </div>
+          <span class="brand-sub" data-i18n="tagline">Einheitlicher Privacy-First AppStore für Android & PC</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="theme-btn" id="themeToggle" onclick="toggleTheme()" title="Theme wechseln">🌙</button>
+      <button class="btn-lang" id="langToggle" onclick="toggleLanguage()">EN</button>
+      <button class="btn-refresh" id="btnSync" onclick="loadCatalog()" title="Katalog aktualisieren">⟳ <span data-i18n="sync">Sync</span></button>
+    </div>
+  </header>
+
+  <!-- Controls / Filter Section -->
+  <section class="store-controls">
+    <div class="search-wrapper">
+      <input type="search" id="searchInput" placeholder="Anwendungen durchsuchen (z. B. Untis, Docker, Lernen)..." data-i18n-placeholder="search_ph" oninput="filterApps()">
+    </div>
+
+    <div class="filter-pills">
+      <button class="pill active" data-filter="all" onclick="setFilter('all')" data-i18n="filter_all">Alle</button>
+      <button class="pill" data-filter="android" onclick="setFilter('android')" data-i18n="filter_android">Apps</button>
+      <button class="pill" data-filter="pc" onclick="setFilter('pc')" data-i18n="filter_pc">PC &amp; Desktop</button>
+      <button class="pill" data-filter="server" onclick="setFilter('server')" data-i18n="filter_server">Server &amp; Cloud</button>
+    </div>
+
+    <!-- Update Alert Banner -->
+    <div id="updateAlertBar" class="update-alert-bar" style="display: none;">
+      <span class="update-icon">⚡</span>
+      <div class="update-info">
+        <strong id="updateAlertTitle" data-i18n="updates_available_title">Updates verfügbar</strong>
+        <span id="updateAlertDetails">Neue Versionen stehen bereit.</span>
+      </div>
+      <button class="btn-update-view" onclick="toggleShowOnlyUpdates()" id="btnToggleUpdates" data-i18n="show_btn">Anzeigen</button>
+    </div>
+
+    <div class="status-bar">
+      <span id="catalogStatus" class="status-msg" data-i18n="loading">Lade Katalog...</span>
+      <span class="security-indicator">🛡️ Zero-Dummy SHA-256 Integrität</span>
+    </div>
+  </section>
+
+  <!-- Main Apps Grid -->
+  <main class="store-main">
+    <div id="appsGrid" class="apps-grid">
+      <!-- Injected via JavaScript -->
+    </div>
+  </main>
+
+  <!-- App Detail Modal -->
+  <div id="appModal" class="modal-overlay" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div id="modalBody">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast / Notification Bar -->
+  <div id="toastBar" class="toast-bar"></div>
+
+  <footer class="app-footer">
+    <div class="footer-meta">
+      <span>&copy; 2026 Jeremy Benz (@benzjeremy)</span>
+      <span>•</span>
+      <a href="../" data-i18n="back_overview">← Zurück zur Projektübersicht</a>
+      <span>•</span>
+      <a href="../wiki/">Web-Wiki</a>
+      <span>•</span>
+      <a href="https://github.com/benzjeremy/benzstore" target="_blank">GitHub</a>
+      <span>•</span>
+      <a href="https://benzjeremy.github.io/impressum.html" target="_blank">Impressum</a>
+      <span>•</span>
+      <a href="https://benzjeremy.github.io/datenschutz.html" target="_blank">Datenschutz</a>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
