@@ -140,7 +140,7 @@
       "license": "GPL-3.0",
       "website": "https://benzjeremy.github.io/learn/",
       "source": "https://github.com/benzjeremy/learn",
-      "icon": "https://benzjeremy.github.io/myfdroid/icons/com.benzjeremy.learn.png",
+      "icon": "https://benzjeremy.github.io/benzstore/icons/learn.png",
       "categories": [
         "android"
       ],
@@ -222,7 +222,7 @@
       "license": "GPL-3.0",
       "website": "https://benzjeremy.github.io/wetter-site/",
       "source": "https://github.com/benzjeremy/wetter-site",
-      "icon": "https://benzjeremy.github.io/myfdroid/icons/com.benzjeremy.wetter.png",
+      "icon": "https://benzjeremy.github.io/benzstore/icons/wetter.png",
       "categories": [
         "android"
       ],
