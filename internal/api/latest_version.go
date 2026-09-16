@@ -15,7 +15,6 @@ package api
 
 import (
     "net/http"
-    "github.com/benzjeremy/benzstore/internal/store"
 )
 
 // handleLatestVersion writes the latest stable version for a given app id.
