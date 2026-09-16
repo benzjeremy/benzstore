@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="de" data-theme="dark">
 <head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BenzStore – Unified Privacy-First AppStore for Android &amp; PC</title>
@@ -91,7 +94,7 @@
       <div class="hero-quick-cmd">
         <span class="cmd-label" data-i18n="quick_install">Schnellinstallation via Go:</span>
         <div class="cmd-box">
-          <code>go install github.com/benzjeremy/benzstore@latest</code>
+          <code>go install github.com/benzjeremy/benzstore@latest
           <button class="btn-copy" onclick="copyCmd(this, 'go install github.com/benzjeremy/benzstore@latest')">Kopieren</button>
         </div>
       </div>
@@ -196,7 +199,7 @@
               <span>Installation via Go (empfohlen):</span>
             </div>
             <div class="code-box-sm">
-              <code>go install github.com/benzjeremy/benzstore@latest</code>
+              <code>go install github.com/benzjeremy/benzstore@latest
               <button class="btn-copy-sm" onclick="copyCmd(this, 'go install github.com/benzjeremy/benzstore@latest')">Kopieren</button>
             </div>
             <div class="step-item" style="margin-top: 12px;">
@@ -222,7 +225,7 @@
               <span>Installation via Go:</span>
             </div>
             <div class="code-box-sm">
-              <code>go install github.com/benzjeremy/benzstore@latest</code>
+              <code>go install github.com/benzjeremy/benzstore@latest
               <button class="btn-copy-sm" onclick="copyCmd(this, 'go install github.com/benzjeremy/benzstore@latest')">Kopieren</button>
             </div>
             <div class="step-item" style="margin-top: 12px;">
@@ -364,6 +367,7 @@
         <span>BenzStore v1.1 • Entwickelt von Jeremy Benz (@benzjeremy)</span>
       </div>
     </div>
+  <div class="routing-notice" style="text-align: center; padding: 1rem; font-size: 0.75rem; opacity: 0.5; font-family: monospace;">2-Tier Routing: /benzstore/ (Landing) | /benzstore/app/ (Web-App)</div>
   </footer>
 
   <script src="web_app.js"></script>

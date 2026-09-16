@@ -29,118 +29,17 @@
   ],
   "apps": [
     {
-      "id": "com.benzjeremy.benzstore",
-      "name": "BenzStore",
-      "summary_de": "Offizieller, einheitlicher AppStore für Android & PC mit One-Click Install & Version-Picker.",
-      "summary_en": "Official unified AppStore for Android & PC with one-click install & version picker.",
-      "description_de": "Der schlanke, datenschutzfreundliche AppStore von Jeremy Benz. Vollkommen frei von lästiger JAR-Signierung und Telemetrie. Unterstützt native Android-Installationen und automatisierte Linux/Windows-Paketverwaltung mit kryptografischer SHA-256-Integritätsprüfung.",
-      "description_en": "The sleek, privacy-first AppStore by Jeremy Benz. Completely free from JAR-signing bloat and telemetry. Supports native Android installations and automated Linux/Windows package management with cryptographic SHA-256 integrity verification.",
-      "author": "Jeremy Benz",
-      "license": "GPL-3.0",
-      "website": "https://benzjeremy.github.io/benzstore/",
-      "source": "https://github.com/benzjeremy/benzstore",
-      "icon": "https://benzjeremy.github.io/benzstore/icon.png",
-      "categories": [
-        "android",
-        "pc"
-      ],
-      "platforms": [
-        "android",
-        "linux",
-        "windows"
-      ],
-      "latest_version": "1.1",
-      "versions": [
-        {
-          "version": "1.1",
-          "version_code": 110,
-          "release_date": "2026-09-13",
-          "changelog_de": "Zweisprachiges UI (DE/EN), Untis-Go Gold Standard Showcase, 2-Tier Web-Routing (/ und /app/), Dark/Light Mode und resilienter Fallback-Feed.",
-          "changelog_en": "Bilingual UI (DE/EN), Untis-Go Gold Standard showcase, 2-tier web routing (/ and /app/), dark/light mode and resilient fallback feed.",
-          "downloads": {
-            "android": {
-              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/benzstore/benzstore_1.1.apk",
-              "filename": "benzstore_1.1.apk",
-              "sha256": "121c48a9d0b62372375871ea24a4fe886e0283408be0eebe336227f23bc33af5",
-              "size": 620732
-            },
-            "linux": {
-              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/benzstore/benzstore-linux-amd64",
-              "filename": "benzstore-linux-amd64",
-              "bin_name": "benzstore",
-              "type": "binary",
-              "sha256": "7f7385eb26557c427f93c02e2e4688d410ae84fed5fa0062737317acc1b03f42",
-              "size": 11795184,
-              "desktop_entry": {
-                "name": "BenzStore",
-                "comment": "Unified AppStore for Android & PC",
-                "exec": "benzstore",
-                "terminal": false,
-                "categories": "System;PackageManager;Settings;"
-              }
-            },
-            "windows": {
-              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/benzstore/benzstore-windows-amd64.exe",
-              "filename": "benzstore-windows-amd64.exe",
-              "bin_name": "benzstore.exe",
-              "type": "exe",
-              "sha256": "7afe6089601eedcb30dbbd55e026c623dab793ecdef694d10da7675437cb8fa0",
-              "size": 12293632
-            }
-          }
-        },
-        {
-          "version": "1.0",
-          "version_code": 100,
-          "release_date": "2026-09-12",
-          "changelog_de": "Initialer Release: Einheitlicher Android- & PC-AppStore mit SHA-256 Verifikation und Version-Picker.",
-          "changelog_en": "Initial release: Unified Android & PC AppStore with SHA-256 verification and version picker.",
-          "downloads": {
-            "android": {
-              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/benzstore/benzstore_1.0.apk",
-              "filename": "benzstore_1.0.apk",
-              "sha256": "fb99a0af9368c28dff29acdd672324135d886e14e26cc72896ac84140997e3c9",
-              "size": 103232
-            },
-            "linux": {
-              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/benzstore/benzstore_1.0",
-              "filename": "benzstore_1.0",
-              "bin_name": "benzstore",
-              "type": "binary",
-              "sha256": "053bdf7f8e8e0bc92088ab7450f26d3c8ba5efe1dae43cf29cc7b0b686d8e72a",
-              "size": 11274936,
-              "desktop_entry": {
-                "name": "BenzStore",
-                "comment": "Unified AppStore for Android & PC",
-                "exec": "benzstore",
-                "terminal": false,
-                "categories": "System;PackageManager;Settings;"
-              }
-            },
-            "windows": {
-              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/benzstore/benzstore_1.0.exe",
-              "filename": "benzstore_1.0.exe",
-              "bin_name": "benzstore.exe",
-              "type": "exe",
-              "sha256": "7c663783a01622cf7829138bfbf206583972700e38c8208675fe4febbe476e7b",
-              "size": 11810304
-            }
-          }
-        }
-      ]
-    },
-    {
       "id": "com.benzjeremy.learn",
       "name": "Learn",
       "summary_de": "Privacy-First Open-Source Programmier-Lern-App mit interaktivem Compiler-Labor.",
       "summary_en": "Privacy-first open-source code learning app with interactive compiler lab.",
-      "description_de": "Didaktische Lernplattform für Go, Python, Webentwicklung, SQL, C# und PHP mit realistischem Compiler-Labor, fehlerspezifischem Feedback, 90-Minuten-Abschlussprüfungen und nativer Offline-Konformität (§ 5 DDG, DSGVO).",
+      "description_de": "Didaktische Lernplattform f\u00fcr Go, Python, Webentwicklung, SQL, C# und PHP mit realistischem Compiler-Labor, fehlerspezifischem Feedback, 90-Minuten-Abschlusspr\u00fcfungen und nativer Offline-Konformit\u00e4t (\u00a7 5 DDG, DSGVO).",
       "description_en": "Didactic learning platform for Go, Python, Web development, SQL, C# and PHP with realistic compiler lab, option-specific feedback, 90-minute final exam simulations, and native offline compliance.",
       "author": "Jeremy Benz",
       "license": "GPL-3.0",
       "website": "https://benzjeremy.github.io/learn/",
       "source": "https://github.com/benzjeremy/learn",
-      "icon": "https://benzjeremy.github.io/myfdroid/icons/com.benzjeremy.learn.png",
+      "icon": "https://benzjeremy.github.io/benzstore/icons/learn.png",
       "categories": [
         "android"
       ],
@@ -153,8 +52,8 @@
           "version": "2.2",
           "version_code": 220,
           "release_date": "2026-09-12",
-          "changelog_de": "Native Offline-Rechtshinweise (§ 5 DDG, DSGVO), Zero-Telemetry Härtung.",
-          "changelog_en": "Native offline legal notice (§ 5 DDG, GDPR), zero-telemetry hardening.",
+          "changelog_de": "Native Offline-Rechtshinweise (\u00a7 5 DDG, DSGVO), Zero-Telemetry H\u00e4rtung.",
+          "changelog_en": "Native offline legal notice (\u00a7 5 DDG, GDPR), zero-telemetry hardening.",
           "downloads": {
             "android": {
               "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/learn/learn_2.2.apk",
@@ -162,7 +61,8 @@
               "sha256": "54ce030dd268d5326047f990e5296f508be6e0388782d6d095e7164b02366c2b",
               "size": 984242
             }
-          }
+          },
+          "release_url": "https://github.com/benzjeremy/learn/releases/tag/2.2"
         },
         {
           "version": "2.1",
@@ -177,13 +77,14 @@
               "sha256": "48c0cc7b029265d23a591ece5dbe983c8278eb3315fc39321c4b961116350fb8",
               "size": 980146
             }
-          }
+          },
+          "release_url": "https://github.com/benzjeremy/learn/releases/tag/2.1"
         },
         {
           "version": "2.0",
           "version_code": 200,
           "release_date": "2026-09-12",
-          "changelog_de": "Pure native Android UI (unter 1 MB), vollständiger Verzicht auf WebView-Overhead.",
+          "changelog_de": "Pure native Android UI (unter 1 MB), vollst\u00e4ndiger Verzicht auf WebView-Overhead.",
           "changelog_en": "Pure native Android UI (under 1 MB), zero WebView overhead.",
           "downloads": {
             "android": {
@@ -192,13 +93,14 @@
               "sha256": "036a6d4ac05eb5059f466774d4478451334f777c15305928aab5f69827ea5a8b",
               "size": 894130
             }
-          }
+          },
+          "release_url": "https://github.com/benzjeremy/learn/releases/tag/2.0"
         },
         {
           "version": "1.0",
           "version_code": 100,
           "release_date": "2026-09-12",
-          "changelog_de": "Erstveröffentlichung der Lern-App für Android.",
+          "changelog_de": "Erstver\u00f6ffentlichung der Lern-App f\u00fcr Android.",
           "changelog_en": "Initial release of the learning app for Android.",
           "downloads": {
             "android": {
@@ -207,7 +109,8 @@
               "sha256": "a6b245ee8e9c0409489a707ac33833dcf4c7f5ecb64e565d6ca9996396a9c76e",
               "size": 1671824
             }
-          }
+          },
+          "release_url": "https://github.com/benzjeremy/learn/releases/tag/1.0"
         }
       ]
     },
@@ -222,7 +125,7 @@
       "license": "GPL-3.0",
       "website": "https://benzjeremy.github.io/wetter-site/",
       "source": "https://github.com/benzjeremy/wetter-site",
-      "icon": "https://benzjeremy.github.io/myfdroid/icons/com.benzjeremy.wetter.png",
+      "icon": "https://benzjeremy.github.io/benzstore/icons/wetter.png",
       "categories": [
         "android"
       ],
@@ -235,8 +138,8 @@
           "version": "1.2",
           "version_code": 120,
           "release_date": "2026-09-12",
-          "changelog_de": "Native Offline-Rechtshinweise (§ 5 DDG, DSGVO), optimierte Widget-Aktualisierungslogik.",
-          "changelog_en": "Native offline legal notice (§ 5 DDG, GDPR), optimized widget refresh logic.",
+          "changelog_de": "Native Offline-Rechtshinweise (\u00a7 5 DDG, DSGVO), optimierte Widget-Aktualisierungslogik.",
+          "changelog_en": "Native offline legal notice (\u00a7 5 DDG, GDPR), optimized widget refresh logic.",
           "downloads": {
             "android": {
               "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/android/wetter/wetter_1.2.apk",
@@ -244,7 +147,8 @@
               "sha256": "2cf6911319008a8ef02d99de7d57f72836494197c2ebb626b8aec100ae7a8c11",
               "size": 87176
             }
-          }
+          },
+          "release_url": "https://github.com/benzjeremy/wetter-site/releases/tag/1.2"
         },
         {
           "version": "1.1",
@@ -259,13 +163,14 @@
               "sha256": "45e1b68ceb447f56f7f6199f9814dab5043b41a3ae4d76f72684f75f4dbb1d2b",
               "size": 83080
             }
-          }
+          },
+          "release_url": "https://github.com/benzjeremy/wetter-site/releases/tag/1.1"
         },
         {
           "version": "1.0",
           "version_code": 100,
           "release_date": "2026-09-12",
-          "changelog_de": "Erstveröffentlichung der schlanken Wetter-App.",
+          "changelog_de": "Erstver\u00f6ffentlichung der schlanken Wetter-App.",
           "changelog_en": "Initial release of the lightweight weather app.",
           "downloads": {
             "android": {
@@ -274,16 +179,17 @@
               "sha256": "9acbf08288a268e5232322ae4d5cc679d4056e6563a54335b468b14dca8e5fd2",
               "size": 74811
             }
-          }
+          },
+          "release_url": "https://github.com/benzjeremy/wetter-site/releases/tag/1.0"
         }
       ]
     },
     {
       "id": "com.benzjeremy.untis-go",
       "name": "Untis-Go",
-      "summary_de": "Moderne, native Stundenplan-App für WebUntis – werbefrei, schnell & mit iCalendar Sync.",
-      "summary_en": "Modern native timetable app for WebUntis – ad-free, fast & with iCalendar sync.",
-      "description_de": "Schlanke, native Desktop- und CLI-Anwendung für WebUntis. Bietet bis zu 10x schnellere Ladezeiten als die offizielle App, iCalendar-Export (.ics), automatische Perioden-Erkennung, Offline-Caching und native WebKitGTK-Oberfläche.",
+      "summary_de": "Moderne, native Stundenplan-App f\u00fcr WebUntis \u2013 werbefrei, schnell & mit iCalendar Sync.",
+      "summary_en": "Modern native timetable app for WebUntis \u2013 ad-free, fast & with iCalendar sync.",
+      "description_de": "Schlanke, native Desktop- und CLI-Anwendung f\u00fcr WebUntis. Bietet bis zu 10x schnellere Ladezeiten als die offizielle App, iCalendar-Export (.ics), automatische Perioden-Erkennung, Offline-Caching und native WebKitGTK-Oberfl\u00e4che.",
       "description_en": "Lightweight native desktop and CLI application for WebUntis. Offers up to 10x faster loading than the official app, iCalendar export (.ics), automatic period detection, offline caching, and native WebKitGTK GUI.",
       "author": "Jeremy Benz",
       "license": "GPL-3.0",
@@ -297,43 +203,76 @@
         "linux",
         "windows"
       ],
-      "latest_version": "2.3",
-      "versions": [
-        {
-          "version": "2.3",
-          "release_date": "2026-09-11",
-          "changelog_de": "iCalendar Export (.ics), Perioden-Engine & Optimierung des lokalen Caches.",
-          "changelog_en": "iCalendar export (.ics), period engine & local cache optimizations.",
-          "downloads": {
-            "linux": {
-              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/untis-go/untis-go_2.3",
-              "filename": "untis-go_2.3",
-              "bin_name": "untis-go",
-              "type": "binary",
-              "sha256": "20dab4f7d3f336da17de89ba6cc4842781014d2c7ed94df6941bcedfb586fa53",
-              "size": 16666616,
-              "desktop_entry": {
-                "name": "Untis-Go",
-                "comment": "WebUntis Timetable Client",
-                "exec": "untis-go",
-                "terminal": false,
-                "categories": "Education;Office;"
+        "latest_version": "2.4",
+        "versions": [
+          {
+            "version": "2.4",
+            "release_date": "2026-09-16",
+            "changelog_de": "Datenschutz‑Härtung, Entfernung des Microsoft‑Login‑Gatekeepers, und endgültiger Release nach v2.3 Pre‑Release.",
+            "changelog_en": "Privacy hardening, removal of Microsoft login gatekeeper, final release after v2.3 pre‑release.",
+            "downloads": {
+              "linux": {
+                "url": "https://github.com/benzjeremy/untis-go/releases/download/v2.4/untis-go-v2.4-linux.tar.gz",
+                "filename": "untis-go-v2.4-linux.tar.gz",
+                "bin_name": "untis-go",
+                "type": "binary",
+                "sha256": "289401d99b5247e6d39fb0408fd1b6832f5f5651ba46e879ecc6db2ba933a026",
+                "size": 16667400,
+                "desktop_entry": {
+                  "name": "Untis-Go",
+                  "comment": "WebUntis Timetable Client",
+                  "exec": "untis-go",
+                  "terminal": false,
+                  "categories": "Education;Office;"
+                }
+              },
+              "windows": {
+                "url": "https://github.com/benzjeremy/untis-go/releases/download/v2.4/untis-go-v2.4-windows.zip",
+                "filename": "untis-go-v2.4-windows.zip",
+                "bin_name": "untis-go.exe",
+                "type": "exe",
+                "sha256": "1e695d1a98b16972353a7282aaaae0515641315f7726546428cbce67badbc971",
+                "size": 19770368
               }
             },
-            "windows": {
-              "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/untis-go/untis-go_2.3.exe",
-              "filename": "untis-go_2.3.exe",
-              "bin_name": "untis-go.exe",
-              "type": "exe",
-              "sha256": "08ccc66820b5b99f56d43dc6613f19a4b17289d73924749d65ad5812ebac6717",
-              "size": 19770368
-            }
-          }
-        },
+            "release_url": "https://github.com/benzjeremy/untis-go/releases/tag/v2.4"
+          },
+          {
+            "version": "2.3",
+            "release_date": "2026-09-11",
+            "changelog_de": "iCalendar Export (.ics), Perioden-Engine & Optimierung des lokalen Caches.",
+            "changelog_en": "iCalendar export (.ics), period engine & local cache optimizations.",
+            "downloads": {
+              "linux": {
+                "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/linux/untis-go/untis-go_2.3",
+                "filename": "untis-go_2.3",
+                "bin_name": "untis-go",
+                "type": "binary",
+                "sha256": "20dab4f7d3f336da17de89ba6cc4842781014d2c7ed94df6941bcedfb586fa53",
+                "size": 16666616,
+                "desktop_entry": {
+                  "name": "Untis-Go",
+                  "comment": "WebUntis Timetable Client",
+                  "exec": "untis-go",
+                  "terminal": false,
+                  "categories": "Education;Office;"
+                }
+              },
+              "windows": {
+                "url": "https://raw.githubusercontent.com/benzjeremy/benzstore/content/windows/untis-go/untis-go_2.3.exe",
+                "filename": "untis-go_2.3.exe",
+                "bin_name": "untis-go.exe",
+                "type": "exe",
+                "sha256": "08ccc66820b5b99f56d43dc6613f19a4b17289d73924749d65ad5812ebac6717",
+                "size": 19770368
+              }
+            },
+            "release_url": "https://github.com/benzjeremy/untis-go/releases/tag/2.3"
+          },
         {
           "version": "2.2",
           "release_date": "2026-09-10",
-          "changelog_de": "Datenschutz-Härtung, Entfernung von Microsoft-Logins, Zero-Telemetry Standard.",
+          "changelog_de": "Datenschutz-H\u00e4rtung, Entfernung von Microsoft-Logins, Zero-Telemetry Standard.",
           "changelog_en": "Privacy hardening, removal of Microsoft login dependency, zero-telemetry standard.",
           "downloads": {
             "linux": {
@@ -359,12 +298,13 @@
               "sha256": "3c17b60a161dcb0c001f791eff581519b2c03ef0f04b65aded4c7c3913af687d",
               "size": 19713536
             }
-          }
+          },
+          "release_url": "https://github.com/benzjeremy/untis-go/releases/tag/2.2"
         },
         {
           "version": "2.1",
           "release_date": "2026-09-05",
-          "changelog_de": "Strikte Trennung von App-Code und Wiki, WebKitGTK-Härtung und Anti-CSRF.",
+          "changelog_de": "Strikte Trennung von App-Code und Wiki, WebKitGTK-H\u00e4rtung und Anti-CSRF.",
           "changelog_en": "Strict codebase separation, WebKitGTK hardening and Anti-CSRF.",
           "downloads": {
             "linux": {
@@ -390,12 +330,13 @@
               "sha256": "4e2bacd6cd973afbf12e47539e691aa91f0c966cbe493ea72153b0b6773d4de3",
               "size": 5545284
             }
-          }
+          },
+          "release_url": "https://github.com/benzjeremy/untis-go/releases/tag/2.1"
         },
         {
           "version": "2.0",
           "release_date": "2026-09-05",
-          "changelog_de": "Major Release: Überarbeitete Architektur, 10x schnellere Ladezeiten und SQLite Caching.",
+          "changelog_de": "Major Release: \u00dcberarbeitete Architektur, 10x schnellere Ladezeiten und SQLite Caching.",
           "changelog_en": "Major release: Overhauled architecture, 10x faster load times and SQLite caching.",
           "downloads": {
             "linux": {
@@ -421,7 +362,8 @@
               "sha256": "e5bd32146e0efc1445ef8eaf0fe10c2d00dc57e64c01c0cbb6622fd76be73a69",
               "size": 5543336
             }
-          }
+          },
+          "release_url": "https://github.com/benzjeremy/untis-go/releases/tag/2.0"
         }
       ]
     },
@@ -475,7 +417,8 @@
               "sha256": "41a36e4914753579780e23c1026c6293b1c16580d9c76b380f51134258c2c3a9",
               "size": 8141824
             }
-          }
+          },
+          "release_url": "https://github.com/benzjeremy/docklite/releases/tag/1.2.1"
         }
       ]
     },
@@ -484,7 +427,7 @@
       "name": "Spotify Screensaver",
       "summary_de": "Eleganter Vollbild-Bildschirmschoner mit Spotify MPRIS D-Bus Integration.",
       "summary_en": "Elegant fullscreen screensaver with Spotify MPRIS D-Bus integration.",
-      "description_de": "Nativer Bildschirmschoner mit dynamischen Album-Artwork-Hintergründen, Liedtext-Visualisierung, MPRIS D-Bus Steuerung, intelligenter Werbeerkennung und ultra-niedriger CPU-Last unter Linux (WebKitGTK) und Windows.",
+      "description_de": "Nativer Bildschirmschoner mit dynamischen Album-Artwork-Hintergr\u00fcnden, Liedtext-Visualisierung, MPRIS D-Bus Steuerung, intelligenter Werbeerkennung und ultra-niedriger CPU-Last unter Linux (WebKitGTK) und Windows.",
       "description_en": "Native screensaver featuring dynamic blurred album art backgrounds, lyrics visualization, MPRIS D-Bus control, ad detection, and ultra-low CPU load on Linux (WebKitGTK) and Windows.",
       "author": "Jeremy Benz",
       "license": "GPL-3.0",
@@ -529,16 +472,17 @@
               "sha256": "8c22348a21216684bdcc153415933ff3c8b4cf50b4f4ce3d7aefeeddb1b2fb5d",
               "size": 7939584
             }
-          }
+          },
+          "release_url": "https://github.com/benzjeremy/spotify-screensaver/releases/tag/1.4"
         }
       ]
     },
     {
       "id": "com.benzjeremy.benzcloud-server",
       "name": "BenzCloud Server",
-      "summary_de": "Vollautonome, datenschutzfreundliche Cloud-Suite mit Mesh-VPN, integriertem DNS und verschlüsseltem Drive.",
+      "summary_de": "Vollautonome, datenschutzfreundliche Cloud-Suite mit Mesh-VPN, integriertem DNS und verschl\u00fcsseltem Drive.",
       "summary_en": "Autonomous, privacy-first private cloud suite with Mesh VPN, embedded DNS, and encrypted drive.",
-      "description_de": "Dezentraler Enterprise-Server in Go: Keine Portweiterleitungen dank Slack Nebula Mesh-VPN, integrierter RFC 1035 DNS-Server mit Fallback, verschlüsselter Tresor (AES-256-GCM) und One-Click Client-Pairing.",
+      "description_de": "Dezentraler Enterprise-Server in Go: Keine Portweiterleitungen dank Slack Nebula Mesh-VPN, integrierter RFC 1035 DNS-Server mit Fallback, verschl\u00fcsselter Tresor (AES-256-GCM) und One-Click Client-Pairing.",
       "description_en": "Decentralized enterprise server in Go: Zero router port forwarding needed via Slack Nebula Mesh-VPN, embedded RFC 1035 DNS server with fallback, encrypted file vault (AES-256-GCM), and one-click client pairing.",
       "author": "Jeremy Benz",
       "license": "GPL-3.0",
@@ -591,16 +535,17 @@
               "sha256": "f893622bff2e5ce34388b11495af25373a5dcbb3f6a5ca1f87ec0b8004dc8c71",
               "size": 13225984
             }
-          }
+          },
+          "release_url": "https://github.com/benzjeremy/benzcloud-server/releases/tag/1.0"
         }
       ]
     },
     {
       "id": "com.benzjeremy.benzcloud-client",
       "name": "BenzCloud Client",
-      "summary_de": "Sicherer Mesh-Client & Desktop-Cockpit mit QR-/Token-Pairing für BenzCloud-Instanzen.",
+      "summary_de": "Sicherer Mesh-Client & Desktop-Cockpit mit QR-/Token-Pairing f\u00fcr BenzCloud-Instanzen.",
       "summary_en": "Secure mesh client & desktop cockpit with QR/token pairing for BenzCloud instances.",
-      "description_de": "Nativer Client für PC und Android: Verbindet sich vollautomatisch mit privaten BenzCloud-Servern, konfiguriert das Mesh-VPN und bietet schnellen Direktzugriff auf Drive, Mail, Chat und Webdienste.",
+      "description_de": "Nativer Client f\u00fcr PC und Android: Verbindet sich vollautomatisch mit privaten BenzCloud-Servern, konfiguriert das Mesh-VPN und bietet schnellen Direktzugriff auf Drive, Mail, Chat und Webdienste.",
       "description_en": "Native client for PC and Android: Automatically connects to private BenzCloud servers, configures mesh VPN networking, and provides one-click launching of Drive, Mail, Chat, and Web services.",
       "author": "Jeremy Benz",
       "license": "GPL-3.0",
@@ -654,16 +599,17 @@
               "sha256": "9053f749582fcebea9076264ed81ebb69bd214e0278af74397c2fdce706aaa92",
               "size": 11329024
             }
-          }
+          },
+          "release_url": "https://github.com/benzjeremy/benzcloud-client/releases/tag/1.0"
         }
       ]
     },
     {
       "id": "com.benzjeremy.benzcloud-plugin-web",
       "name": "BenzCloud Web Plugin",
-      "summary_de": "Multi-Subdomain Virtual Host Webserver für statische Websites, Astro & PHP.",
+      "summary_de": "Multi-Subdomain Virtual Host Webserver f\u00fcr statische Websites, Astro & PHP.",
       "summary_en": "Multi-subdomain virtual host webserver for static websites, Astro & PHP.",
-      "description_de": "Autonomes Web-Plugin für BenzCloud: Verwaltet isolierte virtuelle Web-Hosts für statische Websites, Astro-Bundles und PHP-Skripte mit automatischer DNS-Registrierung im Mesh-VPN.",
+      "description_de": "Autonomes Web-Plugin f\u00fcr BenzCloud: Verwaltet isolierte virtuelle Web-Hosts f\u00fcr statische Websites, Astro-Bundles und PHP-Skripte mit automatischer DNS-Registrierung im Mesh-VPN.",
       "description_en": "Autonomous web hosting plugin for BenzCloud: Manages isolated virtual web hosts for static sites, Astro bundles, and PHP scripts with automatic DNS registration across the mesh VPN.",
       "author": "Jeremy Benz",
       "license": "GPL-3.0",
@@ -682,7 +628,7 @@
         {
           "version": "1.0",
           "release_date": "2026-09-12",
-          "changelog_de": "Initialer Release: Vhost-Webserver für statische Sites und PHP mit Health-Reporting.",
+          "changelog_de": "Initialer Release: Vhost-Webserver f\u00fcr statische Sites und PHP mit Health-Reporting.",
           "changelog_en": "Initial release: Vhost webserver for static sites and PHP with health reporting.",
           "downloads": {
             "linux": {
@@ -708,16 +654,17 @@
               "sha256": "fb0a11aaadc5e285dba808780342e93caaf9544ed9780c0be42e4b881ca5f11e",
               "size": 10584576
             }
-          }
+          },
+          "release_url": "https://github.com/benzjeremy/benzcloud-plugin-web/releases/tag/1.0"
         }
       ]
     },
     {
       "id": "com.benzjeremy.benzcloud-plugin-mail",
       "name": "BenzCloud Mail Plugin",
-      "summary_de": "Vollständiger interner E-Mail-Server mit SMTP, IMAP und modernem Webmail.",
+      "summary_de": "Vollst\u00e4ndiger interner E-Mail-Server mit SMTP, IMAP und modernem Webmail.",
       "summary_en": "Complete internal email server featuring SMTP, IMAP, and modern webmail.",
-      "description_de": "Dezentraler Mail-Server für das Mesh-Netzwerk: RFC-konformes SMTP (Port 1025), IMAP (Port 1143 für Thunderbird & K-9) sowie integriertes responsives Webmail-Interface mit Cybernetic Dark Design.",
+      "description_de": "Dezentraler Mail-Server f\u00fcr das Mesh-Netzwerk: RFC-konformes SMTP (Port 1025), IMAP (Port 1143 f\u00fcr Thunderbird & K-9) sowie integriertes responsives Webmail-Interface mit Cybernetic Dark Design.",
       "description_en": "Decentralized mail server for private mesh networks: RFC-compliant SMTP (Port 1025), IMAP (Port 1143 for Thunderbird & K-9), and an embedded responsive webmail interface in Cybernetic Dark styling.",
       "author": "Jeremy Benz",
       "license": "GPL-3.0",
@@ -762,16 +709,17 @@
               "sha256": "d5b75f6cd47e49da0e55e9db53129fdfcb7e3a5c52cabba06158e5346add7968",
               "size": 10457088
             }
-          }
+          },
+          "release_url": "https://github.com/benzjeremy/benzcloud-plugin-mail/releases/tag/1.0"
         }
       ]
     },
     {
       "id": "com.benzjeremy.benzcloud-plugin-chat",
       "name": "BenzCloud Chat Plugin",
-      "summary_de": "Echtzeit-Teamkommunikation mit Kanälen, Präsenzanzeige und WebSocket-Engine.",
+      "summary_de": "Echtzeit-Teamkommunikation mit Kan\u00e4len, Pr\u00e4senzanzeige und WebSocket-Engine.",
       "summary_en": "Real-time team communication with channels, presence tracking, and WebSocket engine.",
-      "description_de": "Selbstgehostete Chat-Alternative zu Slack & Discord: Geringe Latenz via WebSockets, dynamische Kanäle (#general, #dev), Benutzer-Präsenzanzeige und modernes zweisprachiges Web-Interface.",
+      "description_de": "Selbstgehostete Chat-Alternative zu Slack & Discord: Geringe Latenz via WebSockets, dynamische Kan\u00e4le (#general, #dev), Benutzer-Pr\u00e4senzanzeige und modernes zweisprachiges Web-Interface.",
       "description_en": "Self-hosted chat alternative to Slack & Discord: Low-latency via WebSockets, dynamic rooms (#general, #dev), live user presence indicators, and modern bilingual web UI.",
       "author": "Jeremy Benz",
       "license": "GPL-3.0",
@@ -790,7 +738,7 @@
         {
           "version": "1.0",
           "release_date": "2026-09-12",
-          "changelog_de": "Initialer Release: WebSocket Mesh-Chat mit Präsenz und dynamischen Räumen.",
+          "changelog_de": "Initialer Release: WebSocket Mesh-Chat mit Pr\u00e4senz und dynamischen R\u00e4umen.",
           "changelog_en": "Initial release: WebSocket mesh chat with presence and dynamic channels.",
           "downloads": {
             "linux": {
@@ -816,7 +764,8 @@
               "sha256": "4f678a1653290e7e48f1ccb877ffe9d001252735acf7cad39b1bba8284802f1a",
               "size": 10866176
             }
-          }
+          },
+          "release_url": "https://github.com/benzjeremy/benzcloud-plugin-chat/releases/tag/1.0"
         }
       ]
     }
