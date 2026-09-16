@@ -203,40 +203,8 @@
         "linux",
         "windows"
       ],
-        "latest_version": "2.4",
+        "latest_version": "2.3",
         "versions": [
-          {
-            "version": "2.4",
-            "release_date": "2026-09-16",
-            "changelog_de": "Datenschutz‑Härtung, Entfernung des Microsoft‑Login‑Gatekeepers, und endgültiger Release nach v2.3 Pre‑Release.",
-            "changelog_en": "Privacy hardening, removal of Microsoft login gatekeeper, final release after v2.3 pre‑release.",
-            "downloads": {
-              "linux": {
-                "url": "https://github.com/benzjeremy/untis-go/releases/download/v2.4/untis-go-v2.4-linux.tar.gz",
-                "filename": "untis-go-v2.4-linux.tar.gz",
-                "bin_name": "untis-go",
-                "type": "binary",
-                "sha256": "289401d99b5247e6d39fb0408fd1b6832f5f5651ba46e879ecc6db2ba933a026",
-                "size": 16667400,
-                "desktop_entry": {
-                  "name": "Untis-Go",
-                  "comment": "WebUntis Timetable Client",
-                  "exec": "untis-go",
-                  "terminal": false,
-                  "categories": "Education;Office;"
-                }
-              },
-              "windows": {
-                "url": "https://github.com/benzjeremy/untis-go/releases/download/v2.4/untis-go-v2.4-windows.zip",
-                "filename": "untis-go-v2.4-windows.zip",
-                "bin_name": "untis-go.exe",
-                "type": "exe",
-                "sha256": "1e695d1a98b16972353a7282aaaae0515641315f7726546428cbce67badbc971",
-                "size": 19770368
-              }
-            },
-            "release_url": "https://github.com/benzjeremy/untis-go/releases/tag/v2.4"
-          },
           {
             "version": "2.3",
             "release_date": "2026-09-11",
